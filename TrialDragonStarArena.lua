@@ -1,5 +1,4 @@
 RaidNotifier = RaidNotifier or {}
-RaidNotifier.Util = {}
 RaidNotifier.DSA = {}
 
 local RaidNotifier = RaidNotifier

@@ -1,5 +1,4 @@
 RaidNotifier = RaidNotifier or {}
-RaidNotifier.Util = {}
 RaidNotifier.CR = {}
 
 local RaidNotifier = RaidNotifier
@@ -18,11 +17,30 @@ function RaidNotifier.CR.Initialize()
 	data.portalCounter = 0
 end
 
+--function RaidNotifier.CR.OnBossesChanged()
+--	local bossCount, bossAlive, bossFull = RaidNotifier:GetNumBosses(true)
+
+	-- reset if: 	
+	--	1) there are no bosses	
+	--	2) all bosses are dead	
+	--	3) all bosses are at full health
+--	if bossCount == 0 or bossAlive == 0 or bossFull == bossCount then
+--		dbg("clear data before")
+--		if (not IsUnitInCombat("player")) then
+--			dbg("clear data")
+--			data.spearCounter = 0
+--			data.portalCounter = 0
+--		end
+--	end
+--end
+
 function RaidNotifier.CR.OnCombatStateChanged(inCombat)
-	if (not inCombat) then
-		data = {}
-		data.spearCounter = 0
-		data.portalCounter = 0
+	if (inCombat) then
+		local bossCount, bossAlive, bossFull = RaidNotifier:GetNumBosses(true)
+		if bossCount == 0 or bossAlive == 0 or bossFull == bossCount then
+			data.spearCounter = 0
+			data.portalCounter = 0
+		end
 	end
 end
 
@@ -142,6 +160,7 @@ function RaidNotifier.CR.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 	elseif result == ACTION_RESULT_EFFECT_GAINED then
 		if (abilityId == buffsDebuffs.start_cd_of_srealm) then
 			data.break_amulet = false
+			data.portalCounter = 0
 		elseif (abilityId == buffsDebuffs.player_exit_srealm) then
 			dbg("Exit ShadowRealm >> %s", tName)
 		elseif (abilityId == buffsDebuffs.break_amulet) then

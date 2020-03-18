@@ -1,5 +1,4 @@
 RaidNotifier = RaidNotifier or {}
-RaidNotifier.Util = {}
 RaidNotifier.HOF = {}
 
 local RaidNotifier = RaidNotifier
@@ -17,10 +16,24 @@ function RaidNotifier.HOF.Initialize()
 	data.Minions = {}
 end
 
-function RaidNotifier.HOF.OnCombatStateChanged(inCombat)
-	if (not inCombat) then
+function RaidNotifier.HOF.OnBossesChanged()
+	local bossCount, bossAlive, bossFull = RaidNotifier:GetNumBosses(true)
+	-- reset if: 	
+	--	1) there are no bosses	
+	--	2) all bosses are dead	
+	--	3) all bosses are at full health	
+	if bossCount == 0 or bossAlive == 0 or bossFull == bossCount then	
 		data = {}
 		data.Minions = {}
+	end
+end
+
+function RaidNotifier.HOF.OnCombatStateChanged(inCombat)
+	if (not inCombat) then
+		dbg("Bosses changed, stop any active countdown")
+		RaidNotifier:StopCountdown()
+--		data = {}
+--		data.Minions = {}
 	end
 end
 
@@ -128,7 +141,7 @@ function RaidNotifier.HOF.OnCombatEvent(_, result, isError, aName, aGraphic, aAc
 		elseif (abilityId == buffsDebuffs.committee_overheat or abilityId == buffsDebuffs.committee_overload) then
 			if self:IsDevMode() then
 				if (settings.committee_overpower_auras_dynamic == true) then
-					if (Util.SafeInt(data.committee_countdown_index) > 0) then --only run while countdown is still happening
+					if (RaidNotifier.Util.SafeInt(data.committee_countdown_index) > 0) then --only run while countdown is still happening
 						local key = (abilityId == buffsDebuffs.committee_overload) and "committee_overload_target" or "committee_overheat_target"
 						local lastTarget = data[key]
 						data[key] = tUnitId
