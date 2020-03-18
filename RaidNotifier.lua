@@ -5,7 +5,7 @@ local RaidNotifier = RaidNotifier
 
 RaidNotifier.Name           = "RaidNotifier"
 RaidNotifier.DisplayName    = "Raid Notifier"
-RaidNotifier.Version        = "2.9.5"
+RaidNotifier.Version        = "2.11.9"
 RaidNotifier.Author         = "|c009ad6Kyoma, Memus, Woeler, silentgecko|r"
 RaidNotifier.SV_Name        = "RNVars"
 RaidNotifier.SV_Version     = 4
@@ -21,6 +21,7 @@ RAID_HALLS_OF_FABRICATION   = 7
 RAID_ASYLUM_SANCTORIUM      = 8
 RAID_CLOUDREST              = 9
 RAID_BLACKROSE_PRISON       = 10
+RAID_SUNSPIRE               = 11
 
 -- Debugging
 local function p() end
@@ -245,6 +246,10 @@ do ---------------------------------
 	
 	function RaidNotifier:StopCountdown(countdownIndex)
 		LCSA:EndCountdown(countdownIndex)
+--		if self.Vars.general.use_center_screen_announce == 0 and not important then
+			local pool = RaidNotifier.NotificationsPool.GetInstance()
+			pool:Stop(countdownIndex)
+--		end
 		countdownInProgress = false
 	end
 	
@@ -562,6 +567,7 @@ do ----------------------
 		[RAID_ASYLUM_SANCTORIUM]     = 1000,
 		[RAID_CLOUDREST]             = 1051,
 		[RAID_BLACKROSE_PRISON]      = 1082,
+		[RAID_SUNSPIRE]              = 1121,
 	}
 
 	local RaidZones = {}
@@ -610,58 +616,63 @@ do ----------------------
 			dbg("Register for %s (%s)", GetRaidZoneName(self.raidId), GetString("SI_DUNGEONDIFFICULTY", self.raidDifficulty))
 			
 			local trial = self.Trial[self.raidId]
-			trial.Initialize()
-			local combatEventCallback = trial.OnCombatEvent
-			local bossesChangedCallback = trial.OnBossesChanged
-			local effectChangedCallback = trial.OnEffectChanged
-			local combatStateChangedCallback = trial.OnCombatStateChanged
+			if (trial) then
+				trial.Initialize()
+				local combatEventCallback = trial.OnCombatEvent
+				local bossesChangedCallback = trial.OnBossesChanged
+				local effectChangedCallback = trial.OnEffectChanged
+				local combatStateChangedCallback = trial.OnCombatStateChanged
 			
-			local abilityList = {}
-			local function RegisterForAbility(abId)
-				if not abilityList[abId] then
-					abilityList[abId] = true
-					self:RegisterForCombatEvent(combatEventCallback, REGISTER_FILTER_ABILITY_ID, abId)
+				local abilityList = {}
+				local function RegisterForAbility(abId)
+					if not abilityList[abId] then
+						abilityList[abId] = true
+						self:RegisterForCombatEvent(combatEventCallback, REGISTER_FILTER_ABILITY_ID, abId)
+					end
 				end
-			end
 
-			-- The main juicy events we want, registered seperately for better performance
-			-- TODO: Remove (some of) this debugging when releasing it
-			-- TODO: Also add filter for action result but will require re-organizing BuffsDebuffs.lua 
---
-			dbg("----------------------------------------------")
-			dbg(" Gathering Abilities for Raid")
-			local raidData = self.BuffsDebuffs[self.raidId]
-			for k,v in pairs(raidData) do
-				if type(v) == "number" then 
-					if v > 10000 then
-						dbg("Found ability #%d (%s)", v, k)
-						RegisterForAbility(v)
+				-- The main juicy events we want, registered seperately for better performance
+				-- TODO: Remove (some of) this debugging when releasing it
+				-- TODO: Also add filter for action result but will require re-organizing BuffsDebuffs.lua 
+				dbg("----------------------------------------------")
+				dbg(" Gathering Abilities for Raid")
+				local raidData = self.BuffsDebuffs[self.raidId]
+				for k,v in pairs(raidData) do
+					if type(v) == "number" then 
+						if v > 10000 then
+							dbg("Found ability #%d (%s)", v, k)
+							RegisterForAbility(v)
+						else
+							dbg("Ignoring %s (%s)", tostring(v), k)
+						end
+					elseif type(v) == "table" then
+						for l,w in pairs(v) do
+							if type(l) == "number" and l > 10000 then
+								dbg("Found ability #%d (%s)", l, k)
+								RegisterForAbility(l)
+							else
+								dbg("Ignoring %s (%s)", l, k)
+							end
+						end
 					else
 						dbg("Ignoring %s (%s)", tostring(v), k)
 					end
-				elseif type(v) == "table" then
-					for l,w in pairs(v) do
-						if type(l) == "number" and l > 10000 then
-							dbg("Found ability #%d (%s)", l, k)
-							RegisterForAbility(l)
-							--self:RegisterForCombatEvent(combatEventCallback, REGISTER_FILTER_ABILITY_ID, l)
-						else
-							dbg("Ignoring %s (%s)", l, k)
-						end
-					end
-				else
-					dbg("Ignoring %s (%s)", tostring(v), k)
+				end
+				dbg("----------------------------------------------")
+
+				if (effectChangedCallback) then
+					EVENT_MANAGER:RegisterForEvent(self.Name, EVENT_EFFECT_CHANGED, effectChangedCallback)
+					EVENT_MANAGER:AddFilterForEvent(self.Name, EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG, "player")
+				end
+				if (bossesChangedCallback) then
+					EVENT_MANAGER:RegisterForEvent(self.Name, EVENT_BOSSES_CHANGED, bossesChangedCallback)
+				end	
+
+				-- In case of initializing while already at a boss
+				if (bossesChangedCallback) then
+					bossesChangedCallback()
 				end
 			end
-			dbg("----------------------------------------------")
-
-			if (effectChangedCallback) then
-				EVENT_MANAGER:RegisterForEvent(self.Name, EVENT_EFFECT_CHANGED, effectChangedCallback)
-				EVENT_MANAGER:AddFilterForEvent(self.Name, EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG, "player")
-			end
-			if (bossesChangedCallback) then
-				EVENT_MANAGER:RegisterForEvent(self.Name, EVENT_BOSSES_CHANGED, bossesChangedCallback)
-			end	
 
 			local function OnCombatStateChanged(_, inCombat)
 				local settings = self.Vars.general
@@ -683,7 +694,8 @@ do ----------------------
 						end, 3000);
 					end
 				end
-			end		
+			end
+
 			EVENT_MANAGER:RegisterForEvent(self.Name, EVENT_PLAYER_COMBAT_STATE, OnCombatStateChanged)
 
 			--self:AddFragment()
@@ -697,11 +709,6 @@ do ----------------------
 
 			-- Disable pets if that setting is set
 			ToggleVanityPets(true)
-
-			-- In case of initializing while already at a boss
-			if (bossesChangedCallback) then
-				bossesChangedCallback()
-			end
 		end
 	end
 
@@ -778,9 +785,7 @@ do ----------------------
 		self:InitializeStatusDisplay("StatusDisplay")
 		self:InitializeGlyphWindow("GlyphWindow", self.Vars.mawLorkhaj.zhaj_glyphs_invert)
 		self:InitializeArrowDisplay("ArrowDisplay")
-		--if (self.Vars.general.notifications_scale ~= 100) then
-			RaidNotifier.NotificationsPool.GetInstance():SetScale(self.Vars.general.notifications_scale / 100);
-		--end
+		RaidNotifier.NotificationsPool.GetInstance():SetScale(self.Vars.general.notifications_scale / 100);
 		RaidNotifier.NotificationsPool.GetInstance():SetPrecise(self.Vars.countdown.timerPrecise)
 		
 		-- Bindings
@@ -871,15 +876,16 @@ do ---------------------------
 		return LUNIT:GetUnitTagForUnitId(tUnitId)
 	end
 
-	RaidNotifier.AA = RaidNotifier.AA and RaidNotifier.AA or {}
-	RaidNotifier.HRC = RaidNotifier.HRC and RaidNotifier.HRC or {}		
-	RaidNotifier.SO = RaidNotifier.SO and RaidNotifier.SO or {}
-	RaidNotifier.DSA = RaidNotifier.DSA and RaidNotifier.DSA or {}		
-	RaidNotifier.MOL = RaidNotifier.MOL and RaidNotifier.MOL or {}
-	RaidNotifier.MA = RaidNotifier.MA and RaidNotifier.MA or {}
-	RaidNotifier.HOF = RaidNotifier.HOF and RaidNotifier.HOF or {}
-	RaidNotifier.AS = RaidNotifier.AS and RaidNotifier.AS or {}
-	RaidNotifier.CR = RaidNotifier.CR and RaidNotifier.CR or {}
+	RaidNotifier.AA = RaidNotifier.AA or {}
+	RaidNotifier.HRC = RaidNotifier.HRC or {}		
+	RaidNotifier.SO = RaidNotifier.SO or {}
+	RaidNotifier.DSA = RaidNotifier.DSA or {}		
+	RaidNotifier.MOL = RaidNotifier.MOL or {}
+	RaidNotifier.MA = RaidNotifier.MA or {}
+	RaidNotifier.HOF = RaidNotifier.HOF or {}
+	RaidNotifier.AS = RaidNotifier.AS or {}
+	RaidNotifier.CR = RaidNotifier.CR or {}
+	RaidNotifier.SS = RaidNotifier.SS or {}
 	
 	RaidNotifier.Trial = 
 	{
@@ -892,6 +898,7 @@ do ---------------------------
 		[RAID_HALLS_OF_FABRICATION]  = RaidNotifier.HOF,
 		[RAID_ASYLUM_SANCTORIUM]     = RaidNotifier.AS,
 		[RAID_CLOUDREST]             = RaidNotifier.CR,
+		[RAID_SUNSPIRE]	             = RaidNotifier.SS,
 	}
 	
 	-------------------
@@ -906,19 +913,15 @@ do ---------------------------
 	local trackedUnits = {}
 	local trackedAbilities = {}
 	
-	local blacklist = {
-		[90618] = true,
-		[90619] = true,
-		[90624] = true,
-	}
 	local function OnCombatDebugEvent(_, result, isError, aName, aGraphic, aActionSlotType, sName, sType, tName, tType, hitValue, pType, dType, log, sUnitId, tUnitId, abilityId)
 
 		local self   = RaidNotifier
-
 		
-		if abilityId < 80000 then
-			return 
-		elseif blacklist[abilityId] then
+--		if abilityId < 80000 then
+--			return 
+		if sType == COMBAT_UNIT_TYPE_PLAYER then
+			return
+		elseif self.blacklist and self.blacklist[abilityId] then
 			return 
 		end
 		
@@ -937,8 +940,13 @@ do ---------------------------
 			end
 			CheckUnit(tUnitId, tName, tType)
 		end
+	
+		--self.Vars.dbg.blacklist = self.Vars.dbg.blacklist or {}
+		--self.Vars.dbg.blacklist[abilityId] = true
 
-		if (self.Vars.dbg.tracker and debugList[result] ~= nil) then
+		--if (self.Vars.dbg.tracker and debugList[result] ~= nil) then
+		debugList[result] = debugList[result] or {}
+		if (self.Vars.dbg.tracker) then
 			local function FormatUnit(prefix, uType, uName, uId)
 				if uId == 0 then
 					return ""
@@ -954,14 +962,12 @@ do ---------------------------
 
 			if (not debugList[result][abilityId]) or (not self.Vars.dbg.spamControl) then
 				if (tType == COMBAT_UNIT_TYPE_PLAYER and (sType == COMBAT_UNIT_TYPE_OTHER or sType == COMBAT_UNIT_TYPE_NONE) or (not self.Vars.dbg.myEnemyOnly)) then
-			
 					local source = FormatUnit(", [S] ", sType, sName, sUnitId)
 					local target = FormatUnit(", [T] ", tType, tName, tUnitId)
 					local ability = (aName ~= "" and aName ~= nil) and aName or GetAbilityName(abilityId)
 
 					debugList[result][abilityId] = self.Vars.dbg.spamControl
-					dlog(debugMsg, result, ability, abilityId, source, target, hitValue)
-				
+					dlog(debugMsg, result, ability, abilityId, source, target, hitValue)	
 				end
 			end
 		end

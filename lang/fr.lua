@@ -475,6 +475,55 @@ L.Alerts_Cloudrest_Crushing_Darkness            = "|cfc0c66Ténèbres Écrasante
 L.Alerts_Cloudrest_Malicious_Strike             = "|cff0000Frappe Malveillante|r sur vous. Bloquez!"
 
 
+--------------------------------
+----        Sunspire        ----
+--------------------------------
+
+L.Settings_Sunspire_Header            		= "Sollance"
+-- Settings
+L.Settings_Sunspire_Chilling_Comet        	= "General: Comète de Glace"
+L.Settings_Sunspire_Chilling_Comet_TT     	= "Vous avertit quand une Comète de Glace est sur vous. Vous devez sortir du groupe, bloquer et ne pas vous chevaucher avec un autre joueur ayant une comète. Comète de Glace est sur deux joueurs en meme temps."
+L.Settings_Sunspire_Sweeping_Breath         	= "Nahviintaas: Balayage de Feu"
+L.Settings_Sunspire_Sweeping_Breath_TT    	= "Vous avertit quand Nahviintaas va faire son souffle de feu qui traverse toute la salle. Tous les joueurs doivent esquiver ou bloquer cette attaque."
+L.Settings_Sunspire_Molten_Meteor         	= "Nahviintaas: Météore en Fusion"
+L.Settings_Sunspire_Molten_Meteor_TT      	= "Vous avertit quand une Météore en Fusion est sur vous. Vous devez aller a l'extrémité de la salle, bloquer et ne pas vous chevaucher avec un autre joueur ayant une météore. Météore en Fusion cible trois joueurs en meme temps."
+L.Settings_Sunspire_Focus_Fire            	= "Yolnahkriin: Tir Concentré"
+L.Settings_Sunspire_Focus_Fire_TT         	= "Vous avertit quand un membre du groupe est ciblé par un Tir Concentré. Tir Concentré nécessite que les joueurs se rassemblent pour partager les dégâts. Il y aura un debuff persistant après qui augmentera les dégâts du prochain Tir Concentré. A cause de ce debuff vous devrez vous rassembler dans deux groupes séparés."
+L.Settings_Sunspire_Breath                	= "General: Souffle Glacé/De Feu/Brûlant"
+L.Settings_Sunspire_Breath_TT             	= "Vous avertit lorsque le cône canalisé de chaque boss vous cible, cette attaque inflige de gros dégâts."
+L.Settings_Sunspire_Cataclism             	= "Yolnahkriin: Cataclysme"
+L.Settings_Sunspire_Cataclism_TT          	= "Vous avertit quand le boss crachera du feu au milieu de la salle. Tout le monde doit aller sur les bords de la salle et tuer les adds."
+L.Settings_Sunspire_Frozen_Tomb           	= "Lokkestiiz: Tombe Givrée"
+L.Settings_Sunspire_Frozen_Tomb_TT        	= "Vous avertit quand une Tombe Givrée apparait. Un joueur doit entrer dans la tombe ce qui le gèlera et lui infligera des dégâts sur la durée. Vous devez ensuite remonter à 100% de santé pour être libéré. Il faut trois joueurs différents pour prendre les tombes à cause d'un debuff."
+L.Settings_Sunspire_Thrash                 	= "Nahviintaas: Rosée Brutale"
+L.Settings_Sunspire_Thrash_TT              	= "Vous avertit lorsque le boss va balancer sa tête dans le groupe et repousser tout le monde. Cette attaque doit être bloqué ou esquivé."
+L.Settings_Sunspire_Mark_For_Death       	= "Nahviintaas: Marqué et Condamné"
+L.Settings_Sunspire_Mark_For_Death_TT     	= "Vous avertit quand vous êtes marqué et condamné. Inflige de gros dégâts sur la durée, et enlève toutes vos résistances."
+L.Settings_Sunspire_Time_Breach           	= "Nahviintaas: Rupture Temporelle"
+L.Settings_Sunspire_Time_Breach_TT        	= "Vous avertit quand les portails pour descendre sont ouverts."
+L.Settings_Sunspire_Negate_Field          	= "Serviteur Éternel: Champ de Négation"
+L.Settings_Sunspire_Negate_Field_TT       	= "Vous avertit si vous êtes la cible du Champ de Négation en bas."
+-- Alerts
+L.Alerts_Sunspire_Chilling_Comet        	= "|c00ddffComète de Glace|r sur vous. Bloquez!"
+L.Alerts_Sunspire_Chilling_Comet_Other  	= "|c00ddffComète de Glacet|r sur |cff0000<<!aC:1>>|r"
+L.Alerts_Sunspire_Sweeping_Breath        	= "|cff0000Balayage de Feu|r! Bloquez!"
+L.Alerts_Sunspire_Molten_Meteor            	= "|c00ddffMétéore en Fusion|r sur vous! Bougez!"
+L.Alerts_Sunspire_Molten_Meteor_Other   	= "|c00ddffMétéore en Fusion|r sur <<!aC:1>>|r"
+L.Alerts_Sunspire_Focus_Fire            	= "|cff7700Tir Concentré|r sur vous dans"
+L.Alerts_Sunspire_Focus_Fire_Other        	= "|cff7700Tir Concentré|r sur |cff0000<<!aC:1>>|r dans"
+L.Alerts_Sunspire_Atronach_Zap          	= "|cff7700Atronach|r apparait dans"
+L.Alerts_Sunspire_Frost_Atronach        	= "|cff7700Atronach de Glace|r apparait!"
+L.Alerts_Sunspire_Breath                	= "|cffff00<<1>>|r sur vous!"
+L.Alerts_Sunspire_Breath_Other            	= "|cffff00<<1>>|r sur |cff0000<<!aC:2>>|r"
+L.Alerts_Sunspire_Cataclism             	= "|cff3300Cataclysme|r s'arrete dans"
+L.Alerts_Sunspire_Frozen_Tomb            	= "|c00ddffTombe Givrée|r (<<1>>)"
+L.Alerts_Sunspire_Thrash                 	= "En Approche |cff0000Rosée Brutale|r! Bloquez!"
+L.Alerts_Sunspire_Mark_For_Death        	= "Marqué et Condamné sur vous"
+L.Alerts_Sunspire_Mark_For_Death_Other  	= "Marqué et Condamné sur |cff0000<<!aC:1>>|r"
+L.Alerts_Sunspire_Time_Breach_Countdown   	= "|c81cc00Rupture Temporelle|r dans "
+L.Alerts_Sunspire_Negate_Field            	= "|c53c4c9Champ de Négation|r sur vous!"
+L.Alerts_Sunspire_Negate_Field_Others     	= "|c53c4c9Champ de Négation|r sur <<!aC:1>>!"
+
 
 --------------------------------
 ----       Debugging        ----
@@ -506,7 +555,7 @@ function RaidNotifier:GetLocale()
 	return L
 end
 
-if (GetCVar('language.2') == 'de') then 
+if (GetCVar('language.2') == 'fr') then 
 	local MissingL = {}
 	for k, v in pairs(RaidNotifier:GetLocale()) do
 		if (not L[k]) then

@@ -415,8 +415,6 @@ cloudrest.shadow_world[108045] = true
 cloudrest.shadow_world[104620] = true
 
 cloudrest.shadow_realm_cast = 103946
---cloudrest.olorime_spears = {} -- 2240
---cloudrest.olorime_spears[104021] = true
 cloudrest.olorime_spears = 104019
 cloudrest.olorime_spears_synergized = 104017
 
@@ -488,11 +486,92 @@ cloudrest.malicious_strike[105363] = true -- normal
 
 cloudrest.interest_list = {}
 
-
 RaidNotifier.BuffsDebuffs[RAID_CLOUDREST] = cloudrest
 
 -- ------------------------------------------------------
--- -- Cloudrest  ----------------------------------------
+-- -- Blackrose  ----------------------------------------
 -- -- ---------------------------------------------------
 local blackrose = {}
 RaidNotifier.BuffsDebuffs[RAID_BLACKROSE_PRISON] = blackrose
+
+-- ------------------------------------------------------
+-- -- Sunspire  -----------------------------------------
+-- -- ---------------------------------------------------
+local sunspire = {}
+sunspire.breath = {
+	[121751] = true,	-- fire breath
+	[119283] = true,	-- frost breath
+	[121980] = true,	-- searing breath
+}
+
+-- Trash
+sunspire.chilling_comet = {
+	[116636] = true,
+	[121075] = true,	-- in timeshift
+}
+sunspire.statue_emerge = {
+	[121930] = true,
+	[121932] = true,
+	[121928] = true,
+}
+
+-- Yolnukrinn fire boss
+sunspire.door_protection_fire = 118630
+sunspire.cataclism = 122598
+sunspire.focus_fire = 121722
+sunspire.focus_fire_tick = { -- remove
+	[121732] = true,
+	[121726] = true,
+}
+-- Lokkestiiz ice boss
+sunspire.door_protection_ice = 120417 -- 2200
+sunspire.frozen_tomb = 119632 
+sunspire.frozen_tomb_wipe_time = 60000
+
+sunspire.fire_trail = 122727 -- lighting breath while flying mechanic
+sunspire.raid_mr3_conjuredReflection = 124051
+sunspire.frozen_prison = 124335  
+sunspire.storm_fury  = {
+	[115871] = true,
+	[115702] = true,
+}
+sunspire.storm_breath = 123673
+
+-- Nahvinaas gold boss
+sunspire.sweeping_breath = { -- 5 sec
+	[120188] = true, -- left -> right
+	[118743] = true, -- right -> left
+}
+sunspire.thrash = 118562
+sunspire.mark_for_death = 117938
+sunspire.mark_for_death_defile = 120864 -- 2245
+--sunspire.molten_meteor = 117249 -- 2200
+sunspire.molten_meteor = {
+	[117251] = true, -- veteran
+	[123067] = true -- normal
+}
+sunspire.time_shift = 121676 -- 2200
+sunspire.time_breach_time = 3000
+sunspire.time_breach = 121210
+sunspire.time_breach_use = 121213 -- 2240 T
+sunspire.return_to_reality = 121254 -- 2245 T
+sunspire.find_the_enemy = 121275
+sunspire.shocking_bolt = 121443 -- 2245 T
+sunspire.shocking_bolt_delay = 4000
+sunspire.translation_apocalypse = 121436
+--[[
+	2240 time shift 121500
+	2245 time breach 121210 hitvalue 15000??
+	2240 time shift 124280
+	laduje portal na prawo (od startu okolo 3 sek)
+	2245 time shift 121502
+	
+]]
+
+sunspire.negate_field = 121411 -- 2200 hitvalue
+sunspire.lightening_storm  = 121271 -- 2245
+
+sunspire.flame_split = 119485
+sunspire.agony_totem = 118411
+
+RaidNotifier.BuffsDebuffs[RAID_SUNSPIRE] = sunspire

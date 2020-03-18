@@ -146,7 +146,7 @@ function RaidNotifier.HOF.OnCombatEvent(_, result, isError, aName, aGraphic, aAc
 						local lastTarget = data[key]
 						data[key] = tUnitId
 						if (lastTarget ~= nil and lastTarget ~= data[key]) then -- tanks have swapped?
-							dbg("%s changed from %s to %s", key, LUNIT:GetNameForUnitId(lastTarget), LUNIT:GetNameForUnitId(tUnitId))
+							dbg("%s changed from %s to %s", key, self.UnitIdToString(lastTarget), self.UnitIdToString(tUnitId))
 							local stopCountdown = false
 							if (tType == COMBAT_UNIT_TYPE_PLAYER) then
 								-- we are tanking and have just gotten aggro from the other boss, stop the timer??

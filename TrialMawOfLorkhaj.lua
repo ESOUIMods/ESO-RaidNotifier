@@ -76,8 +76,6 @@ function RaidNotifier.MOL.OnCombatEvent(_, result, isError, aName, aGraphic, aAc
 		tName = self.UnitIdToString(tUnitId)
 	end
 
-	dbg(Util)
-
 	--Zhaj'hassa the Forgotten 
 	-- Glyphs & Curse (UI elements only, notification code is further down below)
 	if settings.zhaj_glyphs then

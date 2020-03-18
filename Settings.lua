@@ -7,13 +7,17 @@ local tremove				= table.remove
 local tsort				= table.sort
 
 -- Constants for easy reading
-local RAID_HEL_RA_CITADEL        = 1
-local RAID_AETHERIAN_ARCHIVE     = 2
-local RAID_SANCTUM_OPHIDIA       = 3
-local RAID_DRAGONSTAR_ARENA      = 4
-local RAID_MAW_OF_LORKHAJ        = 5
-local RAID_MAELSTROM_ARENA       = 6
-local RAID_HALLS_OF_FABRICATION  = 7
+RAID_HEL_RA_CITADEL         = 1
+RAID_AETHERIAN_ARCHIVE      = 2
+RAID_SANCTUM_OPHIDIA        = 3
+RAID_DRAGONSTAR_ARENA       = 4
+RAID_MAW_OF_LORKHAJ         = 5
+RAID_MAELSTROM_ARENA        = 6
+RAID_HALLS_OF_FABRICATION   = 7
+RAID_ASYLUM_SANCTORIUM      = 8
+RAID_CLOUDREST              = 9
+RAID_BLACKROSE_PRISON       = 10
+RAID_SUNSPIRE				= 11
 
 -- ------------------
 -- DEFAULT SETTINGS
@@ -260,7 +264,7 @@ do ------------------
 			malicious_strike = false,
 			hoarfrost = 0, -- "Off"
 			hoarfrost_shed = true,
-            hoarfrost_countdown = true,
+			hoarfrost_countdown = true,
 			heavy_attack = 0, -- "Off"			
 			chilling_comet = true,
 			baneful_barb = 0, -- "Off"
@@ -272,6 +276,20 @@ do ------------------
 			crushing_darkness = 1, -- "Self"
 			tentacle_spawn = false,
 			break_amulet = false,
+		},
+		sunspire = {
+			chilling_comet = 1, -- "Self"
+			breath = 1, -- "Self"
+			frozen_tomb = true,
+			focus_fire = 1, -- "Self"
+			cataclism = true,
+			molten_meteor = 1, -- "Self"
+			sweeping_breath = true,
+			thrash = true,
+			mark_for_death = 0, -- "Self"
+			time_breach = false,
+			negate_field = 1, -- "Self"
+			shock_bolt = true,
 		},
 		dbg = {
 			enable = false,
@@ -495,6 +513,17 @@ function RaidNotifier:CreateSettingsMenu()
 				 L.Settings_General_Choices_Off,
 				 L.Settings_General_Choices_Self,
 			}
+		},
+		sunspire = {
+			chilling_comet = off_self_all,
+			breath = off_self_all,
+			focus_fire = off_self_all,
+			molten_meteor = off_self_all,
+			mark_for_death = off_self_all,
+			negate_field = {
+				 L.Settings_General_Choices_Off,
+				 L.Settings_General_Choices_Self,
+			}			
 		},
 	}
 
@@ -1277,7 +1306,7 @@ function RaidNotifier:CreateSettingsMenu()
 
 
 	-- Asylum Sanctorium
-	MakeSubmenu(L.Settings_Asylum_Header, RaidNotifier:GetRaidDescription(RAID_HALLS_OF_FABRICATION))
+	MakeSubmenu(L.Settings_Asylum_Header, RaidNotifier:GetRaidDescription(RAID_ASYLUM_SANCTORIUM))
 	MakeControlEntry({
 		type = "dropdown",
 		name = L.Settings_Asylum_Defiling_Blast,
@@ -1329,7 +1358,7 @@ function RaidNotifier:CreateSettingsMenu()
 	}, "asylum", "olms_trial_by_fire")
 	subTable = nil --end submenu
 
-        -- Cloudrest
+	-- Cloudrest
 	MakeSubmenu(L.Settings_Cloudrest_Header, RaidNotifier:GetRaidDescription(RAID_CLOUDREST))
 	MakeControlEntry({
 		type = "checkbox",
@@ -1424,6 +1453,80 @@ function RaidNotifier:CreateSettingsMenu()
 		choices = choices.cloudrest.crushing_darkness,
 	}, "cloudrest", "crushing_darkness")
 	subTable = nil --end submenu
+
+	MakeSubmenu(L.Settings_Sunspire_Header, RaidNotifier:GetRaidDescription(RAID_SUNSPIRE))
+        MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_Sunspire_Chilling_Comet,
+		tooltip = L.Settings_Sunspire_Chilling_Comet_TT,
+		choices = choices.sunspire.chilling_comet,
+	}, "sunspire", "chilling_comet")
+    MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_Sunspire_Breath,
+		tooltip = L.Settings_Sunspire_Breath_TT,
+		choices = choices.sunspire.breath,
+	}, "sunspire", "breath")
+    MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Sunspire_Frozen_Tomb,
+		tooltip = L.Settings_Sunspire_Frozen_Tomb_TT,
+	}, "sunspire", "frozen_tomb")
+	MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_Sunspire_Focus_Fire,
+		tooltip = L.Settings_Sunspire_Focus_Fire_TT,
+		choices = choices.sunspire.focus_fire,
+	}, "sunspire", "focus_fire")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Sunspire_Cataclism,
+		tooltip = L.Settings_Sunspire_Cataclism_TT,
+	}, "sunspire", "cataclism")
+	MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_Sunspire_Molten_Meteor,
+		tooltip = L.Settings_Sunspire_Molten_Meteor_TT,
+		choices = choices.sunspire.molten_meteor,
+	}, "sunspire", "molten_meteor")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Sunspire_Sweeping_Breath,
+		tooltip = L.Settings_Sunspire_Sweeping_Breath_TT,
+	}, "sunspire", "sweeping_breath")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Sunspire_Thrash,
+		tooltip = L.Settings_Sunspire_Thrash_TT,
+	}, "sunspire", "thrash")	
+	MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_Sunspire_Mark_For_Death,
+		tooltip = L.Settings_Sunspire_Mark_For_Death_TT,
+		choices = choices.sunspire.mark_for_death,
+	}, "sunspire", "mark_for_death")	
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Sunspire_Time_Breach,
+		tooltip = L.Settings_Sunspire_Time_Breach_TT,
+	}, "sunspire", "time_breach")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Sunspire_Shock_Bolt,
+		tooltip = L.Settings_Sunspire_Shock_Bolt_TT,
+	}, "sunspire", "shock_bolt")	
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Sunspire_Apocalypse,
+		tooltip = L.Settings_Sunspire_Apocalypse_TT,
+	}, "sunspire", "translation_apocalypse")
+	MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_Sunspire_Negate_Field,
+		tooltip = L.Settings_Sunspire_Negate_Field_TT,
+		choices = choices.sunspire.negate_field,
+	}, "sunspire", "negate_field")
+	subTable = nil
 
 	MakeControlEntry({
 		type = "header",

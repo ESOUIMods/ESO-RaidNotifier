@@ -1,8 +1,8 @@
 ## Title: |cEFEBBERaidNotifier|r
 ## Description: Displays on-screen notifications on different events during trials.
 ## Author: |c009ad6Kyoma, Memus, Woeler, silentgecko|r
-## Version: 2.9.5
-## APIVersion: 100026
+## Version: 2.11.9
+## APIVersion: 100028
 ## SavedVariables: RNVars RN_DEBUG_LOG
 ## OptionalDependsOn: LibAddonMenu-2.0 LibMapPing LibGPS2 LibGroupSocket
 
@@ -44,6 +44,7 @@ TrialMaelstormArena.lua
 TrialMawOfLorkhaj.lua
 TrialSanctumOphidia.lua
 TrialCloudrest.lua
+TrialSunspire.lua
 
 Notifications.lua
 RaidNotifier.lua
