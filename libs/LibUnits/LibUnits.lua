@@ -1,6 +1,14 @@
-local MAJOR, MINOR = "LibUnits", 3
-local lib, oldminor = LibStub:NewLibrary(MAJOR, MINOR)
-if not lib then return end	--the same or newer version of this lib is already loaded into memory
+local libName, libVersion = "LibUnits", 3
+local lib, oldlibVersion
+if(not LibStub) then
+    lib = {}
+else
+    lib, oldlibVersion = LibStub:NewLibrary(libName, libVersion)
+    if not lib then
+        return -- already loaded and no upgrade necessary
+    end
+end
+if not lib then return end
 
 local function Log(message, ...)
 	--df("[LibUnits] %s", message:format(...))
@@ -136,3 +144,5 @@ end
 
 if(lib.Unload) then lib.Unload() end
 Load()
+
+LibUnits = lib

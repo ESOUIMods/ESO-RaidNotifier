@@ -412,7 +412,7 @@ function RaidNotifier:CreateSettingsMenu()
 
 	self:TryUpgradeSettings()
 
-	local LAM = LibStub:GetLibrary("LibAddonMenu-2.0")
+	local LAM = LibAddonMenu2
 	self.panelData = {
 		type = "panel",
 		name = self.DisplayName,

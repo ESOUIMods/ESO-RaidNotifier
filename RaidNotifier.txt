@@ -4,34 +4,8 @@
 ## Version: 2.11.10
 ## APIVersion: 100030
 ## SavedVariables: RNVars RN_DEBUG_LOG
-## OptionalDependsOn: LibAddonMenu-2.0 LibMapPing LibGPS2 LibGroupSocket
+## OptionalDependsOn: LibAddonMenu-2.0 LibGPS LibGroupSocket LibMapPing
 
-libs/LibStub/LibStub.lua
-libs/LibCustomTitles/LibTitleLocale.lua
-libs/LibCustomTitles/LibCustomTitles.lua
-libs/LibCustomTitles/Titles/Kyoma.lua
-libs/LibCustomTitles/Titles/Woeler.lua
-libs/LibCustomTitles/Titles/Valve.lua
-libs/LibCustomTitles/Titles/Memus.lua
-libs/LibAddonMenu-2.0/LibAddonMenu-2.0.lua
-libs/LibAddonMenu-2.0/controls/panel.lua
-libs/LibAddonMenu-2.0/controls/submenu.lua
-libs/LibAddonMenu-2.0/controls/button.lua
-libs/LibAddonMenu-2.0/controls/checkbox.lua
-libs/LibAddonMenu-2.0/controls/colorpicker.lua
-libs/LibAddonMenu-2.0/controls/custom.lua
-libs/LibAddonMenu-2.0/controls/description.lua
-libs/LibAddonMenu-2.0/controls/divider.lua
-libs/LibAddonMenu-2.0/controls/dropdown.lua
-libs/LibAddonMenu-2.0/controls/editbox.lua
-libs/LibAddonMenu-2.0/controls/header.lua
-libs/LibAddonMenu-2.0/controls/slider.lua
-libs/LibAddonMenu-2.0/controls/texture.lua
-
-libs/LibMapPing/LibMapPing.lua
-libs/LibGPS/LibGPS.lua
-libs/LibGroupSocket/LibGroupSocket.lua
-libs/LibGroupSocket/handlers/UltimateHandler.lua
 libs/LibCSA/LibCSA.lua
 libs/LibUnits/LibUnits.lua
 
