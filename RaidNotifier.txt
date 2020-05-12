@@ -4,7 +4,8 @@
 ## Version: 2.11.11
 ## APIVersion: 100030 100031
 ## SavedVariables: RNVars RN_DEBUG_LOG
-## OptionalDependsOn: LibAddonMenu-2.0 LibMapPing LibGPS LibGroupSocket
+## DependsOn: LibAddonMenu-2.0 LibGroupSocket
+## OptionalDependsOn: LibStub
 
 libs/LibCSA/LibCSA.lua
 libs/LibUnits/LibUnits.lua
