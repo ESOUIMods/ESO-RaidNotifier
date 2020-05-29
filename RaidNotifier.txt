@@ -5,7 +5,7 @@
 ## AddOnVersion: 21112
 ## APIVersion: 100030 100031
 ## SavedVariables: RNVars RN_DEBUG_LOG
-## DependsOn: LibAddonMenu-2.0 LibGroupSocket>=3
+## DependsOn: LibAddonMenu-2.0 LibGroupSocket-3.0>=3
 ## OptionalDependsOn: LibStub
 
 libs/LibCSA/LibCSA.lua

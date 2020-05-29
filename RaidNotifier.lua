@@ -262,7 +262,7 @@ do ----------------------
 
 	local window = nil
 
-	local LGS = LibGroupSocket
+	local LGS = LibGroupSocket3
 	local ultimateHandler = LGS:GetHandler(LGS.MESSAGE_TYPE_ULTIMATE)
 	RNUltimateHandler = ultimateHandler -- debug
 	local ultimateAbilityId = 40223  -- Aggressive Warhorn Rank IV

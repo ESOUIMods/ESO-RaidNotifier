@@ -1,4 +1,4 @@
-local libName, libVersion = "LibGroupSocket", 3
+local libName, libVersion = "LibGroupSocket3", 3
 local lib, oldminor
 if(not LibStub) then
     lib = {}
@@ -84,7 +84,7 @@ end
 local function InitializeGroupMenu()
 	if(not ZO_GroupMenu_Keyboard) then return end
 	-- keyboard
-	button = CreateControlFromVirtual("$(parent)_LibGroupSocketToggle", ZO_GroupMenu_Keyboard, "ZO_CheckButton_Text")
+	button = CreateControlFromVirtual("$(parent)_LibGroupSocketToggle3", ZO_GroupMenu_Keyboard, "ZO_CheckButton_Text")
 	ZO_CheckButton_SetLabelText(button, "LibGroupSocket Sending:")
 	ZO_CheckButton_SetCheckState(button, saveData.enabled)
 	ZO_CheckButton_SetToggleFunction(button, function(control, checked)
@@ -104,7 +104,7 @@ local function InitializeGroupMenu()
 	entry = ZO_GamepadEntryData:New("")
 	RefreshGroupMenuGamepad(NO_UPDATE)
 	entry.type = MENU_ENTRY_TYPE_LGS_TOGGLE
-	entry:SetHeader("LibGroupSocket")
+	entry:SetHeader("LibGroupSocket3")
 	menu.menuEntries[MENU_ENTRY_TYPE_LGS_TOGGLE] = entry
 
 	local list = GAMEPAD_GROUP_MENU:GetMainList()
@@ -141,14 +141,14 @@ local function InitializeSettingsPanel() -- TODO: localization
 
 		local panelData = {
 			type = "panel",
-			name = "LibGroupSocket",
+			name = "LibGroupSocket v3",
 			author = "sirinsidiator",
-			version = "2",
+			version = "3",
 			website = "http://www.esoui.com/downloads/info1337-LibGroupSocket.html",
 			registerForRefresh = true,
 			registerForDefaults = true
 		}
-		panel = LAM:RegisterAddonPanel("LibGroupSocketOptions", panelData)
+		panel = LAM:RegisterAddonPanel("LibGroupSocketOptions3", panelData)
 
 		local optionsData = {}
 		if(not lib.standalone) then -- the stand alone version contains a file that sets standalone = true
@@ -197,7 +197,7 @@ local function InitializeSettingsPanel() -- TODO: localization
 				handler:InitializeSettings(optionsData, IsSendingDisabled)
 			end
 		end
-		LAM:RegisterOptionControls("LibGroupSocketOptions", optionsData)
+		LAM:RegisterOptionControls("LibGroupSocketOptions3", optionsData)
 	end
 end
 
@@ -658,4 +658,4 @@ end
 if(lib.Unload) then lib.Unload() end
 Load()
 
-LibGroupSocket = lib
+LibGroupSocket3 = lib

@@ -13,5 +13,6 @@
 ##
 ## You can read the full terms at https://account.elderscrollsonline.com/add-on-terms
 
+standalone.lua
 LibGroupSocket.lua
 handlers/UltimateHandler.lua
