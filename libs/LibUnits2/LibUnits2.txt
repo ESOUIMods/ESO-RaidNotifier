@@ -1,0 +1,8 @@
+## Title: LibUnits2
+## APIVersion: 100030
+## Author: andy.s
+## AddOnVersion: 100
+## Version: 1.0
+## IsLibrary: true
+
+LibUnits2.lua

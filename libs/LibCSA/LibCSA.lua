@@ -4,11 +4,11 @@ Filename: LibCSA.lua
 Version: 2.1
 
 Description: This library serves to provide a global  enhancement of the center screen announcement system to make it more flexible
-             for wider purposes. 
-             Additions: 
+             for wider purposes.
+             Additions:
               - Handlers:
                   + Global hooking of handlers using the new message params system, means addons won't have to duplicate original code when they only
-                    want to add or modify something. 
+                    want to add or modify something.
               - Countdown:
                   + Text can now be provided to display a text above the countdown while it happens.
                   + Icon is no longer mandatory and will be skipped if not provided. Instead the countdown is all the way to 0 instead of ending at 1.
@@ -43,7 +43,7 @@ local tickSoundId = SOUNDS.COUNTDOWN_TICK
 local ZO_CenterScreenAnnouncementCountdownLine_Initialize
 local ZO_CenterScreenAnnouncementCountdownLine_Reset
 local ZO_CenterScreenAnnouncementCountdownLine_SetMessageParams
-local ZO_CenterScreenAnnouncementCountdownLine_SetEndImageTexture 
+local ZO_CenterScreenAnnouncementCountdownLine_SetEndImageTexture
 local ZO_CenterScreenAnnouncementCountdownLine_PlayCountdownLoopAnimation
 local ZO_CenterScreenAnnouncementCountdownLine_OnCountDownAnimationEnd
 
@@ -80,7 +80,7 @@ local function Load()
 		-- we 'borrow' ZOS' code for platform-based font
 		ZO_CenterScreenAnnouncementSmallLine.ApplyPlatformStyle({control = CSA.countdownLineHeader})
 	end
-	
+
 
 	local ZO_CenterScreenMessageParams_Reset = ZO_CenterScreenMessageParams.Reset
 	ZO_CenterScreenMessageParams.Reset = function(self)
@@ -116,7 +116,7 @@ local function Load()
 	ZO_CenterScreenAnnouncementCountdownLine_Reset = ZO_CenterScreenAnnouncementCountdownLine.Reset
 	ZO_CenterScreenAnnouncementCountdownLine.Reset = function(self)
 		-- needs to be called first because Reset() will nil out messageParams
-		local setupCallback = self.messageParams and self.messageParams:GetSetupCallback() 
+		local setupCallback = self.messageParams and self.messageParams:GetSetupCallback()
 		if setupCallback then
 			setupCallback(self, self.messageParams, true)
 		end
@@ -132,20 +132,20 @@ local function Load()
 	ZO_CenterScreenAnnouncementCountdownLine.SetMessageParams = function(self, messageParams)
 		ZO_CenterScreenAnnouncementCountdownLine_SetMessageParams(self, messageParams)
 		local text, altText = messageParams:GetMainText()
-		if text ~= nil and text ~= "" then 
+		if text ~= nil and text ~= "" then
 			self.textControl:SetText(text)
 			self.textControl:SetHidden(false)
 		else
 			self.textControl:SetText("")
 			self.textControl:SetHidden(true)
 		end
-		local setupCallback = messageParams:GetSetupCallback() 
+		local setupCallback = messageParams:GetSetupCallback()
 		if setupCallback then
 			setupCallback(self, messageParams, false)
 		end
 	end
 
-	ZO_CenterScreenAnnouncementCountdownLine_SetEndImageTexture = ZO_CenterScreenAnnouncementCountdownLine.SetEndImageTexture 
+	ZO_CenterScreenAnnouncementCountdownLine_SetEndImageTexture = ZO_CenterScreenAnnouncementCountdownLine.SetEndImageTexture
 	ZO_CenterScreenAnnouncementCountdownLine.SetEndImageTexture = function(self, texture)
 		if texture ~= nil and texture ~= "" then
 			self.endImageControl:SetTexture(texture)
@@ -172,11 +172,11 @@ local function Load()
 		if countdownCallback then
 			countdownCallback(self, self.currentCountdownTimeS)
 		end
-		
+
 		if self.currentCountdownTimeS > 0 then
 			self:PlayCountdownLoopAnimation()
 		elseif self.endImageControl:IsHidden() then
-			if self.skipEndImage then 
+			if self.skipEndImage then
 				local endText = self.messageParams:GetSecondaryText()
 				--if endText ~= "" then
 				--	self.currentCountdownTimeS = endText
@@ -236,7 +236,7 @@ function lib:EndCountdown(index)
 end
 
 function lib:HasActiveCountdown()
-	return CSA:HasActiveLines(CSA_LINE_TYPE_COUNTDOWN) 
+	return CSA:HasActiveLines(CSA_LINE_TYPE_COUNTDOWN)
 end
 
 function lib:GetTickSound()

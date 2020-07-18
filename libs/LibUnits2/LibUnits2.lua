@@ -1,17 +1,8 @@
-local libName, libVersion = "LibUnits", 3
-local lib, oldlibVersion
-if(not LibStub) then
-    lib = {}
-else
-    lib, oldlibVersion = LibStub:NewLibrary(libName, libVersion)
-    if not lib then
-        return -- already loaded and no upgrade necessary
-    end
-end
-if not lib then return end
+local lib = {}
+LibUnits2 = lib
 
 local function Log(message, ...)
-	--df("[LibUnits] %s", message:format(...))
+	--df("[LibUnits2] %s", message:format(...))
 end
 lib.Log = Log
 lib.cm = ZO_CallbackObject:New()
@@ -70,31 +61,31 @@ end
 
 --------------------------------------------------------- Public ------------------------------------------------------
 
-function lib:GetUnitIdForName(unitName)
+function lib.GetUnitIdForName(unitName)
 	return lib.unitIds[unitName] or 0
 end
 
-function lib:GetUnitTagForUnitId(unitId)
+function lib.GetUnitTagForUnitId(unitId)
 	return lib.unitTags.group[unitId] or lib.unitTags.boss[unitId] or ""
 end
 
-function lib:GetNameForUnitId(unitId)
+function lib.GetNameForUnitId(unitId)
 	return lib.units[unitId] or ""
 end
 
-function lib:GetDisplayNameForUnitId(unitId)
-	return lib.displayNames[self:GetNameForUnitId(unitId)] or ""
+function lib.GetDisplayNameForUnitId(unitId)
+	return lib.displayNames[lib.GetNameForUnitId(unitId)] or ""
 end
 
 ---------------------------------------------------- Initialization ---------------------------------------------------
 
 local function Unload()
-	EVENT_MANAGER:UnregisterForEvent("LibUnits", EVENT_GROUP_UPDATE)
-    EVENT_MANAGER:UnregisterForEvent("LibUnits", EVENT_UNIT_CREATED)
-    EVENT_MANAGER:UnregisterForEvent("LibUnits", EVENT_UNIT_DESTROYED)
-	EVENT_MANAGER:UnregisterForEvent("LibUnits_EffectChangedGroup",  EVENT_EFFECT_CHANGED)
-	EVENT_MANAGER:UnregisterForEvent("LibUnits", EVENT_BOSSES_CHANGED)
-	EVENT_MANAGER:UnregisterForEvent("LibUnits_EffectChangedBoss",  EVENT_EFFECT_CHANGED)
+    EVENT_MANAGER:UnregisterForEvent("LibUnits2", EVENT_GROUP_MEMBER_JOINED)
+    EVENT_MANAGER:UnregisterForEvent("LibUnits2", EVENT_GROUP_MEMBER_LEFT)
+	EVENT_MANAGER:UnregisterForEvent("LibUnits2", EVENT_GROUP_UPDATE)
+	EVENT_MANAGER:UnregisterForEvent("LibUnits2_EffectChangedGroup",  EVENT_EFFECT_CHANGED)
+	EVENT_MANAGER:UnregisterForEvent("LibUnits2", EVENT_BOSSES_CHANGED)
+	EVENT_MANAGER:UnregisterForEvent("LibUnits2_EffectChangedBoss",  EVENT_EFFECT_CHANGED)
 end
 
 local function Load()
@@ -108,7 +99,6 @@ local function Load()
 
 	-- During group invitation, we can receive a lot of event spam at once on a single invite when the
 	-- involved players are at the same location. Add a delay so we only refresh once in cases like this.
-	--    (Shameless rip from ZOS)
 	lib.delayedRebuildCounter = 0 
     local function DelayedRefreshData()
         lib.delayedRebuildCounter = lib.delayedRebuildCounter - 1
@@ -126,23 +116,20 @@ local function Load()
         end
     end
 
-	EVENT_MANAGER:RegisterForEvent("LibUnits", EVENT_GROUP_UPDATE, RegisterDelayedRefresh)
-    EVENT_MANAGER:RegisterForEvent("LibUnits", EVENT_UNIT_CREATED, RegisterDelayedRefreshOnUnitEvent)   --Are these two needed or will they
-    EVENT_MANAGER:RegisterForEvent("LibUnits", EVENT_UNIT_DESTROYED, RegisterDelayedRefreshOnUnitEvent) --also be handled by GROUP_UPDATE?
-	--We are tracking when a group member blocks
-	EVENT_MANAGER:RegisterForEvent("LibUnits_EffectChangedGroup",  EVENT_EFFECT_CHANGED, OnEffectChanged)
-	EVENT_MANAGER:AddFilterForEvent("LibUnits_EffectChangedGroup", EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG_PREFIX, "group") --REGISTER_FILTER_ABILITY_ID, 14890)
+    EVENT_MANAGER:RegisterForEvent("LibUnits2", EVENT_GROUP_MEMBER_JOINED, RegisterDelayedRefreshOnUnitEvent)
+    EVENT_MANAGER:RegisterForEvent("LibUnits2", EVENT_GROUP_MEMBER_LEFT, RegisterDelayedRefreshOnUnitEvent)
+	EVENT_MANAGER:RegisterForEvent("LibUnits2", EVENT_GROUP_UPDATE, RegisterDelayedRefresh)
+
+	EVENT_MANAGER:RegisterForEvent("LibUnits2_EffectChangedGroup",  EVENT_EFFECT_CHANGED, OnEffectChanged)
+	EVENT_MANAGER:AddFilterForEvent("LibUnits2_EffectChangedGroup", EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG_PREFIX, "group")
 
 	-- Track Bosses
-	EVENT_MANAGER:RegisterForEvent("LibUnits", EVENT_BOSSES_CHANGED, function() lib.unitTags.boss = {} end)
+	EVENT_MANAGER:RegisterForEvent("LibUnits2", EVENT_BOSSES_CHANGED, function() lib.unitTags.boss = {} end)
 	-- Seperate handle for bosses, no specific ability to monitor
-	EVENT_MANAGER:RegisterForEvent("LibUnits_EffectChangedBoss",  EVENT_EFFECT_CHANGED, OnBossEffectChanged)
-	EVENT_MANAGER:AddFilterForEvent("LibUnits_EffectChangedBoss", EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG_PREFIX, "boss")
+	EVENT_MANAGER:RegisterForEvent("LibUnits2_EffectChangedBoss",  EVENT_EFFECT_CHANGED, OnBossEffectChanged)
+	EVENT_MANAGER:AddFilterForEvent("LibUnits2_EffectChangedBoss", EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG_PREFIX, "boss")
 
 	lib.Unload = Unload
 end
 
-if(lib.Unload) then lib.Unload() end
 Load()
-
-LibUnits = lib
