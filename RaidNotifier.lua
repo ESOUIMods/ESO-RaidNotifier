@@ -8,7 +8,7 @@ local RaidNotifier = RaidNotifier
 
 RaidNotifier.Name           = "RaidNotifier"
 RaidNotifier.DisplayName    = "Raid Notifier"
-RaidNotifier.Version        = "2.13"
+RaidNotifier.Version        = "2.14"
 RaidNotifier.Author         = "|c009ad6Kyoma, Memus, Woeler, silentgecko|r"
 RaidNotifier.SV_Name        = "RNVars"
 RaidNotifier.SV_Version     = 4
@@ -882,7 +882,7 @@ do ---------------------------
 	end
 
 	function RaidNotifier.UnitToTag(id)
-		return LUNIT:GetUnitTagForUnitId(tUnitId)
+		return LUNIT:GetUnitTagForUnitId(id)
 	end
 
 	RaidNotifier.AA = RaidNotifier.AA or {}
