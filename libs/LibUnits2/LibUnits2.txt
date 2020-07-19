@@ -1,5 +1,5 @@
 ## Title: LibUnits2
-## APIVersion: 100030
+## APIVersion: 100031
 ## Author: andy.s
 ## AddOnVersion: 100
 ## Version: 1.0
