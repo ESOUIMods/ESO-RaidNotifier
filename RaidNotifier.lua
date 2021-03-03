@@ -1,8 +1,5 @@
 RaidNotifier = RaidNotifier or {}
 RaidNotifier.Util = RaidNotifier.Util or {}
-local LCSA = LibCSA
-local LGS = LibGroupSocket
-local LUNIT = LibUnits2
 
 local RaidNotifier = RaidNotifier
 
@@ -128,6 +125,7 @@ do ---------------------------------
 	end
 
 	local CSA  = CENTER_SCREEN_ANNOUNCE
+	local LCSA = LibStub:GetLibrary("LibCSA")
 
 	function RaidNotifier:AddAnnouncement(text, category, setting, interval)
 
@@ -164,7 +162,7 @@ do ---------------------------------
 			if soundId ~= nil then PlaySound(soundId) end
 		end
 	end
-
+	
 	-- called when messageParams are applied to the line
 	local orgTextScale, orgCountdownScale, orgCountdownColor
 	local function SetupCallback(line, messageParams, doReset)
@@ -264,7 +262,8 @@ do ----------------------
 
 	local window = nil
 
-	local ultimateHandler = LGS:GetHandler(LGS.MESSAGE_TYPE_ULTIMATE)
+	local LGS = LibStub("LibGroupSocket", true)
+	local ultimateHandler = LGS and LGS:GetHandler(LGS.MESSAGE_TYPE_ULTIMATE)
 	RNUltimateHandler = ultimateHandler -- debug
 	local ultimateAbilityId = 40223  -- Aggressive Warhorn Rank IV
 	local ultimateGroupId   = 29     -- hardcoded for now
@@ -316,9 +315,9 @@ do ----------------------
 	function RaidNotifier:RegisterForUltimateChanges()
 		local settings = self.Vars.ultimate
 		if not settings.enabled then return end
-
-		-- if not ultimateHandler then return end
-
+		
+		if not ultimateHandler then return end
+		
 		if listening then return end
 		listening = true
 		dbg("RegisterForUltimateChanges")
@@ -384,8 +383,8 @@ do ----------------------
 	end
 
 	function RaidNotifier:UnregisterForUltimateChanges()
-		-- if not ultimateHandler then return end
-
+		if not ultimateHandler then return end
+	
 		if not listening then return end
 		listening = false
 		dbg("UnregisterForUltimateChanges")
@@ -442,17 +441,17 @@ do ----------------------
 			self:UnregisterForUltimateChanges()
 		elseif (args[1] == "refresh") then
 			ultimates = {}
-			--if ultimateHandler then
-			ultimateHandler:Refresh()
-			--end
+			if ultimateHandler then
+				ultimateHandler:Refresh()
+			end
 		elseif (args[1] == "debug") then
-			--if ultimateHandler then
-			ultimateHandler:SetDebug(tonumber(args[2]))
-			--end
+			if ultimateHandler then 
+				ultimateHandler:SetDebug(tonumber(args[2]))
+			end
 		elseif (args[1] == "clear") then
-			--if ultimateHandler then
-			ultimateHandler:ResetResources()
-			--end
+			if ultimateHandler then
+				ultimateHandler:ResetResources()
+			end
 		elseif (args[1] == "cost") then
 			if (#args == 2) then
 				if (tonumber(args[2]) ~= nil) then
@@ -832,6 +831,7 @@ do ----------------------
 		CALLBACK_MANAGER:RegisterCallback("OnWorldMapChanged", OnZoneChanged) -- might as well listen to this since that code is executed anyways
 
 		-- Change vitality bonus announcement to not conflict with our own
+		local LCSA = LibStub:GetLibrary("LibCSA")
 		LCSA:HookHandler(EVENT_RAID_REVIVE_COUNTER_UPDATE, function(messageParams, currentCount, countDelta)
 			if messageParams then
 				messageParams:SetCategory(CSA_CATEGORY_SMALL_TEXT)
@@ -871,6 +871,7 @@ end
 
 do ---------------------------
 
+	local LUNIT = LibUnits2
 	local Util  = RaidNotifier.Util
 
 	function RaidNotifier.UnitIdToString(id)

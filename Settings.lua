@@ -6,8 +6,6 @@ local tinsert	 			= table.insert
 local tremove				= table.remove
 local tsort				= table.sort
 
-local LAM = LibAddonMenu2
-
 -- Constants for easy reading
 RAID_HEL_RA_CITADEL         = 1
 RAID_AETHERIAN_ARCHIVE      = 2
@@ -414,6 +412,7 @@ function RaidNotifier:CreateSettingsMenu()
 
 	self:TryUpgradeSettings()
 
+	local LAM = LibAddonMenu2
 	self.panelData = {
 		type = "panel",
 		name = self.DisplayName,

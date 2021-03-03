@@ -4,8 +4,8 @@
 --   1: isFullUpdate - the user is sending cost in addition to percentages in this packet
 --   2: requestsFullUpdate - the user does not have all the necessary data and wants to have a full update from everyone (e.g. after reloading the ui)
 
-local LGS = LibGroupSocket
-
+local LGS = LibStub("LibGroupSocket", true)
+if not LGS then return end
 LGS.MESSAGE_TYPE_ULTIMATE = 21 -- aka, the code for 'u'
 local type, version = LGS.MESSAGE_TYPE_ULTIMATE, 2
 local handler, saveData = LGS:RegisterHandler(type, version)
