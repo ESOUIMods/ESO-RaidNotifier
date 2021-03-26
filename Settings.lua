@@ -155,6 +155,7 @@ do ------------------
 			status_display  = {100, 400, CENTER},
 			unlock_status_icon = false,
 			default_sound   = SOUNDS.CHAMPION_POINTS_COMMITTED,
+			announcement_position = {0, -120, CENTER},
 		},
 		ultimate = {
 			enabled         = false,
@@ -627,11 +628,20 @@ function RaidNotifier:CreateSettingsMenu()
 		type = "dropdown",
 		name = L.Settings_General_Center_Screen_Announce,
 		tooltip = L.Settings_General_Center_Screen_Announce_TT,
+		setFunc = function(value)
+			savedVars.general.use_center_screen_announce = value
+
+			if (value == 0) then
+				self.AnnouncementUIManager:SetupCustomState()
+			else
+				self.AnnouncementUIManager:SetupCSAState()
+			end
+		end,
 		choices = {
-			L.Settings_General_Choices_Small,
-			--L.Settings_General_Choices_Large,
-			L.Settings_General_Choices_Major,
-			L.Settings_General_Choices_Custom,
+			L.Settings_General_Choices_Small_Announcement,
+			--L.Settings_General_Choices_Large_Announcement,
+			L.Settings_General_Choices_Major_Announcement,
+			L.Settings_General_Choices_Custom_Announcement,
 		}, choicesValues = {
 			CSA_CATEGORY_SMALL_TEXT,
 			--CSA_CATEGORY_LARGE_TEXT,
@@ -653,6 +663,20 @@ function RaidNotifier:CreateSettingsMenu()
 		noAlert = true,
 		disabled = function() return savedVars.general.use_center_screen_announce ~= 0 end,
 	}, "general", "notifications_scale")
+	MakeControlEntry({
+		type = "button",
+		name = L.Settings_General_Notifications_Showcase,
+		func = function(btn)
+			-- Clear all previous notifications to make a clean showcase
+			self:StopCountdown()
+			SCENE_MANAGER:Hide("gameMenuInGame")
+			-- This 1 sec delay is not only for nice experience, but also for preventing instant-casting notifications
+			-- to be overlapped
+			-- It seems that some time is needed after hiding settings before notifications will be counted as not hidden
+			-- by Control:IsHidden() (that's why they're stacking one atop another)
+			zo_callLater(function() self:InvokeNotificationsDebug(15500, false) end, 1000)
+		end,
+	})
 	MakeControlEntry({
 		type = "checkbox",
 		name = L.Settings_General_Bufffood_Reminder,
@@ -1063,7 +1087,11 @@ function RaidNotifier:CreateSettingsMenu()
 		getFunc = function() return savedVars.mawLorkhaj.zhaj_glyphs end,
 		setFunc = function(value)
 					savedVars.mawLorkhaj.zhaj_glyphs = value
-					RaidNotifier.OnBossesChanged()
+
+					if self.raidId == RAID_MAW_OF_LORKHAJ then
+					    -- Updating glyph window visibility state
+					    self.MOL.OnBossesChanged()
+					end
 				end,
 		noAlert = true,
 	}, "mawLorkhaj", "zhaj_glyphs")

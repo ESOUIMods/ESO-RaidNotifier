@@ -8,7 +8,7 @@ local RaidNotifier = RaidNotifier
 
 RaidNotifier.Name           = "RaidNotifier"
 RaidNotifier.DisplayName    = "Raid Notifier"
-RaidNotifier.Version        = "2.15"
+RaidNotifier.Version        = "2.16"
 RaidNotifier.Author         = "|c009ad6Kyoma, Memus, Woeler, silentgecko|r"
 RaidNotifier.SV_Name        = "RNVars"
 RaidNotifier.SV_Version     = 4
@@ -796,6 +796,7 @@ do ----------------------
 		self:InitializeStatusDisplay("StatusDisplay")
 		self:InitializeGlyphWindow("GlyphWindow", self.Vars.mawLorkhaj.zhaj_glyphs_invert)
 		self:InitializeArrowDisplay("ArrowDisplay")
+		self.AnnouncementUIManager:Initialize(RaidNotifierUICenterAnnounce)
 		RaidNotifier.NotificationsPool.GetInstance():SetScale(self.Vars.general.notifications_scale / 100);
 		RaidNotifier.NotificationsPool.GetInstance():SetPrecise(self.Vars.countdown.timerPrecise)
 
@@ -990,6 +991,30 @@ do ---------------------------
 		end
 	end
 
+	function RaidNotifier:InvokeNotificationsDebug(mainCountdownDuration, addMoreCountdowns)
+		if (addMoreCountdowns) then
+			self:StartCountdown(mainCountdownDuration, GetString(RAIDNOTIFIER_ALERTS_HALLSFAB_TAKING_AIM_SIMPLE), "hallsFab", "taking_aim", not self:IsCountdownInProgress())
+		end
+		self:StartCountdown(mainCountdownDuration, GetString(RAIDNOTIFIER_ALERTS_HALLSFAB_TAKING_AIM_SIMPLE), "hallsFab", "taking_aim", false)
+		self:AddAnnouncement("Next Notification", "cloudrest", "olorime_spears2")
+		zo_callLater(function()
+			self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_CHILLING_COMET), "cloudrest", "chilling_comet")
+			zo_callLater(function()
+				if (addMoreCountdowns) then
+					self:StartCountdown(6000, "Test countdown", "hallsFab", "test", false)
+				else
+					self:AddAnnouncement(zo_strformat(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_OLORIME_SPEARS), 1), "cloudrest", "olorime_spears")
+				end
+				zo_callLater(function()
+					self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_TENTACLE_SPAWN), "cloudrest", "tentacle_spawn")
+					zo_callLater(function()
+						self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_HALLSFAB_POWER_LEECH), "hallsFab", "power_leech")
+					end, 1500)
+				end, 500)
+			end, 500)
+		end, 1000)
+	end
+
 	-- Fast debug toggle
 	SLASH_COMMANDS["/rndebug"] = function(str)
 		local args = {zo_strsplit(" ", str)}
@@ -1017,27 +1042,7 @@ do ---------------------------
 				self:TrackPlayer(masterList[1].unitTag, 20000)
 			end
 		elseif (args[1] == "notifications") then
-			if (args[2] ~= nil) then
-				self:StartCountdown(8500, GetString(RAIDNOTIFIER_ALERTS_HALLSFAB_TAKING_AIM_SIMPLE), "hallsFab", "taking_aim", not self:IsCountdownInProgress())
-			end
-			self:StartCountdown(8500, GetString(RAIDNOTIFIER_ALERTS_HALLSFAB_TAKING_AIM_SIMPLE), "hallsFab", "taking_aim", false)
-			self:AddAnnouncement("Next Notification", "cloudrest", "olorime_spears2")
-			zo_callLater(function()
-				self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_CHILLING_COMET), "cloudrest", "chilling_comet")
-				zo_callLater(function()
-					if (args[2] ~= nil) then
-						self:StartCountdown(6000, "Test countdown", "hallsFab", "test", false)
-					else
-						self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_OLORIME_SPEARS), "cloudrest", "olorime_spears")
-					end
-					zo_callLater(function()
-						self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_TENTACLE_SPAWN), "cloudrest", "tentacle_spawn")
-						zo_callLater(function()
-							self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_HALLSFAB_POWER_LEECH), "hallsFab", "power_leech")
-						end, 1500)
-					end, 500)
-				end, 500)
-			end, 1000)
+			self:InvokeNotificationsDebug(8500, args[2] ~= nil)
 		elseif (args[1] == "enemy") then
 			settings.myEnemyOnly = Util.GetArgValue(args[2], settings.myEnemyOnly)
 			p("%s My Enemy Only", settings.myEnemyOnly and "Enabled" or "Disabled")

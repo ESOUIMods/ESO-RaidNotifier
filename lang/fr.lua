@@ -6,7 +6,8 @@ L.Description                            = "Affiche des annonces à l'écran sur
 ----     General Stuff      ----
 --------------------------------
 L.Settings_General_Header                           = "Général"
--- Settings 
+-- Settings
+L.Settings_General_Notifications_Showcase           = "Notifications showcase"
 L.Settings_General_Bufffood_Reminder                = "Rappel Nourriture"
 L.Settings_General_Bufffood_Reminder_TT             = "Alerte lorsque vous n'avez pas de nourriture lors d'une épreuve ou quand elle est sur le point d'expirer (voir ci-dessous)"
 L.Settings_General_Bufffood_Reminder_Interval       = "Intervalle de Rappel"
@@ -17,6 +18,8 @@ L.Settings_General_No_Assistants                    = "Désactive les Assistants
 L.Settings_General_No_Assistants_TT                 = "Ne s'applique que durant les épreuves et n'empêche PAS de les invoquer."
 L.Settings_General_Center_Screen_Announce           = "Type des Annonces"
 L.Settings_General_Center_Screen_Announce_TT        = "Le type à utiliser pour l'affichage des annonces."
+L.Settings_General_NotificationsScale               = "Notifications Scale"
+L.Settings_General_NotificationsScale_TT            = "The scale of the notifications and minor countdowns display"
 L.Settings_General_UseDisplayName                   = "Utilise le Nom D'Utilisateur"
 L.Settings_General_UseDisplayName_TT                = "Utilise le nom d'utilisateur dans les annonces au lieu du nom de personnage."
 L.Settings_General_Unlock_Status_Icon               = "Déverouille l'Icone de Statut"
@@ -34,10 +37,14 @@ L.Settings_General_Choices_All                      = "Tous"
 L.Settings_General_Choices_Always                   = "Toujours"
 L.Settings_General_Choices_Other                    = "Autre"
 L.Settings_General_Choices_Inverted                 = "Inversé"
-L.Settings_General_Choices_Small                    = "Petit (obsolete)"
-L.Settings_General_Choices_Large                    = "Grand (obsolete)"
-L.Settings_General_Choices_Major                    = "Majeur (obsolete)"
-L.Settings_General_Choices_Custom                   = "Personnalisé"
+L.Settings_General_Choices_Small_Announcement       = "Petit (obsolete)"
+L.Settings_General_Choices_Large_Announcement       = "Grand (obsolete)"
+L.Settings_General_Choices_Major_Announcement       = "Majeur (obsolete)"
+L.Settings_General_Choices_1s                       = "1.0s"
+L.Settings_General_Choices_500ms                    = "0.5s"
+L.Settings_General_Choices_200ms                    = "0.2s"
+L.Settings_General_Choices_Custom                   = "Custom"
+L.Settings_General_Choices_Custom_Announcement      = "Personnalisé"
 -- Alerts
 L.Alerts_General_No_Bufffood                        = "Vous n'avez pas de Nourriture!"
 L.Alerts_General_Bufffood_Minutes                   = "Votre '<<1>>' nourriture se termine dans |cbd0000<<2>>|r minutes!"
@@ -50,7 +57,7 @@ L.Binding_ToggleUltimateExchange                    = "Bascule l'Ultime"
 --------------------------------
 L.Settings_Ultimate_Header                           = "Échange d'Ultimes (beta)"
 L.Settings_Ultimate_Description                      = "Cette fonctionnalité vous permet d'envoyer votre nombre de points d'ultimes à vos coéquipiers afin qu'ils puissent voir quand est ce que vous pourrez l'utiliser. Il utilise votre coût en fonction de toutes les réductions de coûts d'ensembles ou de passifs."
--- Settings 
+-- Settings
 L.Settings_Ultimate_Enabled                          = "Activé"
 L.Settings_Ultimate_Enabled_TT                       = "Permet le partage et la réception des valeurs d'ultimes. Il est toujours désactivé en dehors des essais."
 L.Settings_Ultimate_Hidden                           = "Masqué"
@@ -145,7 +152,7 @@ L.Settings_Archive_Overcharge                       = "Mobs: Surcharge"
 L.Settings_Archive_Overcharge_TT                    = "Vous avertit quand un Surchargeur vous cible avec sa capacité Surcharge (grande AoE)"
 L.Settings_Archive_Call_Lightning                   = "Mobs: Appel de la Foudre"
 L.Settings_Archive_Call_Lightning_TT                = "Vous avertit quand un Surchargeur vous cible avec sa capacité Appel de la Foudre (petites AoEs)"
--- Alerts 
+-- Alerts
 L.Alerts_Archive_StormAtro_ImpendingStorm           = "En Approche |cFF0000Tempête de Foudre|r!"
 L.Alerts_Archive_StormAtro_LightningStorm           = "En Approche |cfef92eOrage|r! Allez dans la lumière!"
 L.Alerts_Archive_StoneAtro_BoulderStorm             = "En Approche |cFF0000Pluie de Rochers|r! Bloquez pour ne pas être renversé!"
@@ -336,7 +343,7 @@ L.Settings_HallsFab_Scalded_Debuff_TT               = "Affiche une petite icône
 L.Settings_HallsFab_Overcharge_Aura                 = "Commitée: Aura Surchargée"
 L.Settings_HallsFab_Overcharge_Aura_TT              = "Vous avertit quand le boss Récupérateur commence son Aura Surchargée."
 L.Settings_HallsFab_Overpower_Auras                 = "Commitée: Auras Surchargées"
-L.Settings_HallsFab_Overpower_Auras_TT              = "Vous avertit quand les tanks doivent échanger leurs boss (Réacteur et Réducteur)." 
+L.Settings_HallsFab_Overpower_Auras_TT              = "Vous avertit quand les tanks doivent échanger leurs boss (Réacteur et Réducteur)."
 L.Settings_HallsFab_Overpower_Auras_Duration        = "       - Durée du Compte à Rebours"
 L.Settings_HallsFab_Overpower_Auras_Duration_TT     = "La durée du compte à rebours en millisecondes."
 L.Settings_HallsFab_Overpower_Auras_Dynamic         = "       - Compte à Rebours Dynamique"
@@ -503,6 +510,12 @@ L.Settings_Sunspire_Time_Breach           	= "Nahviintaas: Rupture Temporelle"
 L.Settings_Sunspire_Time_Breach_TT        	= "Vous avertit quand les portails pour descendre sont ouverts."
 L.Settings_Sunspire_Negate_Field          	= "Serviteur Éternel: Champ de Négation"
 L.Settings_Sunspire_Negate_Field_TT       	= "Vous avertit si vous êtes la cible du Champ de Négation en bas."
+L.Settings_Sunspire_Shock_Bolt            = "Eternal Servant: Shock Bolt"
+L.Settings_Sunspire_Shock_Bolt_TT         = "Shock Bolt countdown that inform the group when to stack to unpin another player."
+L.Settings_Sunspire_Apocalypse            = "Eternal Servant: Translation Apocalypse"
+L.Settings_Sunspire_Apocalypse_TT         = "Alerts you when the eternal servant is channeling his attack to the upstairs group. It gives you a countdown until you can bash the channeling and it shows you a countdown until he completes the channeling attack"
+
+
 -- Alerts
 L.Alerts_Sunspire_Chilling_Comet        	= "|c00ddffComète de Glace|r sur vous. Bloquez!"
 L.Alerts_Sunspire_Chilling_Comet_Other  	= "|c00ddffComète de Glacet|r sur |cff0000<<!aC:1>>|r"
@@ -523,7 +536,9 @@ L.Alerts_Sunspire_Mark_For_Death_Other  	= "Marqué et Condamné sur |cff0000<<!
 L.Alerts_Sunspire_Time_Breach_Countdown   	= "|c81cc00Rupture Temporelle|r dans "
 L.Alerts_Sunspire_Negate_Field            	= "|c53c4c9Champ de Négation|r sur vous!"
 L.Alerts_Sunspire_Negate_Field_Others     	= "|c53c4c9Champ de Négation|r sur <<!aC:1>>!"
-
+L.Alerts_Sunspire_Shock_Bolt              = "Incoming |c00ddffShock Bolt|r! Stack to unpin in"
+L.Alerts_Sunspire_Apocalypse              = "Incoming |cffff00Translation Apocalypse|r! Bash in"
+L.Alerts_Sunspire_Apocalypse_Ends         = "|cffff00Translation Apocalypse|r ends in"
 
 --------------------------------
 ----       Debugging        ----
@@ -555,7 +570,7 @@ function RaidNotifier:GetLocale()
 	return L
 end
 
-if (GetCVar('language.2') == 'fr') then 
+if (GetCVar('language.2') == 'fr') then
 	local MissingL = {}
 	for k, v in pairs(RaidNotifier:GetLocale()) do
 		if (not L[k]) then
@@ -563,10 +578,10 @@ if (GetCVar('language.2') == 'fr') then
 			L[k] = v
 		end
 	end
-	function RaidNotifier:GetLocale() 
+	function RaidNotifier:GetLocale()
 		return L
 	end
-	-- for debugging 
+	-- for debugging
 	function RaidNotifier:MissingLocale()
 		df("Missing strings for '%s'", GetCVar('language.2'))
 		d(MissingL)

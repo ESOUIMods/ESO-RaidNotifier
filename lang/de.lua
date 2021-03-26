@@ -1,12 +1,13 @@
 local L = {}
- 
+
 L.Description                            = "Zeigt Benachrichtigungen zu verschiedenen Ereignissen während einer Prüfung(Raid) an."
- 
+
 --------------------------------
 ----     General Stuff      ----
 --------------------------------
 L.Settings_General_Header                           = "Allgemein"
 -- Settings
+L.Settings_General_Notifications_Showcase           = "Notifications showcase"
 L.Settings_General_Bufffood_Reminder                = "Buff-Food-Hinweis"
 L.Settings_General_Bufffood_Reminder_TT             = "Weist im Raid auf fehlendes oder auslaufendes Buff-Food hin (siehe unten)."
 L.Settings_General_Bufffood_Reminder_Interval       = "Hinweisintervall"
@@ -36,20 +37,21 @@ L.Settings_General_Choices_All                      = "Alle"
 L.Settings_General_Choices_Always                   = "Immer"
 L.Settings_General_Choices_Other                    = "Andere"
 L.Settings_General_Choices_Inverted                 = "Invertiert"
-L.Settings_General_Choices_Small                    = "Wenig (veraltet)"
-L.Settings_General_Choices_Large                    = "Viel (veraltet)"
-L.Settings_General_Choices_Major                    = "Alles (veraltet)"
+L.Settings_General_Choices_Small_Announcement       = "Wenig (veraltet)"
+L.Settings_General_Choices_Large_Announcement       = "Viel (veraltet)"
+L.Settings_General_Choices_Major_Announcement       = "Alles (veraltet)"
 L.Settings_General_Choices_1s                       = "1.0s"
 L.Settings_General_Choices_500ms                    = "0.5s"
 L.Settings_General_Choices_200ms                    = "0.2s"
-L.Settings_General_Choices_Custom                   = "Benutzerdefiniert"
+L.Settings_General_Choices_Custom                   = "Custom"
+L.Settings_General_Choices_Custom_Announcement      = "Benutzerdefiniert"
 -- Alerts
 L.Alerts_General_No_Bufffood                        = "Du hast kein Bufffood!"
 L.Alerts_General_Bufffood_Minutes                   = "Dein Bufffood: '<<1>>' läuft in |cbd0000<<2>>|r Minuten aus!"
 -- Bindings
 L.Binding_ToggleUltimateExchange                    = "Ulti-Austausch an/aus"
- 
- 
+
+
 --------------------------------
 ----    Ultimate Exchange   ----
 --------------------------------
@@ -74,8 +76,8 @@ L.Settings_Ultimate_TargetUlti                       = "Ultimative Fähigkeit"
 L.Settings_Ultimate_TargetUlti_TT                    = "Welche ultimative Fähigkeit verwendet wird für den Prozentwert, den andere sehen."
 L.Settings_Ultimate_OverrideCost                     = "Kosten überschreiben"
 L.Settings_Ultimate_OverrideCost_TT                  = "Verwende diesen Wert, wenn Ulti Kosten an andere gesendet werden. Wird der Wert auf 0 gesetzt, wird das Überschreiben deaktiviert."
- 
- 
+
+
 --------------------------------
 ----        Profiles        ----
 --------------------------------
@@ -92,8 +94,8 @@ L.Settings_Profile_Delete                            = "Wählen ein zu löschend
 L.Settings_Profile_Delete_TT                         = "Wähle ein Profil aus, um dessen Einstellungen aus der Datenbank zu löschen. Wenn dieser Charakter später angemeldet wird und kein accountweites Profil verwendet wird, werden die Standardeinstellungen verwendet.\n\nDas Löschen eines Profils ist permanent!"
 L.Settings_Profile_DeleteButton                      = "Profil löschen"
 L.Settings_Profile_Guard                             = "Profilverwaltung aktivieren"
- 
- 
+
+
 --------------------------------
 ----       Countdowns       ----
 --------------------------------
@@ -107,15 +109,15 @@ L.Settings_Countdown_TimerPrecise                    = "Timerpräzision"
 L.Settings_Countdown_TimerPrecise_TT                    = "Stellt die Timergenauigkeit für den Countdown ein."
 L.Settings_Countdown_UseColors                       = "Verwende Farben"
 L.Settings_Countdown_UseColors_TT                    = "Wenn diese Option aktiviert ist, werden die Farben Gelb/Orange/Rot für den Countdown bis zum Erreichen von null verwendet."
- 
- 
+
+
 --------------------------------
 ----          Trials        ----
 --------------------------------
 L.Settings_Trials_Header                            = "Raids"
 L.Settings_Trials_Description                       = "Hier können die Benachrichtigungen für jeden Raid konfiguriert werden. Alle haben einen konfigurierbaren Sound und viele von ihnen unterstützen nicht nur dich, sondern auch deine Gruppenmitglieder."
- 
- 
+
+
 --------------------------------
 ----     Hel Ra Citadel     ----
 --------------------------------
@@ -133,8 +135,8 @@ L.Alerts_HelRa_Yokeda_Meteor_Other                  = "Eingehender |cFF0000Meteo
 L.Alerts_HelRa_Warrior_StoneForm                    = "Eingehende |c595959Stein Form|r auf dir. Nutze keine Synergien!"
 L.Alerts_HelRa_Warrior_StoneForm_Other              = "Eingehende |c595959Stein Form|r auf |cFF0000<<!aC:1>>|r"
 L.Alerts_HelRa_Warrior_ShieldThrow                  = "Eingehender |cFF0000Schildwurf|r. "
- 
- 
+
+
 --------------------------------
 ----   Aetherian Archives   ----
 --------------------------------
@@ -161,8 +163,8 @@ L.Alerts_Archive_Overcharge                         = "Eingehende |c46edffÜberl
 L.Alerts_Archive_Overcharge_Other                   = "Eingehende |c46edffÜberladung|r auf |cFF0000<<!aC:1>>|r."
 L.Alerts_Archive_Call_Lightning                     = "Eingehender |c46edffBlitz Herbeirufen|r auf dir. Bleib in Bewegung!"
 L.Alerts_Archive_Call_Lightning_Other               = "Eingehender |c46edffBlitz Herbeirufen|r auf |cFF0000<<!aC:1>>|r."
- 
- 
+
+
 --------------------------------
 ----    Sanctum Ophidia     ----
 --------------------------------
@@ -206,8 +208,8 @@ L.Alerts_Sanctum_Overcharge                         = "Eingehende |c46edffÜberl
 L.Alerts_Sanctum_Overcharge_Other                   = "Eingehende |c46edffÜberladung|r auf |cFF0000<<!aC:1>>|r."
 L.Alerts_Sanctum_Call_Lightning                     = "Eingehender |c46edffBlitz Herbeirufen|r auf dir. Bleib in Bewegung!"
 L.Alerts_Sanctum_Call_Lightning_Other               = "Eingehender |c46edffBlitz Herbeirufen|r auf |cFF0000<<!aC:1>>|r."
- 
- 
+
+
 --------------------------------
 ----    Maelstrom Arena     ----
 --------------------------------
@@ -220,8 +222,8 @@ L.Settings_Maelstrom_Stage9_Synergy_TT              = "Erinnert dich, wenn du di
 -- Alerts
 L.Alerts_Maelstrom_Stage7_Poison                    = "|c39942eVergiftet|r! Verwende einen der beiden Bereiche zum reinigen!"
 L.Alerts_Maelstrom_Stage9_Synergy                   = "|c23afe7Spektrale Ladung|r bereit! Nutze Synergie!"
- 
- 
+
+
 --------------------------------
 ----     Maw of Lorkhaj     ----
 --------------------------------
@@ -280,8 +282,8 @@ L.Alerts_MawLorkhaj_ShatteringStrike                = "Eingehender |c000055Zersc
 L.Alerts_MawLorkhaj_ShatteringStrike_Other          = "Eingehender |c000055Zerschlagender Schlag|r auf |cFF0000<<!aC:1>>|r!"
 L.Alerts_MawLorkhaj_Shattered                       = "Deine |c595959Rüstungr|r wurde |cff0000Zerschlagen|r."
 L.Alerts_MawLorkhaj_MarkedForDeath                  = "Warnung! |c000055Panther|r verfolgen dich!"
- 
- 
+
+
 --------------------------------
 ----    Dragonstar Arena    ----
 --------------------------------
@@ -312,9 +314,9 @@ L.Alerts_Dragonstar_Arena8_Ice_Charge               = "Eingehende |c6699FFEislad
 L.Alerts_Dragonstar_Arena8_Ice_Charge_Other         = "|c6699FFEisladung|r wird auf |cFF0000<<!aC:1>>|r angewandt. Unterbrechen!"
 L.Alerts_Dragonstar_Arena8_Fire_Charge              = "Eingehende |cFF3113Feuerladung|r auf dir! Unterbrechen oder ausweichen!"
 L.Alerts_Dragonstar_Arena8_Fire_Charge_Other        = "|c6699FFeuerladung|r wird auf |cFF0000<<!aC:1>>|r angewandt. Unterbrechen!"
- 
- 
- 
+
+
+
 --------------------------------
 ---- Halls Of Fabrication   ----
 --------------------------------
@@ -370,9 +372,9 @@ L.Alerts_HallsFab_Overpower_Auras                   = "|cFF0000Aura Countdown!|r
 L.Alerts_HallsFab_Catastrophic_Discharge            = "|cFF0000Katastrophale Entladung|r auf dir! Block!"
 L.Alerts_HallsFab_Fabricant_Spawn                   = "|cFFC000Ruined Fabricant Spawn|r"
 L.Alerts_HallsFab_Reclaim_Achieve                   = "|cDCD822[Geplante Überalterung]|r Erfolg |cFF0000Gescheitert|r"
- 
- 
- 
+
+
+
 --------------------------------
 ----   Asylum Sanctorium    ----
 --------------------------------
@@ -409,9 +411,9 @@ L.Alerts_Asylum_Pre_Gusts_Of_Steam               = "<<1>> vor |cFF0000Sprung|r! 
 L.Alerts_Asylum_Trial_By_Fire                    = "Eingehendes |cFF5500Feuer|r!"
 L.Alerts_Asylum_Protector_Spawn                  = "|c0000FFGeschütz|r erscheint!"
 L.Alerts_Asylum_Protector_Active                 = "|c0000FFGeschütz|r aktiv!"
- 
- 
- 
+
+
+
 --------------------------------
 ------   CLOUDREST         -----
 --------------------------------
@@ -451,7 +453,7 @@ L.Settings_Cloudrest_Crushing_Darkness          = "Z'Maja: Erdrückende Dunkelhe
 L.Settings_Cloudrest_Crushing_Darkness_TT       = "Warnt dich, wenn der AoE dir folgt und herumgeführt werden muss."
 L.Settings_Cloudrest_Malicious_Strike           = "Z'Maja: Boshafter Schlag"
 L.Settings_Cloudrest_Malicious_Strike_TT        = "Warnt, wenn Kugeln zerstört werden und geblockt oder ausgewichen werden muss."
- 
+
 -- Alerts
 L.Alerts_Cloudrest_Olorime_Spears               = "|cffd000Speer|r isr da! (<<1>>)"
 L.Alerts_Cloudrest_Hoarfrost0                   = "|c00ddffRaureif|r auf dir!"
@@ -480,7 +482,7 @@ L.Alerts_Cloudrest_Sum_Shadow_Beads             = "|cab82ffSpheren|r werden ersc
 L.Alerts_Cloudrest_Nocturnals_Favor             = "|cff0000Nocturnals Gunst|r auf dir!"
 L.Alerts_Cloudrest_Crushing_Darkness            = "|cfc0c66Erdrückende Dunkelheit|r auf dir. Kite!"
 L.Alerts_Cloudrest_Malicious_Strike             = "|cff0000Boshafter Schlag|r auf dir. Block!"
- 
+
 --------------------------------
 ------   SUNSPIRE          -----
 --------------------------------
@@ -512,8 +514,8 @@ L.Settings_Sunspire_Shock_Bolt            = "Ewiger Diener: Schockender Stoß"
 L.Settings_Sunspire_Shock_Bolt_TT         = "Warnt dich, wenn der Ewige Diener dich mit seinem Kegelangriff anvisiert und du blocken oder ausweichen musst."
 L.Settings_Sunspire_Apocalypse            = "Ewiger Diener: Verschiebungsapokalypse"
 L.Settings_Sunspire_Apocalypse_TT         = "Warnt dich, wenn der Ewige Diener seine Verschiebungsapokalypse startet und unterbrochen werden muss."
- 
- 
+
+
 -- Alerts
 L.Alerts_Sunspire_Chilling_Comet          = "|c00ddffUnterkühlender Komet|r auf dir. Block!"
 L.Alerts_Sunspire_Chilling_Comet_Other    = "|c00ddffUnterkühlender Komet|r auf |cff0000<<!aC:1>>|r"
@@ -538,7 +540,7 @@ L.Alerts_Sunspire_Shock_Bolt              = "Eingehender |c00ddffSchockender Sto
 L.Alerts_Sunspire_Shock_Bolt_Others       = "Eingehender |c00ddffSchockender Stoß|r auf <<!aC:1>>!"
 L.Alerts_Sunspire_Apocalypse              = "Eingehende |cffff00Verschiebungsapokalypse|r!"
 L.Alerts_Sunspire_Apocalypse_Ends         = "|cffff00Verschiebungsapokalypse|r endet in"
- 
+
 --------------------------------
 ----       Debugging        ----
 --------------------------------
@@ -548,7 +550,7 @@ L.Settings_Debug_TT                      = "Aktiviert Debugausgabe im Chatfenste
 L.Settings_Debug_DevMode                 = "Dev Modus"
 L.Settings_Debug_DevMode_TT              = "Wenn diese Option aktiviert ist, werden bestimmte Warnmeldungen aktiviert, die möglicherweise nicht vollständig funktionieren, zeitlich nicht übereinstimmen oder noch nicht vollständig getestet wurden. Im Allgemeinen sollten sie keine Fehler in der Benutzeroberfläche verursachen, es wird jedoch dennoch empfohlen, eine Art Fehlermeldungsabfang-Addon zu verwenden."
 L.Settings_Debug_DevMode_Warning         = "Benötigt Dev Modus"
- 
+
 L.Settings_Debug_Tracker_Header          = "Debug Tracker"
 L.Settings_Debug_Tracker_Description     = "Dies ist eine Debug-Funktion, mit der potenzielle Mechaniken während eines Raids aufgespürt und ausgegeben werden können, indem Informationen zu Kampfereignissen und -effekten in den Chat gedruckt werden. Aufgrund der potenziell großen Ausgabemenge gibt es einige Optionen, mit denen Sie verhindern können, dass Ihr Chatfenster überfüllt wird."
 L.Settings_Debug_Tracker_Enabled         = "Aktivieren"

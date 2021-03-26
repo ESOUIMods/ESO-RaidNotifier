@@ -5,7 +5,7 @@ local Util         = RaidNotifier.Util
 local GetGameTimeMillis		= GetGameTimeMilliseconds
 local strfmt				= string.format
 
-do 
+do
 	local UI_FRAGMENT
 
 	local CUSTOM_ANCHORS = --for managing control position with a none-TOPLEFT anchor
@@ -20,18 +20,24 @@ do
 	end
 
 	function RaidNotifier:AddFragment()
-		if not UI_FRAGMENT then 
+		if not UI_FRAGMENT then
 			UI_FRAGMENT = ZO_HUDFadeSceneFragment:New(RaidNotifierUI)
 		end
 		HUD_SCENE:AddFragment(UI_FRAGMENT)
 		HUD_UI_SCENE:AddFragment(UI_FRAGMENT)
 	end
 	function RaidNotifier:RemoveFragment()
-		if not UI_FRAGMENT then 
+		if not UI_FRAGMENT then
 			UI_FRAGMENT = ZO_HUDFadeSceneFragment:New(RaidNotifierUI)
 		end
 		HUD_SCENE:RemoveFragment(UI_FRAGMENT)
 		HUD_UI_SCENE:RemoveFragment(UI_FRAGMENT)
+	end
+
+	local function SetElementPosition(ctrl, position)
+		local initial = ctrl.initialAnchor or {}
+		ctrl:ClearAnchors()
+		ctrl:SetAnchor(position[3] or TOPLEFT, initial.relativeTo or RaidNotifierUI, position[4] or TOPLEFT, position[1], position[2])
 	end
 
 	local function SaveElementPosition(ctrl)
@@ -44,9 +50,12 @@ do
 		else
 			local anchor = settings[3] or TOPLEFT
 			settings[1], settings[2] = CUSTOM_ANCHORS[anchor](ctrl)
+			-- After moving UI element it's "relative point" and "point" may also be recalculated
+			-- Getting position by GetCenter() or GetLeft() / GetTop() will mind "relative point" = TOPLEFT it seems
+			-- That's why settings[4] doesn't saved here, thus default TOPLEFT will be loaded instead
 		end
 	end
-	
+
 	local function LoadElementPosition(ctrl)
 		local settings = GetSettingForControl(ctrl)
 		if settings and settings.position then -- move this to GetSettingForControl?
@@ -55,11 +64,10 @@ do
 		if not settings then
 			--df("Could not find saved position for '%s'", ctrl:GetName())
 		else
-			ctrl:ClearAnchors()
-			ctrl:SetAnchor(settings[3] or TOPLEFT, RaidNotifierUI, TOPLEFT, settings[1], settings[2])
+			SetElementPosition(ctrl, settings)
 		end
 	end
-	
+
 	local elements = {}
 	function RaidNotifier:RegisterElement(ctrl)
 		if type(ctrl) == "string" then
@@ -71,13 +79,27 @@ do
 		return ctrl
 	end
 
+	function RaidNotifier:ResetElement(ctrl)
+		if type(ctrl) == "string" then
+			ctrl = RaidNotifierUI:GetNamedChild(ctrl)
+		end
+		if ctrl.initialAnchor then
+			SetElementPosition(ctrl, {
+				ctrl.initialAnchor.offsetX,
+				ctrl.initialAnchor.offsetY,
+				ctrl.initialAnchor.relativePoint,
+				ctrl.initialAnchor.point
+			})
+		end
+	end
+
 	function RaidNotifier:SetElementHidden(category, key, hidden)
 		local ctrl = elements[key]
 		if ctrl then
 			ctrl:SetHidden(hidden)
 		end
 	end
-	
+
 	function RaidNotifier:HideAllElements()
 		for k, elem in pairs(elements) do
 			elem:SetHidden(true)
@@ -124,7 +146,7 @@ do --------------------
 
 			window.label:SetText(text)
 		end
-		
+
 		if mode ~= nil then
 			window:SetHidden(mode)
 		end
@@ -160,7 +182,7 @@ do -------------------
 	end
 
 	-- Base Timer
-	local timerId = 1 
+	local timerId = 1
 	local Timer = ZO_Object:Subclass()
 	function Timer:New(...)
 		local object = ZO_Object.New(self)
@@ -183,7 +205,7 @@ do -------------------
 		-- fading (ignored for base timer)
 		self.fadeTime = 0
 		self.isFading = false
-		
+
 		self.timerId = timerId
 		timerId      = timerId + 1
 	end
@@ -214,7 +236,7 @@ do -------------------
 		end
 		--self:Reset()
 	end
-	
+
 	function Timer:IsActive()
 		return self.start > 0
 	end
@@ -237,14 +259,14 @@ do -------------------
 			self:SetFadeTime(fadeTime)
 		end
 		-- use Update to setup (initial) values
-		self:Update(start) 
+		self:Update(start)
 	end
 
 	-- Use this to force a timer to stop
 	function Timer:Stop(skipFade)
 		--only stop if we are active
 		if self:IsActive() then
-		
+
 			if skipFade or self.fadeTime == 0 then
 				self:OnComplete()
 				self:Release()
@@ -291,7 +313,7 @@ do -------------------
 			self:SetText(self.formatter(remaining))
 		end
 	end
-	
+
 	RaidNotifier.Timer = Timer
 
 
@@ -324,7 +346,7 @@ do -------------------
 		self.control:SetDesaturation(0)
 	end
 	function IconTimer:SetExpired()
-		if (not self.isFading) then 
+		if (not self.isFading) then
 			self.isFading = true
 			-- make sure fading starts right now
 			self.finish = GetGameTimeMillis() / 1000
@@ -347,7 +369,7 @@ do -------------------
 	local display   = nil    -- the parent display
 	local iconTimer = nil    -- the timer object (NOT THE ACTUAL CONTROL)
 	local owner     = "none" -- simple string to see who is currently using the status display
-	
+
 	--local self = RaidNotifier
 
 	function RaidNotifier:InitializeStatusDisplay(control)
@@ -372,14 +394,14 @@ do -------------------
 	--	if owner ~= "sanctum_spread_poison" then
 	--		owner = "sanctum_spread_poison"
 	--		display:SetTexture([[esoui/art/icons/death_recap_poison_aoe.dds]])
-	--		--display:SetTexture([[esoui/art/icons/ability_healer_018.dds]]) -- actual icon for ability?? 
+	--		--display:SetTexture([[esoui/art/icons/ability_healer_018.dds]]) -- actual icon for ability??
 	--		display.label:SetHidden(true)
 	--		display.timer:SetHidden(false)
 	--	end
 	--	if active then
 	--		iconTimer:Start(start, finish)
 	--	else
-	--		iconTimer:Stop() -- let it fade 
+	--		iconTimer:Stop() -- let it fade
 	--	end
 	--end
 
@@ -395,7 +417,7 @@ do -------------------
 			display.label:SetHidden(true) -- display aspect as text maybe?
 		end
 
-		local icons = -- TODO: decide which icon to use 
+		local icons = -- TODO: decide which icon to use
 		{
 			["lunar"]    = [[RaidNotifier/assets/aspect_lunar3.dds]],
 			["tolunar"]  = [[RaidNotifier/assets/aspect_lunar1.dds]],
@@ -437,7 +459,7 @@ do -------------------
 		if active then
 			iconTimer:Start(start, finish)
 		else
-			iconTimer:Stop() -- let it fade 
+			iconTimer:Stop() -- let it fade
 		end
 	end
 
@@ -458,7 +480,7 @@ do -------------------
 
 			iconTimer:Start(start, finish, 0.5)
 		else
-			iconTimer:Stop() -- let it fade 
+			iconTimer:Stop() -- let it fade
 		end
 	end
 
@@ -476,7 +498,7 @@ do -------------------
 		else
 			RaidNotifier:UpdateTwinAspect(status)
 		end
-		
+
 	end
 
 end
@@ -497,13 +519,13 @@ do -------------------
 			local rotationAngle = self.Util:GetRotationAngle(playerTag)
 			display:SetTextureRotation(rotationAngle)
 		end
-		
+
 		local function Stop()
 			self:StopTrackPlayer();
 		end
 		if trackTime ~= nil and trackTime > 0 then
 			display:SetHidden(false)
-		
+
 			EVENT_MANAGER:RegisterForUpdate(self.Name .. "_TrackPlayer", 50, Update)
 			zo_callLater(Stop, trackTime)
 		end
@@ -563,16 +585,16 @@ do -----------------
 
 		local glyph = glyphTimers[index]
 		if not glyph then return end
-		
+
 		local currentTime = GetGameTimeMillis() / 1000
 		glyph:Start(currentTime, currentTime + cooldown)
-	end 
+	end
 	function RaidNotifier:StopGlyphTimer(index)
 		if not window then return end
 
 		local glyph = glyphTimers[index]
 		if not glyph then return end
-		
+
 		glyph:Stop() -- just calls OnComplete, nothing special for now
 	end
 
@@ -596,7 +618,7 @@ do -----------------
 		for i=1,7 do
 			glyphTimers[i] = GlyphTimer:New(window:GetNamedChild("Glyph"..i))
 		end
-		-- change the textures for the magical 'player glyph' 
+		-- change the textures for the magical 'player glyph'
 		local playerGlyph = glyphTimers[7]
 		playerGlyph.control.bg:SetTexture([[RaidNotifier/assets/white_circle.dds]])
 		playerGlyph.control.overlay:SetTexture([[RaidNotifier/assets/dummy.dds]])
@@ -606,4 +628,39 @@ do -----------------
 		end
 	end
 
+end
+-- ----------------------
+-- -- ANNOUNCEMENT WINDOW
+do ----------------------
+	local manager = {}
+	RaidNotifier.AnnouncementUIManager = manager
+
+	manager.control = nil
+
+	function manager:SetupCSAState()
+		if not self.control then return end
+
+		-- This call has two effects: one obvious (hide all notifications) and one side-effect (setting countdown as inactive)
+		-- Latter matters here too since NotificationsPool countdown doesn't care about RaidNotifier:IsCountdownInProgress() state
+		-- If it'd be needed to keep notifications at the screen then you should call RaidNotifier:StopCountdown(0) here at least
+		RaidNotifier:StopCountdown()
+		self.control:SetMovable(false)
+		RaidNotifier:ResetElement(self.control)
+	end
+
+	function manager:SetupCustomState()
+		if not self.control then return end
+
+		RaidNotifier:StopCountdown()
+		self.control:SetMovable(true)
+		RaidNotifier:RegisterElement(self.control)
+	end
+
+	function manager:Initialize(control)
+		self.control = control
+
+		if RaidNotifier.Vars.general.use_center_screen_announce == 0 then
+			self:SetupCustomState()
+		end
+	end
 end

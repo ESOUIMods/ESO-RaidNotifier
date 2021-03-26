@@ -79,10 +79,17 @@
 		<TopLevelControl name="RaidNotifierUI" hidden="true" mouseEnabled="true">
 			<Anchor point="TOPLEFT" relativeTo="GuiRoot" relativePoint="TOPLEFT" />
 			<Controls>
-				<Control name="$(parent)CenterAnnounce" resizeToFitDescendents="false" mouseEnabled="false" movable="false" clampedToScreen="true" hidden="false">
+				<Control name="$(parent)CenterAnnounce" resizeToFitDescendents="false" mouseEnabled="true" movable="false" clampedToScreen="true" hidden="false">
 					<Anchor point="CENTER" relativeTo="GuiRoot" relativePoint="CENTER" offsetY="-120"/>
 					<Dimensions x="250" y="150" />
-				</Control>				
+					<OnInitialized>
+						local anchor = {}
+						_, anchor.point, anchor.relativeTo, anchor.relativePoint, anchor.offsetX, anchor.offsetY = self:GetAnchor(0)
+						self.initialAnchor = anchor
+						self.category = "general"
+						self.key      = "announcement_position"
+					</OnInitialized>
+				</Control>
 				<Control name="$(parent)UltimateWindow" movable="true" mouseEnabled="true" resizeToFitDescendents="true" hidden="true" clampedToScreen ="true">
 					<Dimensions x="250" y="200" />
 					<Anchor point="TOPLEFT" relativeTo="GuiRoot" offsetX="100" offsetY="600" />

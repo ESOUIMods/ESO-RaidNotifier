@@ -6,7 +6,8 @@ L.Description                            = "Displays on-screen notifications on 
 ----     General Stuff      ----
 --------------------------------
 L.Settings_General_Header                           = "General"
--- Settings 
+-- Settings
+L.Settings_General_Notifications_Showcase           = "Notifications showcase"
 L.Settings_General_Bufffood_Reminder                = "Buff Food Reminder"
 L.Settings_General_Bufffood_Reminder_TT             = "Alerts you when you have no buff food during trials or when it is about to expire (see below)"
 L.Settings_General_Bufffood_Reminder_Interval       = "Reminder Interval"
@@ -16,7 +17,7 @@ L.Settings_General_Vanity_Pets_TT                   = "Will turn off your vanity
 L.Settings_General_No_Assistants                    = "Turn off assistants when combat starts"
 L.Settings_General_No_Assistants_TT                 = "Only applies during trials and does NOT prevent them from being summoned."
 L.Settings_General_Center_Screen_Announce           = "Announcement Type"
-L.Settings_General_Center_Screen_Announce_TT        = "The type of announcement to use."
+L.Settings_General_Center_Screen_Announce_TT        = "The type of announcement to use.\n\nOnly announcements of custom format can be relocated on the screen."
 L.Settings_General_NotificationsScale               = "Notifications Scale"
 L.Settings_General_NotificationsScale_TT            = "The scale of the notifications and minor countdowns display"
 L.Settings_General_UseDisplayName                   = "Use Dislay Name"
@@ -36,13 +37,14 @@ L.Settings_General_Choices_All                      = "All"
 L.Settings_General_Choices_Always                   = "Always"
 L.Settings_General_Choices_Other                    = "Other"
 L.Settings_General_Choices_Inverted                 = "Inverted"
-L.Settings_General_Choices_Small                    = "Small (obsolete)"
-L.Settings_General_Choices_Large                    = "Large (obsolete)"
-L.Settings_General_Choices_Major                    = "Major (obsolete)"
+L.Settings_General_Choices_Small_Announcement       = "Small (static, obsolete)"
+L.Settings_General_Choices_Large_Announcement       = "Large (static, obsolete)"
+L.Settings_General_Choices_Major_Announcement       = "Major (static, obsolete)"
 L.Settings_General_Choices_1s                       = "1.0s"
 L.Settings_General_Choices_500ms                    = "0.5s"
 L.Settings_General_Choices_200ms                    = "0.2s"
 L.Settings_General_Choices_Custom                   = "Custom"
+L.Settings_General_Choices_Custom_Announcement      = "Custom (movable)"
 -- Alerts
 L.Alerts_General_No_Bufffood                        = "You have no bufffood!"
 L.Alerts_General_Bufffood_Minutes                   = "Your '<<1>>' bufffood runs out in |cbd0000<<2>>|r minutes!"
@@ -55,7 +57,7 @@ L.Binding_ToggleUltimateExchange                    = "Toggle Ultimate"
 --------------------------------
 L.Settings_Ultimate_Header                           = "Ultimate Exchange (beta)"
 L.Settings_Ultimate_Description                      = "This feature allows you to send your ultimate to your teammates so they can see how close you are to casting it. It uses your cost based on whatever cost reduction you might have from sets or passives."
--- Settings 
+-- Settings
 L.Settings_Ultimate_Enabled                          = "Enabled"
 L.Settings_Ultimate_Enabled_TT                       = "Enable the sharing and receiving of ultimate values. It is always disabled outside of trials."
 L.Settings_Ultimate_Hidden                           = "Hidden"
@@ -152,7 +154,7 @@ L.Settings_Archive_Overcharge                       = "Mobs: Overcharge"
 L.Settings_Archive_Overcharge_TT                    = "Alerts you when an Overcharger targets you with his Overcharge ability."
 L.Settings_Archive_Call_Lightning                   = "Mobs: Call Lightning"
 L.Settings_Archive_Call_Lightning_TT                = "Alerts you when an Overcharger targets you with his Call Lightning ability."
--- Alerts 
+-- Alerts
 L.Alerts_Archive_StormAtro_ImpendingStorm           = "Incoming |cFF0000Impending Storm|r!"
 L.Alerts_Archive_StormAtro_LightningStorm           = "Incoming |cfef92eLightning Storm|r! Go into the light!"
 L.Alerts_Archive_StoneAtro_BoulderStorm             = "Incoming |cFF0000Boulder Storm|r! Block to avoid knockback!"
@@ -343,7 +345,7 @@ L.Settings_HallsFab_Scalded_Debuff_TT               = "Displays a small status i
 L.Settings_HallsFab_Overcharge_Aura                 = "Committee: Overcharging Aura"
 L.Settings_HallsFab_Overcharge_Aura_TT              = "Alerts you when reclaimer start overcharging aura."
 L.Settings_HallsFab_Overpower_Auras                 = "Committee: Overpowering Auras"
-L.Settings_HallsFab_Overpower_Auras_TT              = "Alerts you when the tanks need to swap the committee bosses" 
+L.Settings_HallsFab_Overpower_Auras_TT              = "Alerts you when the tanks need to swap the committee bosses"
 L.Settings_HallsFab_Overpower_Auras_Duration        = "       - Countdown Duration"
 L.Settings_HallsFab_Overpower_Auras_Duration_TT     = "The duration of the countdown in milliseconds."
 L.Settings_HallsFab_Overpower_Auras_Dynamic         = "       - Dynamic Countdown"
@@ -571,7 +573,7 @@ function RaidNotifier:MissingLocale()
 	d("Obviously not missing any english strings....")
 end
 
---if (GetCVar('language.2') == 'de') then 
+--if (GetCVar('language.2') == 'de') then
 --	local MissingL = {}
 --	for k, v in pairs(RaidNotifier:GetLocale()) do
 --		if (not L[k]) then
@@ -579,10 +581,10 @@ end
 --			L[k] = v
 --		end
 --	end
---	function RaidNotifier:GetLocale() 
+--	function RaidNotifier:GetLocale()
 --		return L
 --	end
---	-- for debugging 
+--	-- for debugging
 --	function RaidNotifier:MissingLocale()
 --		df("Missing strings for '%s'", GetCVar('language.2'))
 --		d(MissingL)

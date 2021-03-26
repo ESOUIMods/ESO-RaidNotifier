@@ -6,7 +6,8 @@ L.Description                           			= "Выводит на экран п�
 ----     General Stuff      ----
 --------------------------------
 L.Settings_General_Header                       	= "Общие"
--- Settings 
+-- Settings
+L.Settings_General_Notifications_Showcase           = "Notifications showcase"
 L.Settings_General_Bufffood_Reminder            	= "Напоминание о еде"
 L.Settings_General_Bufffood_Reminder_TT         	= "Напоминает вам, когда вы начинаете испытание без баффа еды \nИЛИ\n ваш бафф еды истекает во время прохождения Испытания (см. интервал)"
 L.Settings_General_Bufffood_Reminder_Interval		= "Интервал напоминания о еде"
@@ -17,6 +18,8 @@ L.Settings_General_No_Assistants					= "Отключить помощников 
 L.Settings_General_No_Assistants_TT					= "Работает только в Испытаниях и НЕ запрещает их призыв."
 L.Settings_General_Center_Screen_Announce    		= "Предупреждения по центру экрана"
 L.Settings_General_Center_Screen_Announce_TT		= "Использует игровую систему предупреждений на экране. Альтернативынй и более простой способ отображения предупреждений Raid Notifier."
+L.Settings_General_NotificationsScale               = "Notifications Scale"
+L.Settings_General_NotificationsScale_TT            = "The scale of the notifications and minor countdowns display"
 L.Settings_General_UseDisplayName                   = "Использовать UserID"
 L.Settings_General_UseDisplayName_TT                = "Использовать UserID в оповещениях вместо имени персонажа."
 L.Settings_General_Unlock_Status_Icon               = "Разблокировать статус-значок"
@@ -34,10 +37,14 @@ L.Settings_General_Choices_All       				= "Все"
 L.Settings_General_Choices_Always    				= "Всегда"
 L.Settings_General_Choices_Other     				= "Другое"
 L.Settings_General_Choices_Inverted             	= "Инвертированно"
-L.Settings_General_Choices_Small                    = "Маленький (obsolete)"
-L.Settings_General_Choices_Large                    = "Большой (obsolete)"
-L.Settings_General_Choices_Major                    = "Огромный (obsolete)"
-L.Settings_General_Choices_Custom                   = "Настраиваемый"
+L.Settings_General_Choices_Small_Announcement       = "Маленький (obsolete)"
+L.Settings_General_Choices_Large_Announcement       = "Большой (obsolete)"
+L.Settings_General_Choices_Major_Announcement       = "Огромный (obsolete)"
+L.Settings_General_Choices_1s                       = "1.0s"
+L.Settings_General_Choices_500ms                    = "0.5s"
+L.Settings_General_Choices_200ms                    = "0.2s"
+L.Settings_General_Choices_Custom                   = "Custom"
+L.Settings_General_Choices_Custom_Announcement      = "Настраиваемый"
 -- Alerts
 L.Alerts_General_No_Bufffood        				= "У вас нет БАФФА ЕДЫ!"
 L.Alerts_General_Bufffood_Minutes   				= "Ваш бафф еды '<<1>>' истекает через |cbd0000<<2>>|r мин.!"
@@ -50,7 +57,7 @@ L.Binding_ToggleUltimateExchange                    = "Вкл. обмен дан
 --------------------------------
 L.Settings_Ultimate_Header                           = "Абсолютная способность (бета)"
 L.Settings_Ultimate_Description                      = "Эта функция позволяет вам рассылать данные о вашей абсолютной способности вашим товарища, так они смогут увидеть, как скоро вы сможете применить её. Используется стоимость с учётом всех ваших снижений стоимости, откуда бы они ни шли, от комплектов или пассивных способностей."
--- Settings 
+-- Settings
 L.Settings_Ultimate_Enabled                          = "Включено"
 L.Settings_Ultimate_Enabled_TT                       = "Включение раздаёт и принимает значение заряда абсолютной способности. Всегда отключено за пределами испытаний."
 L.Settings_Ultimate_Hidden                           = "Скрыто"
@@ -98,6 +105,8 @@ L.Settings_Countdown_TimerScale                      = "Размер тайме�
 L.Settings_Countdown_TimerScale_TT                   = "Размер отображаемого таймера"
 L.Settings_Countdown_TextScale                       = "Размер текста"
 L.Settings_Countdown_TextScale_TT                    = "Размер отображаемого текста"
+L.Settings_Countdown_TimerPrecise                    = "Timer precise"
+L.Settings_Countdown_TimerPrecise_TT                    = "Set timer precise for countdown"
 L.Settings_Countdown_UseColors                       = "Цвета"
 L.Settings_Countdown_UseColors_TT                    = "Когда включено, будут использоваться желтый/оранжевый/красный цвета в счётчике по мере его приближения к нулю."
 
@@ -145,7 +154,7 @@ L.Settings_Archive_Overcharge            			= "Мобы: Разрядник"
 L.Settings_Archive_Overcharge_TT         			= "Предупреждает вас, когда Разрядник выбирает вас своей целью атаки Overcharge."
 L.Settings_Archive_Call_Lightning        			= "Мобы: Call Lightning"
 L.Settings_Archive_Call_Lightning_TT     			= "Предупреждает вас, когда Разрядник выбирает вас своей целью атаки Call Lightning."
--- Alerts 
+-- Alerts
 L.Alerts_Archive_StormAtro_ImpendingStorm 			= "Начинается |cFF0000Impending Storm|r!"
 L.Alerts_Archive_StormAtro_LightningStorm 			= "Начинается |cfef92eLightning Storm|r! ИДИ В КРУГ СВЕТА!"
 L.Alerts_Archive_StoneAtro_BoulderStorm 			= "Начинается |cFF0000Boulder Storm|r! Блокируй, чтобы не сбило с ног!"
@@ -349,7 +358,10 @@ L.Settings_HallsFab_Reclaim_Achieve                 = "Комитет: Реге�
 L.Settings_HallsFab_Reclaim_Achieve_TT              = "Предупреждает, когда бомбер достигает Рагенератора."
 -- Alerts
 L.Alerts_HallsFab_Taking_Aim                        = "Ты стал целью |cFF6600Taking Aim|r!"
+L.Alerts_HallsFab_Taking_Aim_Other                  = "|cFF6600Taking Aim|r targeted at |cFF0000<<!aC:1>>|r!"
 L.Alerts_HallsFab_Taking_Aim_Simple                 = "|cFF6600Taking Aim|r!"
+L.Alerts_HallsFab_Conduit_Spawn                     = "A Conduit is about to spawn"
+L.Alerts_HallsFab_Conduit_Drain                     = "A Conduit is draining you!"
 L.Alerts_HallsFab_Taking_Aim_Other                  = "|cFF6600Taking Aim|r нацелен на игрока |cFF0000<<!aC:1>>|r!"
 L.Alerts_HallsFab_Conduit_Spawn                     = "Трубопровод готов извергнуть босса"
 L.Alerts_HallsFab_Conduit_Drain                     = "Трубопровод засасывает тебя!"
@@ -383,6 +395,8 @@ L.Settings_Asylum_Storm_The_Heavens              = "Святой Олмс: Storm
 L.Settings_Asylum_Storm_The_Heavens_TT           = "Предупреждает вас, когда Святой Олмс готов подняться в воздух и выпустить большое количество маленьких кружков молний."
 L.Settings_Asylum_Gusts_Of_Steam                 = "Святой Олмс: Gusts Of Steam"
 L.Settings_Asylum_Gusts_Of_Steam_TT              = "Предупреждает вас, когда Святой Олмс готов прыгнуть взад-вперёд, сигнализируя о следующей фазе битвы."
+L.Settings_Asylum_Gusts_Of_Steam_Slider          = "       - Percentage before jump"
+L.Settings_Asylum_Gusts_Of_Steam_Slider_TT       = "Show notification couple percent of boss health faster before he jump."
 L.Settings_Asylum_Protector_Spawn                = "Святой Олмс: Protector Spawn"
 L.Settings_Asylum_Protector_Spawn_TT             = "Предупреждает вас, когда готова появиться сфера."
 L.Settings_Asylum_Trial_By_Fire                  = "Святой Олмс: Trial By Fire"
@@ -395,6 +409,11 @@ L.Alerts_Asylum_Teleport_Strike                  = "|cFFC000Teleport Strike|r н
 L.Alerts_Asylum_Teleport_Strike_Other            = "|cFFC000Teleport Strike|r нацелен на игрока |cFF0000<<!aC:1>>|r!"
 L.Alerts_Asylum_Exhaustive_Charges               = "Приближается |cFF0000Exhaustive Charges|r!"
 L.Alerts_Asylum_Storm_The_Heavens                = "Приближается |cFF0000Storm The Heavens|r! ПЕТЛЯЙ!"
+L.Alerts_Asylum_Gusts_Of_Steam                   = "Incoming |cFF9900Gusts Of Steam|r! Hide!"
+L.Alerts_Asylum_Pre_Gusts_Of_Steam               = "<<1>> to |cFF0000jump|r! Prepare to Hide!"
+L.Alerts_Asylum_Trial_By_Fire                    = "Incoming |cFF5500Fire|r!"
+L.Alerts_Asylum_Protector_Spawn                  = "|c0000FFProtector|r spawning!"
+L.Alerts_Asylum_Protector_Active                 = "|c0000FFProtector|r active!"
 L.Alerts_Asylum_Eruption                         = "|c595959Eruption|r нацелена на тебя!"
 L.Alerts_Asylum_Eruption_Other                   = "|c595959Eruption|r нацелена на игрока |cFC0000<<!aC:1>>|r!"
 L.Alerts_Asylum_Gusts_Of_Steam                   = "Приближается |cFF9900Gusts Of Steam|r! СПРЯЧЬСЯ!"
@@ -403,6 +422,132 @@ L.Alerts_Asylum_Protector_Spawn                  = "Появляется |c0000F
 L.Alerts_Asylum_Protector_Active                 = "|c0000FFЗащитник|r активирован!"
 
 
+
+--------------------------------
+------   CLOUDREST         -----
+--------------------------------
+L.Settings_Cloudrest_Header			            = "Cloudrest"
+-- Settings
+L.Settings_Cloudrest_Olorime_Spears             = "General: Olorime Spear"
+L.Settings_Cloudrest_Olorime_Spears_TT          = "Alerts you when spears are up and someone has to pick it up."
+L.Settings_Cloudrest_Shadow_Realm_Cast          = "General: Portal Spawn"
+L.Settings_Cloudrest_Shadow_Realm_Cast_TT       = "Alerts you when portal is spawned for group to go in Shadow Real."
+L.Settings_Cloudrest_Hoarfrost                  = "Faralielle: Hoarfrost"
+L.Settings_Cloudrest_Hoarfrost_TT               = "Alerts you when you have the Hoarfrost debuff on you that needs to be synergised to remove."
+L.Settings_Cloudrest_Hoarfrost_Countdown        = "       - Use Countdown"
+L.Settings_Cloudrest_Hoarfrost_Countdown_TT     = "Use a countdown to show when you will be able to drop it."
+L.Settings_Cloudrest_Hoarfrost_Shed             = "Faralielle: Hoarfrost Drop"
+L.Settings_Cloudrest_Hoarfrost_Shed_TT          = "Alerts you when Hoarfrost debuff has been dropped from another player and needs to be picked up."
+L.Settings_Cloudrest_Heavy_Attack               = "Mini Boss: Heavy Attack"
+L.Settings_Cloudrest_Heavy_Attack_TT            = "Alerts you when Lightening(Shocking Smash), Fire(Scalding Sunder) or Frost(Ravaging Blow) mini boss is casting heavy attack."
+L.Settings_Cloudrest_Chilling_Comet             = "Faralielle: Chilling Comet"
+L.Settings_Cloudrest_Chilling_Comet_TT          = "Alerts you when Chilling Comet debuff is applied to you that needs to be blocked and not overlapped with another player who has the same debuff before explosion."
+L.Settings_Cloudrest_Roaring_Flare              = "Siroria: Roaring Flame"
+L.Settings_Cloudrest_Roaring_Flare_TT           = "Alerts when you or any of your team members have the Roaring Flare debuff that requires a minimum of 3 team members in total to stack to negate this debuff."
+L.Settings_Cloudrest_Track_Roaring_Flare        = "       - Track Roaring Flare"
+L.Settings_Cloudrest_Track_Roaring_Flare_TT     = ""
+L.Settings_Cloudrest_Voltaic_Overload           = "Belanaril: Voltaic Overload"
+L.Settings_Cloudrest_Voltaic_Overload_TT        = "Alerts you that you are about to get the Voltaic Overload debuff where after you get the debuff, you cannot bar swap for 10 seconds."
+L.Settings_Cloudrest_Nocturnals_Favor	        = "Z'Maja: Nocturnal's Favor"
+L.Settings_Cloudrest_Nocturnals_Favor_TT        = "Alerts you when Z'Maja has targeted you and will do her Heavy Attack."
+L.Settings_Cloudrest_Baneful_Barb               = "Yaghra Monstrosity: Baneful Barb"
+L.Settings_Cloudrest_Baneful_Barb_TT            = "Alerts you when Yaghra Monstrisity has targeted you and will do Baneful Barb attack."
+L.Settings_Cloudrest_Break_Amulet               = "Z'Maja: Only important mechanics on execute"
+L.Settings_Cloudrest_Break_Amulet_TT            = "Disable spheres, tentacle notifications on execute phase"
+L.Settings_Cloudrest_Sum_Shadow_Beads           = "Z'Maja: Spheres"
+L.Settings_Cloudrest_Sum_Shadow_Beads_TT        = "Alerts when Spheres are about to spawn."
+L.Settings_Cloudrest_Tentacle_Spawn             = "Z'Maja: Creeper Spawn"
+L.Settings_Cloudrest_Tentacle_Spawn_TT          = "Alerts when Nocturnal Creeper is about to spawn."
+L.Settings_Cloudrest_Crushing_Darkness          = "Z'Maja: Crushing Darkness"
+L.Settings_Cloudrest_Crushing_Darkness_TT       = "Alerts you when Tether AoE is following you and needs to be kited."
+L.Settings_Cloudrest_Malicious_Strike           = "Z'Maja: Malicious Strike"
+L.Settings_Cloudrest_Malicious_Strike_TT        = "Alerts when spheres are destroyed and need to block or rolldodge."
+
+-- Alerts
+L.Alerts_Cloudrest_Olorime_Spears               = "|cffd000Spear|r is up! (<<1>>)"
+L.Alerts_Cloudrest_Hoarfrost0                   = "|c00ddffHoarfrost|r on you!"
+L.Alerts_Cloudrest_Hoarfrost1                   = "|cff0000Last|r |c00ddffHoarfrost|r on you!"
+L.Alerts_Cloudrest_Hoarfrost_Other0             = "|c00ddffHoarfrost|r on |cff0000<<!aC:1>>|r"
+L.Alerts_Cloudrest_Hoarfrost_Other1             = "|cff0000Last|r |c00ddffHoarfrost|r on |cff0000<<!aC:1>>|r"
+L.Alerts_Cloudrest_Hoarfrost_Countdown0         = "Drop |c00ddffHoarfrost|r in..."
+L.Alerts_Cloudrest_Hoarfrost_Countdown1         = "Drop |cff0000Last|r |c00ddffHoarfrost|r in..."
+L.Alerts_Cloudrest_Hoarfrost_Syn                = "|cff0000Use synergy|r to drop hoarfrost!"
+L.Alerts_Cloudrest_Hoarfrost_Shed               = "|c00ddffHoarfrost|r dropped."
+L.Alerts_Cloudrest_Hoarfrost_Shed_Other         = "|c00ddffHoarfrost|r dropped by |cff0000<<!aC:1>>|r"
+L.Alerts_Cloudrest_Heavy_Attack                 = "|c0bf29eHeavy Attack|r on you!"
+L.Alerts_Cloudrest_Heavy_Attack_Other           = "|c0bf29eHeavy Attack!|r on |cff0000<<!aC:1>>|r"
+L.Alerts_Cloudrest_Baneful_Barb                 = "|cff0000Baneful Barb|r. Rolldodge!"
+L.Alerts_Cloudrest_Baneful_Barb_Other           = "|cff0000Baneful Barb|r on |cff0000<<!aC:1>>|r"
+L.Alerts_Cloudrest_Chilling_Comet               = "|cff0000Chilling Comet|r at you. Block!"
+L.Alerts_Cloudrest_Roaring_Flare                = "|cff7700Roaring Flare|r at you"
+L.Alerts_Cloudrest_Roaring_Flare_2              = "|cff0000<<!aC:1>>|r |t100%:100%:Esoui/Art/Buttons/large_leftarrow_up.dds|t |cff7700Roaring Flare|r |t100%:100%:Esoui/Art/Buttons/large_rightarrow_up.dds|t |cff0000<<!aC:2>>|r"
+L.Alerts_Cloudrest_Roaring_Flare_Other          = "|cff7700Roaring Flare|r at |cff0000<<!aC:1>>|r. Stack on"
+L.Alerts_Cloudrest_Voltaic_Current              = "Incoming |c55b4d4Voltaic Overload|r at you in"
+L.Alerts_Cloudrest_Voltaic_Overload             = "|c4d61c1Voltaic Overload|r at you! Swap Bar!"
+L.Alerts_Cloudrest_Voltaic_Overload_Cd          = "|c4d61c1Voltaic Overload|r. Don't swap!"
+L.Alerts_Cloudrest_Shadow_Realm_Cast            = "|cab82ffPortal|r Spawn (<<1>>)"
+L.Alerts_Cloudrest_Tentacle_Spawn               = "|c00a86bCreeper|r Spawn"
+L.Alerts_Cloudrest_Sum_Shadow_Beads             = "|cab82ffSpheres|r are about to spawn"
+L.Alerts_Cloudrest_Nocturnals_Favor             = "|cff0000Nocturnal's Favor|r at you!"
+L.Alerts_Cloudrest_Crushing_Darkness            = "|cfc0c66Crushing Darkness|r at you. Kite!"
+L.Alerts_Cloudrest_Malicious_Strike             = "|cff0000Malicious Strike|r at you. Block!"
+
+--------------------------------
+------   SUNSPIRE          -----
+--------------------------------
+L.Settings_Sunspire_Header			= "Sunspire"
+-- Settings
+L.Settings_Sunspire_Chilling_Comet        = "General: Chilling Comet"
+L.Settings_Sunspire_Chilling_Comet_TT     = "Alerts you when the Chilling Comet is targeted on you. Move out of the group, block and do not overlap with another player who also has a Chilling Comet. Chilling Comet Targets 2 players at once."
+L.Settings_Sunspire_Sweeping_Breath	      = "Nahviintaas: Sweeping Breath"
+L.Settings_Sunspire_Sweeping_Breath_TT    = "Alerts you of Nahviintass fire breath. The breath starts from one side of the arena and crosses to the other side while damaging every player inside. Every player must block or dodge roll this attack."
+L.Settings_Sunspire_Molten_Meteor         = "Nahviintaas: Molten Meteor"
+L.Settings_Sunspire_Molten_Meteor_TT      = "Alerts you when the Molten Meteor is targeted on you. Move to the edge of the arena, block, and do not overlap with another player who also has Molten meteor. Molten Meteor Targets 3 players at once."
+L.Settings_Sunspire_Focus_Fire            = "Yolnahkriin: Focus Fire"
+L.Settings_Sunspire_Focus_Fire_TT         = "Alerts when a group member is targeted with Focus Fire. Focus Fire requires group members to stack to share the damage. There will be a lingering debuff afterwards, increasing your damage taken by the next focus fire. Due to this debuff, you should stack in two separate groups."
+L.Settings_Sunspire_Breath                = "General: Fire/Frost/Searing Breath"
+L.Settings_Sunspire_Breath_TT             = "Alerts you when the channelled cone from each boss is on you, dealing heavy damage. "
+L.Settings_Sunspire_Cataclism             = "Yolnahkriin: Cataclism"
+L.Settings_Sunspire_Cataclism_TT          = "Alerts you when the boss will breathe fire in the middle of the arena. Everyone must move to the edge, and kill the adds."
+L.Settings_Sunspire_Frozen_Tomb           = "Lokkestiiz: Frozen Tomb"
+L.Settings_Sunspire_Frozen_Tomb_TT        = "Alerts you when Frozen Tomb spawns. A player must walk into the tomb, which will freeze them and deal damage over time. You must then be healed to be released. Requires 3 players to take the tombs due to a debuff, a different person each time."
+L.Settings_Sunspire_Thrash                = "Nahviintaas: Thrash"
+L.Settings_Sunspire_Thrash_TT             = "Alerts you when boss is about swing his head through the group, knocking everyone back. This must be blocked or dodge rolled."
+L.Settings_Sunspire_Mark_For_Death        = "Nahviintaas: Mark For Death"
+L.Settings_Sunspire_Mark_For_Death_TT     = "Alerts you when you are marked for death. Dealing heavy damage over time, and completely removing all your resisstances."
+L.Settings_Sunspire_Time_Breach           = "Nahviintaas: Time Breach"
+L.Settings_Sunspire_Time_Breach_TT        = "Alerts you when portal for time shift is open."
+L.Settings_Sunspire_Negate_Field          = "Eternal Servant: Negate Field"
+L.Settings_Sunspire_Negate_Field_TT       = "Get a warning if the Negate Field targets you in time shift."
+L.Settings_Sunspire_Shock_Bolt            = "Eternal Servant: Shock Bolt"
+L.Settings_Sunspire_Shock_Bolt_TT         = "Shock Bolt countdown that inform the group when to stack to unpin another player."
+L.Settings_Sunspire_Apocalypse            = "Eternal Servant: Translation Apocalypse"
+L.Settings_Sunspire_Apocalypse_TT         = "Alerts you when the eternal servant is channeling his attack to the upstairs group. It gives you a countdown until you can bash the channeling and it shows you a countdown until he completes the channeling attack"
+
+
+-- Alerts
+L.Alerts_Sunspire_Chilling_Comet          = "|c00ddffChilling Comet|r at you. Block!"
+L.Alerts_Sunspire_Chilling_Comet_Other    = "|c00ddffChilling Comet|r at |cff0000<<!aC:1>>|r"
+L.Alerts_Sunspire_Sweeping_Breath         = "|cff0000Sweeping Breath|r! Block!"
+L.Alerts_Sunspire_Molten_Meteor           = "|c00ddffMolten Meteor|r at you! Go out!"
+L.Alerts_Sunspire_Molten_Meteor_Other     = "|c00ddffMolten Meteor|r at <<!aC:1>>|r"
+L.Alerts_Sunspire_Focus_Fire              = "|cff7700Focus Fire|r at you in"
+L.Alerts_Sunspire_Focus_Fire_Other        = "|cff7700Focus Fire|r at |cff0000<<!aC:1>>|r in"
+L.Alerts_Sunspire_Atronach_Zap            = "|cff7700Atronach|r spawn in"
+L.Alerts_Sunspire_Frost_Atronach          = "|cff7700Frost Atronach|r is up!"
+L.Alerts_Sunspire_Breath                  = "|cffff00<<1>>|r at you!"
+L.Alerts_Sunspire_Breath_Other            = "|cffff00<<1>>|r at |cff0000<<!aC:2>>|r"
+L.Alerts_Sunspire_Cataclism               = "|cff3300Cataclism|r ends in"
+L.Alerts_Sunspire_Frozen_Tomb             = "|c00ddffFrozen Tomb|r (<<1>>)"
+L.Alerts_Sunspire_Thrash                  = "Incoming |cff0000Thrash|r! Block!"
+L.Alerts_Sunspire_Mark_For_Death          = "Mark for Death at you"
+L.Alerts_Sunspire_Mark_For_Death_Other    = "Mark for Death at |cff0000<<!aC:1>>|r"
+L.Alerts_Sunspire_Time_Breach_Countdown   = "|c81cc00Time Breach|r in "
+L.Alerts_Sunspire_Negate_Field            = "|c53c4c9Negate Field|r at you!"
+L.Alerts_Sunspire_Negate_Field_Others     = "|c53c4c9Negate Field|r at <<!aC:1>>!"
+L.Alerts_Sunspire_Shock_Bolt              = "Incoming |c00ddffShock Bolt|r! Stack to unpin in"
+L.Alerts_Sunspire_Apocalypse              = "Incoming |cffff00Translation Apocalypse|r! Bash in"
+L.Alerts_Sunspire_Apocalypse_Ends         = "|cffff00Translation Apocalypse|r ends in"
 
 --------------------------------
 ----       Debugging        ----
@@ -430,7 +575,11 @@ for k, v in pairs(L) do
     ZO_CreateStringId(string, v)
 end
 
-if (GetCVar('language.2') == 'ru') then 
+function RaidNotifier:GetLocale()
+	return L
+end
+
+if (GetCVar('language.2') == 'ru') then
 	local MissingL = {}
 	for k, v in pairs(RaidNotifier:GetLocale()) do
 		if (not L[k]) then
@@ -438,10 +587,10 @@ if (GetCVar('language.2') == 'ru') then
 			L[k] = v
 		end
 	end
-	function RaidNotifier:GetLocale() 
+	function RaidNotifier:GetLocale()
 		return L
 	end
-	-- for debugging 
+	-- for debugging
 	function RaidNotifier:MissingLocale()
 		df("Missing strings for '%s'", GetCVar('language.2'))
 		d(MissingL)
