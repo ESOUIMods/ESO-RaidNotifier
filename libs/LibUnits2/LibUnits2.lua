@@ -99,7 +99,7 @@ local function Load()
 
 	-- During group invitation, we can receive a lot of event spam at once on a single invite when the
 	-- involved players are at the same location. Add a delay so we only refresh once in cases like this.
-	lib.delayedRebuildCounter = 0 
+	lib.delayedRebuildCounter = 0
     local function DelayedRefreshData()
         lib.delayedRebuildCounter = lib.delayedRebuildCounter - 1
         if lib.delayedRebuildCounter == 0 then
@@ -128,6 +128,9 @@ local function Load()
 	-- Seperate handle for bosses, no specific ability to monitor
 	EVENT_MANAGER:RegisterForEvent("LibUnits2_EffectChangedBoss",  EVENT_EFFECT_CHANGED, OnBossEffectChanged)
 	EVENT_MANAGER:AddFilterForEvent("LibUnits2_EffectChangedBoss", EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG_PREFIX, "boss")
+
+	-- We'd like to have relevant data after reloading UI or relogging
+	lib.RefreshUnits()
 
 	lib.Unload = Unload
 end

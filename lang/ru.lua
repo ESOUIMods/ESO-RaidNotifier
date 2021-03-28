@@ -45,6 +45,7 @@ L.Settings_General_Choices_500ms                    = "0.5s"
 L.Settings_General_Choices_200ms                    = "0.2s"
 L.Settings_General_Choices_Custom                   = "Custom"
 L.Settings_General_Choices_Custom_Announcement      = "Настраиваемый"
+L.Settings_General_Choices_OnlyChaurusTotem         = "Only Chaurus" -- Specific for Kyne's Aegis
 -- Alerts
 L.Alerts_General_No_Bufffood        				= "У вас нет БАФФА ЕДЫ!"
 L.Alerts_General_Bufffood_Minutes   				= "Ваш бафф еды '<<1>>' истекает через |cbd0000<<2>>|r мин.!"
@@ -253,6 +254,8 @@ L.Settings_MawLorkhaj_Rakkhat_LunarBastion1     	= "Ракхат: Получен
 L.Settings_MawLorkhaj_Rakkhat_LunarBastion1_TT  	= "Показывает, когда игрок ПОЛУЧАЕТ благословение со светящейся платформы."
 L.Settings_MawLorkhaj_Rakkhat_LunarBastion2     	= "Ракхат: Потеря Lunar Bastion"
 L.Settings_MawLorkhaj_Rakkhat_LunarBastion2_TT  	= "Показывает, когда игрок ТЕРЯЕТ благословение со светящейся платформы."
+L.Settings_MawLorkhaj_Hulk_ArmorWeakened            = "Hulk: Armor Weakened"
+L.Settings_MawLorkhaj_Hulk_ArmorWeakened_TT         = "Alerts when Hulk applies stack of Armor Weakened debuff by his Thunderous Smash attack. You should not have more than two stacks or incoming damage will be too high to handle."
 L.Settings_MawLorkhaj_ShatteringStrike		    	= "Мобы: Shattering Strike"
 L.Settings_MawLorkhaj_ShatteringStrike_TT           = "Предупреждает, когда Дикарь дро-м'Атра готовится применить атаку Shattering Strike."
 L.Settings_MawLorkhaj_Shattered   		 			= "Мобы: Armor Shattered"
@@ -276,6 +279,10 @@ L.Alerts_MawLorkhaj_Rakkhat_LunarBastion1 			= "Ты получил |cFEFF7FLuna
 L.Alerts_MawLorkhaj_Rakkhat_LunarBastion1_Other 	= "|cFF0000<<!aC:1>>|r получил |cFEFF7FLunar Bastion|r"
 L.Alerts_MawLorkhaj_Rakkhat_LunarBastion2 			= "Ты потерял |cFEFF7FLunar Bastion|r"
 L.Alerts_MawLorkhaj_Rakkhat_LunarBastion2_Other 	= "|cFF0000<<!aC:1>>|r потерял |cFEFF7FLunar Bastion|r"
+L.Alerts_MawLorkhaj_Hulk_ArmorWeakened1             = "You got 1 stack of |c000055Armor Weakened|r debuff."
+L.Alerts_MawLorkhaj_Hulk_ArmorWeakened1_Other       = "|cFF0000<<!aC:1>>|r got 1 stack of |c000055Armor Weakened|r debuff."
+L.Alerts_MawLorkhaj_Hulk_ArmorWeakened2             = "You got |cFF00002 stacks|r of |c000055Armor Weakened|r debuff!"
+L.Alerts_MawLorkhaj_Hulk_ArmorWeakened2_Other       = "|cFF0000<<!aC:1>>|r got |cFF00002 stacks|r of |c000055Armor Weakened|r debuff!"
 L.Alerts_MawLorkhaj_Suneater_Eclipse 				= "Внимание! |cFF0000Eclipse Field|r действует на тебя!"
 L.Alerts_MawLorkhaj_Suneater_Eclipse_Other 			= "Внимание! |cFF0000Eclipse Field|r действует на |cFF0000<<!aC:1>>|r!"
 L.Alerts_MawLorkhaj_ShatteringStrike		    	= "|c000055Shattering Strike|r надвигается на тебя."
@@ -358,11 +365,10 @@ L.Settings_HallsFab_Reclaim_Achieve                 = "Комитет: Реге�
 L.Settings_HallsFab_Reclaim_Achieve_TT              = "Предупреждает, когда бомбер достигает Рагенератора."
 -- Alerts
 L.Alerts_HallsFab_Taking_Aim                        = "Ты стал целью |cFF6600Taking Aim|r!"
-L.Alerts_HallsFab_Taking_Aim_Other                  = "|cFF6600Taking Aim|r targeted at |cFF0000<<!aC:1>>|r!"
+L.Alerts_HallsFab_Taking_Aim_Other                  = "|cFF6600Taking Aim|r нацелен на игрока |cFF0000<<!aC:1>>|r!"
 L.Alerts_HallsFab_Taking_Aim_Simple                 = "|cFF6600Taking Aim|r!"
 L.Alerts_HallsFab_Conduit_Spawn                     = "A Conduit is about to spawn"
 L.Alerts_HallsFab_Conduit_Drain                     = "A Conduit is draining you!"
-L.Alerts_HallsFab_Taking_Aim_Other                  = "|cFF6600Taking Aim|r нацелен на игрока |cFF0000<<!aC:1>>|r!"
 L.Alerts_HallsFab_Conduit_Spawn                     = "Трубопровод готов извергнуть босса"
 L.Alerts_HallsFab_Conduit_Drain                     = "Трубопровод засасывает тебя!"
 L.Alerts_HallsFab_Conduit_Drain_Other               = "Трубопровод засасывает игрока |cFF0000<<!aC:1>>|r!"
@@ -409,18 +415,13 @@ L.Alerts_Asylum_Teleport_Strike                  = "|cFFC000Teleport Strike|r н
 L.Alerts_Asylum_Teleport_Strike_Other            = "|cFFC000Teleport Strike|r нацелен на игрока |cFF0000<<!aC:1>>|r!"
 L.Alerts_Asylum_Exhaustive_Charges               = "Приближается |cFF0000Exhaustive Charges|r!"
 L.Alerts_Asylum_Storm_The_Heavens                = "Приближается |cFF0000Storm The Heavens|r! ПЕТЛЯЙ!"
-L.Alerts_Asylum_Gusts_Of_Steam                   = "Incoming |cFF9900Gusts Of Steam|r! Hide!"
-L.Alerts_Asylum_Pre_Gusts_Of_Steam               = "<<1>> to |cFF0000jump|r! Prepare to Hide!"
-L.Alerts_Asylum_Trial_By_Fire                    = "Incoming |cFF5500Fire|r!"
-L.Alerts_Asylum_Protector_Spawn                  = "|c0000FFProtector|r spawning!"
-L.Alerts_Asylum_Protector_Active                 = "|c0000FFProtector|r active!"
-L.Alerts_Asylum_Eruption                         = "|c595959Eruption|r нацелена на тебя!"
-L.Alerts_Asylum_Eruption_Other                   = "|c595959Eruption|r нацелена на игрока |cFC0000<<!aC:1>>|r!"
 L.Alerts_Asylum_Gusts_Of_Steam                   = "Приближается |cFF9900Gusts Of Steam|r! СПРЯЧЬСЯ!"
+L.Alerts_Asylum_Pre_Gusts_Of_Steam               = "<<1>> to |cFF0000jump|r! Prepare to Hide!"
 L.Alerts_Asylum_Trial_By_Fire                    = "Приближается |cFF5500Fire|r!"
 L.Alerts_Asylum_Protector_Spawn                  = "Появляется |c0000FFЗащитник|r!"
 L.Alerts_Asylum_Protector_Active                 = "|c0000FFЗащитник|r активирован!"
-
+L.Alerts_Asylum_Eruption                         = "|c595959Eruption|r нацелена на тебя!"
+L.Alerts_Asylum_Eruption_Other                   = "|c595959Eruption|r нацелена на игрока |cFC0000<<!aC:1>>|r!"
 
 
 --------------------------------
@@ -548,6 +549,32 @@ L.Alerts_Sunspire_Negate_Field_Others     = "|c53c4c9Negate Field|r at <<!aC:1>>
 L.Alerts_Sunspire_Shock_Bolt              = "Incoming |c00ddffShock Bolt|r! Stack to unpin in"
 L.Alerts_Sunspire_Apocalypse              = "Incoming |cffff00Translation Apocalypse|r! Bash in"
 L.Alerts_Sunspire_Apocalypse_Ends         = "|cffff00Translation Apocalypse|r ends in"
+
+
+--------------------------------
+------   KYNE'S AEGIS      -----
+--------------------------------
+L.Settings_KynesAegis_Header                        = "Kyne's Aegis"
+-- Settings
+L.Settings_KynesAegis_Crashing_Wall                 = "General: Crashing Wall"
+L.Settings_KynesAegis_Crashing_Wall_TT              = "Alerts you when the Half-Giant Tidebreaker starts his Crashing Wall attack, counting down until it is unleashed. Block or roll dodge it."
+L.Settings_KynesAegis_Sanguine_Prison               = "General: Sanguine Prison"
+L.Settings_KynesAegis_Sanguine_Prison_TT            = "Alerts you when your ally is trapped in Sanguine Prison casted by Bitter Knight. You need to free your ally by focusing down his prison."
+L.Settings_KynesAegis_Blood_Fountain                = "General: Blood Fountain"
+L.Settings_KynesAegis_Blood_Fountain_TT             = "Alerts you when Bloodknight starts his Blood Fountain attack, counting down until it is unleashed. It looks like cross-shaped AoE, and need to be avoided as it deals heavy damage."
+L.Settings_KynesAegis_Totem                         = "Yandir: Totems spawn"
+L.Settings_KynesAegis_Totem_TT                      = "Alerts you when certain totem appeared during the battle with Yandir the Butcher boss.\n\nDragon Totems: always two appears at the same time; each one blows out fire along a straight line in two opposite directions.\nHarpy Totem: spawns a lightning aura that will radiate out.\nGargoyle totem: encases random players into stone.\nChaurus Totem: poisons several people, and this poison should not be spread to others, that's why you should not stack at this phase."
+
+-- Alerts
+L.Alerts_KynesAegis_Crashing_Wall                   = "|cd2a100Crashing Wall|r in"
+L.Alerts_KynesAegis_Sanguine_Prison_Other           = "|cff0000<<!aC:1>>|r trapped in |cb00000Sanguine Prison|r. Free him!"
+L.Alerts_KynesAegis_Blood_Fountain                  = "|cb00000Blood Fountain|r in"
+L.Alerts_KynesAegis_Dragon_Totem                    = "Two |cffa500Dragon Totems|r spawned. Avoid the fire!"
+L.Alerts_KynesAegis_Harpy_Totem                     = "|c00bfffHarpy Totem|r spawned."
+L.Alerts_KynesAegis_Gargoyle_Totem                  = "|cf5f5dcGargoyle Totem|r spawned."
+L.Alerts_KynesAegis_Chaurus_Totem                   = "|c39942eChaurus Totem|r spawned. Don't stack!"
+
+
 
 --------------------------------
 ----       Debugging        ----

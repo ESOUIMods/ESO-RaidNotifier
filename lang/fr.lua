@@ -45,6 +45,7 @@ L.Settings_General_Choices_500ms                    = "0.5s"
 L.Settings_General_Choices_200ms                    = "0.2s"
 L.Settings_General_Choices_Custom                   = "Custom"
 L.Settings_General_Choices_Custom_Announcement      = "Personnalisé"
+L.Settings_General_Choices_OnlyChaurusTotem         = "Only Chaurus" -- Specific for Kyne's Aegis
 -- Alerts
 L.Alerts_General_No_Bufffood                        = "Vous n'avez pas de Nourriture!"
 L.Alerts_General_Bufffood_Minutes                   = "Votre '<<1>>' nourriture se termine dans |cbd0000<<2>>|r minutes!"
@@ -539,6 +540,31 @@ L.Alerts_Sunspire_Negate_Field_Others     	= "|c53c4c9Champ de Négation|r sur <
 L.Alerts_Sunspire_Shock_Bolt              = "Incoming |c00ddffShock Bolt|r! Stack to unpin in"
 L.Alerts_Sunspire_Apocalypse              = "Incoming |cffff00Translation Apocalypse|r! Bash in"
 L.Alerts_Sunspire_Apocalypse_Ends         = "|cffff00Translation Apocalypse|r ends in"
+
+
+--------------------------------
+------   KYNE'S AEGIS      -----
+--------------------------------
+L.Settings_KynesAegis_Header                        = "Kyne's Aegis"
+-- Settings
+L.Settings_KynesAegis_Crashing_Wall                 = "General: Crashing Wall"
+L.Settings_KynesAegis_Crashing_Wall_TT              = "Alerts you when the Half-Giant Tidebreaker starts his Crashing Wall attack, counting down until it is unleashed. Block or roll dodge it."
+L.Settings_KynesAegis_Sanguine_Prison               = "General: Sanguine Prison"
+L.Settings_KynesAegis_Sanguine_Prison_TT            = "Alerts you when your ally is trapped in Sanguine Prison casted by Bitter Knight. You need to free your ally by focusing down his prison."
+L.Settings_KynesAegis_Blood_Fountain                = "General: Blood Fountain"
+L.Settings_KynesAegis_Blood_Fountain_TT             = "Alerts you when Bloodknight starts his Blood Fountain attack, counting down until it is unleashed. It looks like cross-shaped AoE, and need to be avoided as it deals heavy damage."
+L.Settings_KynesAegis_Totem                         = "Yandir: Totems spawn"
+L.Settings_KynesAegis_Totem_TT                      = "Alerts you when certain totem appeared during the battle with Yandir the Butcher boss.\n\nDragon Totems: always two appears at the same time; each one blows out fire along a straight line in two opposite directions.\nHarpy Totem: spawns a lightning aura that will radiate out.\nGargoyle totem: encases random players into stone.\nChaurus Totem: poisons several people, and this poison should not be spread to others, that's why you should not stack at this phase."
+
+-- Alerts
+L.Alerts_KynesAegis_Crashing_Wall                   = "|cd2a100Crashing Wall|r in"
+L.Alerts_KynesAegis_Sanguine_Prison_Other           = "|cff0000<<!aC:1>>|r trapped in |cb00000Sanguine Prison|r. Free him!"
+L.Alerts_KynesAegis_Blood_Fountain                  = "|cb00000Blood Fountain|r in"
+L.Alerts_KynesAegis_Dragon_Totem                    = "Two |cffa500Dragon Totems|r spawned. Avoid the fire!"
+L.Alerts_KynesAegis_Harpy_Totem                     = "|c00bfffHarpy Totem|r spawned."
+L.Alerts_KynesAegis_Gargoyle_Totem                  = "|cf5f5dcGargoyle Totem|r spawned."
+L.Alerts_KynesAegis_Chaurus_Totem                   = "|c39942eChaurus Totem|r spawned. Don't stack!"
+
 
 --------------------------------
 ----       Debugging        ----
