@@ -1,8 +1,8 @@
 ## Title: LibCSA
-## APIVersion: 100033 100034
+## APIVersion: 101031
 ## Author: andy.s
-## AddOnVersion: 101
-## Version: 1.01
+## AddOnVersion: 102
+## Version: 1.02
 ## IsLibrary: true
 
 LibUnits2.lua

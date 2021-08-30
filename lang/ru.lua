@@ -365,10 +365,11 @@ L.Settings_HallsFab_Reclaim_Achieve                 = "Комитет: Реге�
 L.Settings_HallsFab_Reclaim_Achieve_TT              = "Предупреждает, когда бомбер достигает Рагенератора."
 -- Alerts
 L.Alerts_HallsFab_Taking_Aim                        = "Ты стал целью |cFF6600Taking Aim|r!"
-L.Alerts_HallsFab_Taking_Aim_Other                  = "|cFF6600Taking Aim|r нацелен на игрока |cFF0000<<!aC:1>>|r!"
+L.Alerts_HallsFab_Taking_Aim_Other                  = "|cFF6600Taking Aim|r targeted at |cFF0000<<!aC:1>>|r!"
 L.Alerts_HallsFab_Taking_Aim_Simple                 = "|cFF6600Taking Aim|r!"
 L.Alerts_HallsFab_Conduit_Spawn                     = "A Conduit is about to spawn"
 L.Alerts_HallsFab_Conduit_Drain                     = "A Conduit is draining you!"
+L.Alerts_HallsFab_Taking_Aim_Other                  = "|cFF6600Taking Aim|r нацелен на игрока |cFF0000<<!aC:1>>|r!"
 L.Alerts_HallsFab_Conduit_Spawn                     = "Трубопровод готов извергнуть босса"
 L.Alerts_HallsFab_Conduit_Drain                     = "Трубопровод засасывает тебя!"
 L.Alerts_HallsFab_Conduit_Drain_Other               = "Трубопровод засасывает игрока |cFF0000<<!aC:1>>|r!"
@@ -415,13 +416,13 @@ L.Alerts_Asylum_Teleport_Strike                  = "|cFFC000Teleport Strike|r н
 L.Alerts_Asylum_Teleport_Strike_Other            = "|cFFC000Teleport Strike|r нацелен на игрока |cFF0000<<!aC:1>>|r!"
 L.Alerts_Asylum_Exhaustive_Charges               = "Приближается |cFF0000Exhaustive Charges|r!"
 L.Alerts_Asylum_Storm_The_Heavens                = "Приближается |cFF0000Storm The Heavens|r! ПЕТЛЯЙ!"
+L.Alerts_Asylum_Eruption                         = "|c595959Eruption|r нацелена на тебя!"
+L.Alerts_Asylum_Eruption_Other                   = "|c595959Eruption|r нацелена на игрока |cFC0000<<!aC:1>>|r!"
 L.Alerts_Asylum_Gusts_Of_Steam                   = "Приближается |cFF9900Gusts Of Steam|r! СПРЯЧЬСЯ!"
-L.Alerts_Asylum_Pre_Gusts_Of_Steam               = "<<1>> to |cFF0000jump|r! Prepare to Hide!"
 L.Alerts_Asylum_Trial_By_Fire                    = "Приближается |cFF5500Fire|r!"
 L.Alerts_Asylum_Protector_Spawn                  = "Появляется |c0000FFЗащитник|r!"
 L.Alerts_Asylum_Protector_Active                 = "|c0000FFЗащитник|r активирован!"
-L.Alerts_Asylum_Eruption                         = "|c595959Eruption|r нацелена на тебя!"
-L.Alerts_Asylum_Eruption_Other                   = "|c595959Eruption|r нацелена на игрока |cFC0000<<!aC:1>>|r!"
+
 
 
 --------------------------------
@@ -575,7 +576,6 @@ L.Alerts_KynesAegis_Gargoyle_Totem                  = "|cf5f5dcGargoyle Totem|r 
 L.Alerts_KynesAegis_Chaurus_Totem                   = "|c39942eChaurus Totem|r spawned. Don't stack!"
 
 
-
 --------------------------------
 ----       Debugging        ----
 --------------------------------
@@ -600,10 +600,6 @@ L.Settings_Debug_Tracker_MyEnemyOnly_TT  = "КОгда включено, огр�
 for k, v in pairs(L) do
     local string = "RAIDNOTIFIER_" .. string.upper(k)
     ZO_CreateStringId(string, v)
-end
-
-function RaidNotifier:GetLocale()
-	return L
 end
 
 if (GetCVar('language.2') == 'ru') then
