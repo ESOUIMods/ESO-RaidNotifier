@@ -597,5 +597,44 @@ kynes_aegis.yandir_harpy_totem_spawn = 133511
 kynes_aegis.yandir_gargoyle_totem_spawn = 133514
 -- Chaurus Totem spawn at Yandir the Butcher boss
 kynes_aegis.yandir_chaurus_totem_spawn = 133516
+-- Meteor casted by Vrolsworn Fire Mage during the Captain Vrol boss encounter
+kynes_aegis.vrol_firemage_meteor = 134023
+-- Effect which fires when Lord Falgravn starts his Ichor Eruption mechanic
+kynes_aegis.falgravn_ichor_eruption_timer = 136548
 
 RaidNotifier.BuffsDebuffs[RAID_KYNES_AEGIS] = kynes_aegis
+
+-- ------------------------------------------------------
+-- -- Rockgrove------------------------------------------
+-- -- ---------------------------------------------------
+local rockgrove = {}
+
+-- Sul-Xan Reaver's Sundering Strike
+rockgrove.sulxan_reaver_sundering_strike = 149524
+-- Sul-Xan Soulweaver's Astral Shield: casting
+rockgrove.sulxan_soulweaver_astral_shield_cast = 149089
+-- Sul-Xan Soulweaver's Astral Shield: gained shield by himself
+rockgrove.sulxan_soulweaver_astral_shield_self = 149099
+-- Havocrel Barbarian's Hasted Assault
+rockgrove.havocrel_barbarian_hasted_assault = {
+	[149261] = true,
+	[149268] = true,
+}
+-- Oaxiltso's Savage Blitz
+rockgrove.oaxiltso_savage_blitz = {
+	[149414] = true,
+	[157932] = true,
+}
+-- Oaxiltso's Noxious Sludge
+rockgrove.oaxiltso_noxious_sludge = 157860
+-- Havocrel Annihilator's Cinder Cleave at the fight with Oaxiltso
+rockgrove.oaxiltso_annihilator_cinder_cleave = 152688
+-- Radiating Heat (player gains this effect while Prime Meteor is present)
+rockgrove.meteor_radiating_heat = {
+	[152462] = true, -- on trash
+	[157383] = true, -- on second boss
+}
+-- Flame-Herald Bahsei's Death Touch debuff (caused by Embrace of Death mech)
+rockgrove.bahsei_death_touch = 150078
+
+RaidNotifier.BuffsDebuffs[RAID_ROCKGROVE] = rockgrove

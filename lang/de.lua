@@ -43,9 +43,7 @@ L.Settings_General_Choices_Major_Announcement       = "Alles (veraltet)"
 L.Settings_General_Choices_1s                       = "1.0s"
 L.Settings_General_Choices_500ms                    = "0.5s"
 L.Settings_General_Choices_200ms                    = "0.2s"
-L.Settings_General_Choices_Custom                   = "Custom"
 L.Settings_General_Choices_Custom_Announcement      = "Benutzerdefiniert"
-L.Settings_General_Choices_OnlyChaurusTotem         = "Only Chaurus" -- Specific for Kyne's Aegis
 -- Alerts
 L.Alerts_General_No_Bufffood                        = "Du hast kein Bufffood!"
 L.Alerts_General_Bufffood_Minutes                   = "Dein Bufffood: '<<1>>' läuft in |cbd0000<<2>>|r Minuten aus!"
@@ -414,7 +412,7 @@ L.Alerts_Asylum_Teleport_Strike_Other            = "|cFF3366Teleportationsschlag
 L.Alerts_Asylum_Exhaustive_Charges               = "Eingehende |cFF0000Erschöpfende Ladungen|r"
 L.Alerts_Asylum_Storm_The_Heavens                = "Eingehende |cFF0000Erstürmung des Himmels|r! Kite!"
 L.Alerts_Asylum_Gusts_Of_Steam                   = "Eingehende |cFF9900Dampfschwaden|r! Verstecken!"
-L.Alerts_Asylum_Pre_Gusts_Of_Steam               = "<<1>> vor |cFF0000Sprung|r! Bereit zu Laufen!"
+L.Alerts_Asylum_Pre_Gusts_Of_Steam               = "|cFF0000<<1>>%|r vor |cFF9900Sprung|r! Bereit zu Laufen!"
 L.Alerts_Asylum_Trial_By_Fire                    = "Eingehendes |cFF5500Feuer|r!"
 L.Alerts_Asylum_Protector_Spawn                  = "|c0000FFGeschütz|r erscheint!"
 L.Alerts_Asylum_Protector_Active                 = "|c0000FFGeschütz|r aktiv!"
@@ -546,9 +544,6 @@ L.Alerts_Sunspire_Negate_Field_Others     = "|c53c4c9Negationsfeld|r auf <<!aC:1
 L.Alerts_Sunspire_Shock_Bolt              = "Eingehender |c00ddffSchockender Stoß|r auf dir!"
 L.Alerts_Sunspire_Apocalypse              = "Incoming |cffff00Translation Apocalypse|r! Bash in"
 L.Alerts_Sunspire_Apocalypse_Ends         = "|cffff00Translation Apocalypse|r ends in"
-L.Alerts_Sunspire_Shock_Bolt_Others       = "Eingehender |c00ddffSchockender Stoß|r auf <<!aC:1>>!"
-L.Alerts_Sunspire_Apocalypse              = "Eingehende |cffff00Verschiebungsapokalypse|r!"
-L.Alerts_Sunspire_Apocalypse_Ends         = "|cffff00Verschiebungsapokalypse|r endet in"
 
 
 --------------------------------
@@ -564,15 +559,67 @@ L.Settings_KynesAegis_Blood_Fountain                = "General: Blood Fountain"
 L.Settings_KynesAegis_Blood_Fountain_TT             = "Alerts you when Bloodknight starts his Blood Fountain attack, counting down until it is unleashed. It looks like cross-shaped AoE, and need to be avoided as it deals heavy damage."
 L.Settings_KynesAegis_Totem                         = "Yandir: Totems spawn"
 L.Settings_KynesAegis_Totem_TT                      = "Alerts you when certain totem appeared during the battle with Yandir the Butcher boss.\n\nDragon Totems: always two appears at the same time; each one blows out fire along a straight line in two opposite directions.\nHarpy Totem: spawns a lightning aura that will radiate out.\nGargoyle totem: encases random players into stone.\nChaurus Totem: poisons several people, and this poison should not be spread to others, that's why you should not stack at this phase."
+L.Settings_KynesAegis_Vrol_FireMage_Meteor          = "Vrol: Meteors"
+L.Settings_KynesAegis_Vrol_FireMage_Meteor_TT       = "Alerts you when Vrolsworn Fire Mages from the boat will cast meteors on players."
+L.Settings_KynesAegis_Ichor_Eruption                = "Falgravn: Ichor Eruption"
+L.Settings_KynesAegis_Ichor_Eruption_TT             = "Shows countdown until Falgravn will release his Ichor Eruption."
+L.Settings_KynesAegis_Ichor_Eruption_CD_Time        = "       - Countdown time"
+L.Settings_KynesAegis_Ichor_Eruption_CD_Time_TT     = "Time before Ichor Eruption when countdown should pop up."
 
 -- Alerts
 L.Alerts_KynesAegis_Crashing_Wall                   = "|cd2a100Crashing Wall|r in"
-L.Alerts_KynesAegis_Sanguine_Prison_Other           = "|cff0000<<!aC:1>>|r trapped in |cb00000Sanguine Prison|r. Free him!"
+L.Alerts_KynesAegis_Sanguine_Prison_Other           = "|cff0000<<!aC:1>>|r trapped in |cb00000Sanguine Prison|r. Free them!"
 L.Alerts_KynesAegis_Blood_Fountain                  = "|cb00000Blood Fountain|r in"
 L.Alerts_KynesAegis_Dragon_Totem                    = "Two |cffa500Dragon Totems|r spawned. Avoid the fire!"
 L.Alerts_KynesAegis_Harpy_Totem                     = "|c00bfffHarpy Totem|r spawned."
 L.Alerts_KynesAegis_Gargoyle_Totem                  = "|cf5f5dcGargoyle Totem|r spawned."
 L.Alerts_KynesAegis_Chaurus_Totem                   = "|c39942eChaurus Totem|r spawned. Don't stack!"
+L.Alerts_KynesAegis_Vrol_FireMage_Meteor            = "|cffa500Meteor|r on you in"
+L.Alerts_KynesAegis_Vrol_FireMage_Meteor_Other      = "Meteors in"
+L.Alerts_KynesAegis_Ichor_Eruption                  = "|cb00000Ichor Eruption|r in"
+
+
+--------------------------------
+------   ROCKGROVE         -----
+--------------------------------
+L.Settings_Rockgrove_Header                        = "Rockgrove"
+-- Settings
+L.Settings_Rockgrove_Sundering_Strike              = "General: Sundering Strike"
+L.Settings_Rockgrove_Sundering_Strike_TT           = "Alerts you when the Sul-Xan Reaper makes Sundering Strike attack. Roll dodge it."
+L.Settings_Rockgrove_Astral_Shield                 = "General: Astral Shield"
+L.Settings_Rockgrove_Astral_Shield_TT              = "Alerts you when the Sul-Xan Soulweaver casts his Astral Shield."
+L.Settings_Rockgrove_Soul_Remnant                  = "General: Soul Remnant (Soulweaver)"
+L.Settings_Rockgrove_Soul_Remnant_TT               = "Alerts you when Soul Remnants targets you (as result of breaking Sul-Xan Soulweaver's Astral Shield)."
+L.Settings_Rockgrove_Prime_Meteor                  = "General: Prime Meteor"
+L.Settings_Rockgrove_Prime_Meteor_TT               = "Shows countdown when meteor appears indicating the time before it explodes. Make sure to kill the meteor in time."
+L.Settings_Rockgrove_Hasted_Assault                = "General: Hasted Assault"
+L.Settings_Rockgrove_Hasted_Assault_TT             = "Alerts you when the Havocrel Barbarian makes Hasted Assault attack. He teleports from player to player in random order and attacks them. This should be blocked."
+L.Settings_Rockgrove_Savage_Blitz                  = "Oaxiltso: Savage Blitz"
+L.Settings_Rockgrove_Savage_Blitz_TT               = "Alerts you when the Oaxiltso charges at the furthest player."
+L.Settings_Rockgrove_Noxious_Sludge                = "Oaxiltso: Noxious Sludge"
+L.Settings_Rockgrove_Noxious_Sludge_TT             = "Alerts you when someone is poisoned by Oaxiltso and has to go cleanse in the pool."
+L.Settings_Rockgrove_Cinder_Cleave                 = "Oaxiltso's mini-boss: Cinder Cleave"
+L.Settings_Rockgrove_Cinder_Cleave_TT              = "Alerts you when Havocrel Annihilator casts his Cinder Cleave ability on someone during the fight with Oaxiltso."
+L.Settings_Rockgrove_Embrace_Of_Death              = "Flame-Herald Bahsei: Embrace of Death"
+L.Settings_Rockgrove_Embrace_Of_Death_TT           = "Alerts you when someone got cursed by Flame-Herald Bahsei. That person will explode after 8 seconds, spreading the curse. It's important to keep cursed player separated from the group."
+L.Settings_Rockgrove_Embrace_Of_Death_TT_All       = "|cFF0000WARNING!|r If your group will get too much curses your screen may be fully covered in countdowns for a duration of those curses! We're working on ways to improve this notification."
+
+-- Alerts
+L.Alerts_Rockgrove_Sundering_Strike                = "Incoming |cCDCDCDSundering Strike|r on you!"
+L.Alerts_Rockgrove_Sundering_Strike_Other          = "Incoming |cCDCDCDSundering Strike|r on |cFF0000<<!aC:1>>|r!"
+L.Alerts_Rockgrove_Astral_Shield_Cast              = "|cFFFF8FAstral Shield|r has been casted. Prepare to dodge or block!"
+L.Alerts_Rockgrove_Soul_Remnant                    = "Incoming |c8FF2FFSoul Remnant|r!"
+L.Alerts_Rockgrove_Prime_Meteor                    = "|cFFD600Prime Meteor|r will explode in"
+L.Alerts_Rockgrove_Hasted_Assault                  = "Incoming |cFF0000Hasted Assault|r! Block!"
+L.Alerts_Rockgrove_Savage_Blitz                    = "Oaxiltso charges at |cFF0000<<!aC:1>>|r!"
+L.Alerts_Rockgrove_Noxious_Sludge_Self             = "You're poisoned by |c008C22Noxious Sludge|r! Cleanse in the pool!"
+L.Alerts_Rockgrove_Noxious_Sludge_Other1           = "|cFF0000<<!aC:1>>|r is poisoned by |c008C22Noxious Sludge|r."
+L.Alerts_Rockgrove_Noxious_Sludge_Other2           = "|cFF0000<<!aC:1>>|r and |cFF0000<<!aC:2>>|r are poisoned by |c008C22Noxious Sludge|r."
+L.Alerts_Rockgrove_Cinder_Cleave                   = "|cD74700Cinder Cleave|r on you!"
+L.Alerts_Rockgrove_Cinder_Cleave_Other             = "|cD74700Cinder Cleave|r on |cFF0000<<!aC:1>>|r."
+L.Alerts_Rockgrove_Embrace_Of_Death                = "You're cursed by |c0A929BEmbrace of Death|r! Stay away! Explosion in"
+L.Alerts_Rockgrove_Embrace_Of_Death_Other          = "|cFF0000<<!aC:1>>|r cursed by |c0A929BEmbrace of Death|r! Explosion in"
+
 
 --------------------------------
 ----       Debugging        ----
@@ -599,7 +646,7 @@ for k, v in pairs(L) do
 end
 
 function RaidNotifier:GetLocale()
-	return L
+        return L
 end
 
 if (GetCVar('language.2') == 'de') then

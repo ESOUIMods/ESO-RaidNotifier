@@ -11,18 +11,29 @@ local data = {}
 function RaidNotifier.AS.Initialize()
 	p = RaidNotifier.p
 	dbg = RaidNotifier.dbg
-	
+
 	data = {}
+end
+
+function RaidNotifier.AS.Shutdown()
+	-- In case of zoning out during the battle "OnCombatStateChanged" handler may be unregistered before it'll be called
+	-- outside the combat; so we have to manually unregister handler for interval check here
+	EVENT_MANAGER:UnregisterForUpdate(RaidNotifier.Name .. "_IntervalCheck")
 end
 
 local function OnIntervalCheck()
 	local self = RaidNotifier
 	local raidId = RaidNotifier.raidId
-	local buffsDebuffs = RaidNotifier.BuffsDebuffs[raidId]	
+	local buffsDebuffs = RaidNotifier.BuffsDebuffs[raidId]
 	local settings = self.Vars.asylum
-	
+
 	if (settings.olms_gusts_of_steam and settings.olms_gusts_of_steam_slider > 0) then
-		health, maxHealth = GetUnitPower("boss1", POWERTYPE_HEALTH) -- Llothi
+		local health, maxHealth = GetUnitPower("boss1", POWERTYPE_HEALTH) -- It's always Olms in AS
+		-- Precautious check in case of situation when the fight is finished already but the combat state check didn't fire yet
+		-- (as we have 3 seconds delay for that currently)
+		if (health == 0 or maxHealth == 0) then
+			return
+		end
 		local healthPercent = health * 100 / maxHealth
 		if (data.olmsHealthChecked == nil) then
 			data.olmsHealthChecked = healthPercent
@@ -40,6 +51,8 @@ end
 function RaidNotifier.AS.OnCombatStateChanged(inCombat)
 	local self = RaidNotifier
 	if (inCombat) then
+		-- At the start of the fight we want to clear all previous fight data collected
+		data = {}
 		EVENT_MANAGER:RegisterForUpdate(self.Name .. "_IntervalCheck", 1000, OnIntervalCheck);
 		dbg("start interval check")
 	else
@@ -52,30 +65,30 @@ function RaidNotifier.AS.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 	local raidId = RaidNotifier.raidId
 	local self   = RaidNotifier
 	local buffsDebuffs, settings = self.BuffsDebuffs[raidId], self.Vars.asylum
-		
+
 	--if buffsDebuffs.interest_list[abilityId] then
 	--	dbg("[%d] #%d %s (%d)", result, abilityId, GetAbilityName(abilityId), tUnitId)
 	--end
-	
+
 	if (tName == nil or tName == "") then
 		tName = self.UnitIdToString(tUnitId)
-	end		
+	end
 
 	if result == ACTION_RESULT_BEGIN then
 		if abilityId == buffsDebuffs.llothis_defiling_blast and hitValue == 2000 then
 			if settings.llothis_defiling_blast >= 1 then
-				if (tType == COMBAT_UNIT_TYPE_PLAYER) then 
+				if (tType == COMBAT_UNIT_TYPE_PLAYER) then
 					self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_ASYLUM_DEFILING_BLAST), "asylum", "llothis_defiling_blast")
 				elseif (tName ~= "" and settings.llothis_defiling_blast == 2 ) then
 					self:AddAnnouncement(zo_strformat(GetString(RAIDNOTIFIER_ALERTS_ASYLUM_DEFILING_BLAST_OTHER), tName), "asylum", "llothis_defiling_blast")
 				end
 			end
 		elseif abilityId == buffsDebuffs.olms_exhaustive_charges then
-			if settings.olms_exhaustive_charges then 
+			if settings.olms_exhaustive_charges then
 				self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_ASYLUM_EXHAUSTIVE_CHARGES), "asylum", "olms_exhaustive_charges", 5)
 			end
 		elseif abilityId == buffsDebuffs.olms_storm_the_heavens then
-			if settings.olms_storm_the_heavens then 
+			if settings.olms_storm_the_heavens then
 				self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_ASYLUM_STORM_THE_HEAVENS), "asylum", "olms_storm_the_heavens", 5)
 			end
 		elseif abilityId == buffsDebuffs.olms_gusts_of_steam then
@@ -104,7 +117,7 @@ function RaidNotifier.AS.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 		if abilityId == buffsDebuffs.boss_spawn then
 			-- This one is tricky as it triggers each time a boss or minion spawns, thus without context it's not very useful.
 			-- Ways to use this:
-			--    Single occurance: Protector spawns (before it reaches its target location) or miniboss appears. Always a protector when 
+			--    Single occurance: Protector spawns (before it reaches its target location) or miniboss appears. Always a protector when
 			--                      phase 2, then ~10 seconds later the Llothis boss. Also around ~25 seconds later for the Felms boss.
 			--    Triple occurance: Those fancy fire robo-spiders we just ignore. Always when phase 3 starts
 			--
@@ -116,7 +129,7 @@ function RaidNotifier.AS.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 					data.ignoreSpawn = true
 				else
 					zo_callLater(function()
-						if data.lastBossSpawnTimeMs and not data.ignoreSpawn then 
+						if data.lastBossSpawnTimeMs and not data.ignoreSpawn then
 							local isProtector = true
 							if data.nextSpawnIsProtector then
 								data.nextSpawnIsProtector = false
@@ -136,10 +149,10 @@ function RaidNotifier.AS.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 							--	local diff = curTimeMs - data.lastPhaseTimeMs
 							--	if diff <= 25000 then -- small window for it to spawn, in case it's only +Llothis (normal is ~15 seconds??)
 							--		if data.bossFelmsId then
-							--			data.bossFelmsIdBackup = tUnitId 
+							--			data.bossFelmsIdBackup = tUnitId
 							--			dbg("Found Felms Boss BACKUP: %d after %d ms", tUnitId, diff)
 							--		else
-							--			data.bossFelmsId = tUnitId 
+							--			data.bossFelmsId = tUnitId
 							--			dbg("Found Felms Boss: %d after %d ms", tUnitId, diff)
 							--		end
 							--		isProtector = false
@@ -156,7 +169,7 @@ function RaidNotifier.AS.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 							if isProtector then
 								data.latestProtectorId = tUnitId
 								--dbg("Protector about to spawn #%d", tUnitId)
-								if settings.olms_protector_spawn then 
+								if settings.olms_protector_spawn then
 									self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_ASYLUM_PROTECTOR_SPAWN), "asylum", "olms_protector_spawn")
 								end
 							end
@@ -209,7 +222,7 @@ function RaidNotifier.AS.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 			--dbg("Phase5")
 		end
 	elseif (result == ACTION_RESULT_EFFECT_GAINED_DURATION) then
-	
+
 	elseif (result == ACTION_RESULT_EFFECT_FADED) then
 		--if abilityId == buffsDebuffs.olms_protector_spawn then
 		--	-- It died, new protectors spawn ~9s later (coincidence?)

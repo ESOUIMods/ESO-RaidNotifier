@@ -8,7 +8,7 @@ local RaidNotifier = RaidNotifier
 
 RaidNotifier.Name           = "RaidNotifier"
 RaidNotifier.DisplayName    = "Raid Notifier"
-RaidNotifier.Version        = "2.18.1"
+RaidNotifier.Version        = "2.20"
 RaidNotifier.Author         = "|c009ad6Kyoma, Memus, Woeler, silentgecko|r"
 RaidNotifier.SV_Name        = "RNVars"
 RaidNotifier.SV_Version     = 4
@@ -26,6 +26,7 @@ RAID_CLOUDREST              = 9
 RAID_BLACKROSE_PRISON       = 10
 RAID_SUNSPIRE               = 11
 RAID_KYNES_AEGIS            = 12
+RAID_ROCKGROVE              = 13
 
 -- Debugging
 local function p() end
@@ -318,7 +319,7 @@ do ----------------------
 		local settings = self.Vars.ultimate
 		if not settings.enabled then return end
 
-		-- if not ultimateHandler then return end
+		if not ultimateHandler then return end
 
 		if listening then return end
 		listening = true
@@ -385,7 +386,7 @@ do ----------------------
 	end
 
 	function RaidNotifier:UnregisterForUltimateChanges()
-		-- if not ultimateHandler then return end
+		if not ultimateHandler then return end
 
 		if not listening then return end
 		listening = false
@@ -443,17 +444,17 @@ do ----------------------
 			self:UnregisterForUltimateChanges()
 		elseif (args[1] == "refresh") then
 			ultimates = {}
-			--if ultimateHandler then
-			ultimateHandler:Refresh()
-			--end
+			if ultimateHandler then
+				ultimateHandler:Refresh()
+			end
 		elseif (args[1] == "debug") then
-			--if ultimateHandler then
-			ultimateHandler:SetDebug(tonumber(args[2]))
-			--end
+			if ultimateHandler then
+				ultimateHandler:SetDebug(tonumber(args[2]))
+			end
 		elseif (args[1] == "clear") then
-			--if ultimateHandler then
-			ultimateHandler:ResetResources()
-			--end
+			if ultimateHandler then
+				ultimateHandler:ResetResources()
+			end
 		elseif (args[1] == "cost") then
 			if (#args == 2) then
 				if (tonumber(args[2]) ~= nil) then
@@ -581,6 +582,7 @@ do ----------------------
 		[RAID_BLACKROSE_PRISON]      = 1082,
 		[RAID_SUNSPIRE]              = 1121,
 		[RAID_KYNES_AEGIS]           = 1196,
+		[RAID_ROCKGROVE]             = 1263,
 	}
 
 	local RaidZones = {}
@@ -629,12 +631,14 @@ do ----------------------
 			dbg("Register for %s (%s)", GetRaidZoneName(self.raidId), GetString("SI_DUNGEONDIFFICULTY", self.raidDifficulty))
 
 			local trial = self.Trial[self.raidId]
+			local combatStateChangedCallback
+
 			if (trial) then
 				trial.Initialize()
 				local combatEventCallback = trial.OnCombatEvent
 				local bossesChangedCallback = trial.OnBossesChanged
 				local effectChangedCallback = trial.OnEffectChanged
-				local combatStateChangedCallback = trial.OnCombatStateChanged
+				combatStateChangedCallback = trial.OnCombatStateChanged
 
 				local abilityList = {}
 				local function RegisterForAbility(abId)
@@ -682,6 +686,9 @@ do ----------------------
 					end
 					if (self.raidId == RAID_MAW_OF_LORKHAJ) then
 						EVENT_MANAGER:AddFilterForEvent(self.Name, EVENT_EFFECT_CHANGED, REGISTER_FILTER_ABILITY_ID, self.BuffsDebuffs[RAID_MAW_OF_LORKHAJ].rakkhat_hulk_armorweakened)
+					end
+					if (self.raidId == RAID_ROCKGROVE) then
+						EVENT_MANAGER:AddFilterForEvent(self.Name, EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG_PREFIX, "group")
 					end
 				end
 				if (bossesChangedCallback) then
@@ -740,6 +747,13 @@ do ----------------------
 		EVENT_MANAGER:UnregisterForEvent(self.Name, EVENT_EFFECT_CHANGED)
 		EVENT_MANAGER:UnregisterForEvent(self.Name, EVENT_BOSSES_CHANGED)
 		EVENT_MANAGER:UnregisterForEvent(self.Name, EVENT_PLAYER_COMBAT_STATE)
+
+		local trial = self.Trial[self.raidId]
+
+		-- Remove custom handlers which may have been assigned inside the trial "class"
+		if type(trial.Shutdown) == "function" then
+			trial.Shutdown()
+		end
 
 		--self:RemoveFragment()
 		self:HideAllElements()
@@ -906,6 +920,7 @@ do ---------------------------
 	RaidNotifier.CR = RaidNotifier.CR or {}
 	RaidNotifier.SS = RaidNotifier.SS or {}
 	RaidNotifier.KA = RaidNotifier.KA or {}
+	RaidNotifier.RG = RaidNotifier.RG or {}
 
 	RaidNotifier.Trial =
 	{
@@ -920,6 +935,7 @@ do ---------------------------
 		[RAID_CLOUDREST]             = RaidNotifier.CR,
 		[RAID_SUNSPIRE]	             = RaidNotifier.SS,
 		[RAID_KYNES_AEGIS]           = RaidNotifier.KA,
+		[RAID_ROCKGROVE]             = RaidNotifier.RG,
 	}
 
 	-------------------

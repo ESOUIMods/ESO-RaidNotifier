@@ -8,6 +8,12 @@ local function dbg() end
 
 local data = {}
 
+-- Storing Lord Falgravn's Ichor Eruption timers to be able to cancel them in case effect will fade out earlier
+local ichorEruption = {
+    callId = nil,
+    countdownId = nil,
+}
+
 function RaidNotifier.KA.Initialize()
     p = RaidNotifier.p
     dbg = RaidNotifier.dbg
@@ -69,6 +75,61 @@ function RaidNotifier.KA.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
         if (abilityId == buffsDebuffs.yandir_chaurus_totem_spawn) then
             if (settings.yandir_totem_spawn >= 1) then
                 self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_KYNESAEGIS_CHAURUS_TOTEM), "kynesAegis", "yandir_totem_spawn")
+            end
+        end
+        -- Vrolsworn Fire Mage's meteors (3 meteors at once)
+        -- hitValue = 1 for casting or 2250 as the duration of meteor's reaching the targets
+        if (abilityId == buffsDebuffs.vrol_firemage_meteor and hitValue > 1) then
+            -- If player is tracking only meteors on himself we don't need to use any tricks
+            if (settings.vrol_firemage_meteor == 1 and tType == COMBAT_UNIT_TYPE_PLAYER) then
+                self:StartCountdown(hitValue, GetString(RAIDNOTIFIER_ALERTS_KYNESAEGIS_VROL_FIREMAGE_METEOR), "kynesAegis", "vrol_firemage_meteor", true, 2)
+            elseif (settings.vrol_firemage_meteor == 2) then
+                -- There will be several events for each of the targeted players
+                -- In order to determine if our player himself is meteor's target we will analyze all of them
+                RaidNotifier.DelayedEventHandler.Add(
+                    "vrol_firemage_meteor",
+                    { tType = tType },
+                    function(argsBag)
+                        if (argsBag:ContainsArgumentWithValue("tType", COMBAT_UNIT_TYPE_PLAYER)) then
+                            self:StartCountdown(hitValue, GetString(RAIDNOTIFIER_ALERTS_KYNESAEGIS_VROL_FIREMAGE_METEOR), "kynesAegis", "vrol_firemage_meteor", true, 2)
+                        else
+                            self:StartCountdown(hitValue, GetString(RAIDNOTIFIER_ALERTS_KYNESAEGIS_VROL_FIREMAGE_METEOR_OTHER), "kynesAegis", "vrol_firemage_meteor", false, 2)
+
+                        end
+                    end,
+                    50
+                )
+            end
+        end
+    elseif (result == ACTION_RESULT_EFFECT_GAINED_DURATION) then
+        -- Lord Falgravn's timer before Ichor Eruption mechanic happens
+        if (abilityId == buffsDebuffs.falgravn_ichor_eruption_timer) then
+            if (settings.falgravn_ichor_eruption) then
+                local countdownTime = math.min(settings.falgravn_ichor_eruption_time_before * 1000, hitValue);
+
+                ichorEruption.callId = zo_callLater(function()
+                    -- Theoretically this function shouldn't be called if zo_callLater() was revoked by zo_removeCallLater()
+                    -- So there should be no need in checking callId
+                    -- But it's not 100% clear if that revoke works as intended at the present times
+                    if ichorEruption.callId then
+                        ichorEruption.callId = nil
+                        ichorEruption.countdownId = self:StartCountdown(countdownTime, GetString(RAIDNOTIFIER_ALERTS_KYNESAEGIS_ICHOR_ERUPTION), "kynesAegis", "falgravn_ichor_eruption", false)
+                    end
+                end, hitValue - countdownTime)
+            end
+        end
+    elseif (result == ACTION_RESULT_EFFECT_FADED) then
+        -- Lord Falgravn's Ichor Eruption timer cancelling
+        if (abilityId == buffsDebuffs.falgravn_ichor_eruption_timer) then
+            if (settings.falgravn_ichor_eruption) then
+                if (ichorEruption.callId ~= nil) then
+                    zo_removeCallLater(ichorEruption.callId)
+                    ichorEruption.callId = nil
+                end
+                if (ichorEruption.countdownId ~= nil) then
+                    self:StopCountdown(ichorEruption.countdownId)
+                    ichorEruption.countdownId = nil
+                end
             end
         end
     end

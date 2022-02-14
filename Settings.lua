@@ -21,6 +21,7 @@ RAID_CLOUDREST              = 9
 RAID_BLACKROSE_PRISON       = 10
 RAID_SUNSPIRE				= 11
 RAID_KYNES_AEGIS			= 12
+RAID_ROCKGROVE              = 13
 
 -- ------------------
 -- DEFAULT SETTINGS
@@ -301,6 +302,20 @@ do ------------------
 			bitter_knight_sanguine_prison = false,
 			bloodknight_blood_fountain = false,
 			yandir_totem_spawn = 0, -- "Off"
+			vrol_firemage_meteor = 0, -- "Off"
+			falgravn_ichor_eruption = false,
+			falgravn_ichor_eruption_time_before = 3,
+		},
+		rockgrove = {
+			sulxan_reaver_sundering_strike = 0, -- "Off"
+			sulxan_soulweaver_astral_shield = false,
+			sulxan_soulweaver_soul_remnant = false,
+			prime_meteor = false,
+			havocrel_barbarian_hasted_assault = false,
+			oaxiltso_savage_blitz = false,
+			oaxiltso_noxious_sludge = 0, -- "Off"
+			oaxiltso_annihilator_cinder_cleave = 0, -- "Off"
+			bahsei_embrace_of_death = 0, -- "Off"
 		},
 		dbg = {
 			enable = false,
@@ -541,6 +556,13 @@ function RaidNotifier:CreateSettingsMenu()
 				L.Settings_General_Choices_OnlyChaurusTotem,
 				L.Settings_General_Choices_All,
 			},
+			vrol_firemage_meteor = off_self_all,
+		},
+		rockgrove = {
+			sulxan_reaver_sundering_strike = off_self_all,
+			oaxiltso_noxious_sludge = off_self_all,
+			oaxiltso_annihilator_cinder_cleave = off_self_all,
+			bahsei_embrace_of_death = off_self_all,
 		},
 	}
 
@@ -1600,6 +1622,83 @@ function RaidNotifier:CreateSettingsMenu()
 		tooltip = L.Settings_KynesAegis_Totem_TT,
 		choices = choices.kynesAegis.yandir_totem_spawn,
 	}, "kynesAegis", "yandir_totem_spawn")
+	MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_KynesAegis_Vrol_FireMage_Meteor,
+		tooltip = L.Settings_KynesAegis_Vrol_FireMage_Meteor_TT,
+		choices = choices.kynesAegis.vrol_firemage_meteor,
+	}, "kynesAegis", "vrol_firemage_meteor")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_KynesAegis_Ichor_Eruption,
+		tooltip = L.Settings_KynesAegis_Ichor_Eruption_TT,
+	}, "kynesAegis", "falgravn_ichor_eruption")
+	MakeControlEntry({
+		type = "slider",
+		name = L.Settings_KynesAegis_Ichor_Eruption_CD_Time,
+		tooltip = L.Settings_KynesAegis_Ichor_Eruption_CD_Time_TT,
+		min = 2,
+		max = 30,
+		step = 0.5,
+		disabled = function()
+			return savedVars.kynesAegis.falgravn_ichor_eruption == false;
+		end,
+		noAlert = true,
+	}, "kynesAegis", "falgravn_ichor_eruption_time_before")
+	subTable = nil --end submenu
+
+	-- Rockgrove
+	MakeSubmenu(L.Settings_Rockgrove_Header, RaidNotifier:GetRaidDescription(RAID_ROCKGROVE))
+	MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_Rockgrove_Sundering_Strike,
+		tooltip = L.Settings_Rockgrove_Sundering_Strike_TT,
+		choices = choices.rockgrove.sulxan_reaver_sundering_strike,
+	}, "rockgrove", "sulxan_reaver_sundering_strike")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Rockgrove_Astral_Shield,
+		tooltip = L.Settings_Rockgrove_Astral_Shield_TT,
+	}, "rockgrove", "sulxan_soulweaver_astral_shield")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Rockgrove_Soul_Remnant,
+		tooltip = L.Settings_Rockgrove_Soul_Remnant_TT,
+	}, "rockgrove", "sulxan_soulweaver_soul_remnant")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Rockgrove_Prime_Meteor,
+		tooltip = L.Settings_Rockgrove_Prime_Meteor_TT,
+	}, "rockgrove", "prime_meteor")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Rockgrove_Hasted_Assault,
+		tooltip = L.Settings_Rockgrove_Hasted_Assault_TT,
+	}, "rockgrove", "havocrel_barbarian_hasted_assault")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Rockgrove_Savage_Blitz,
+		tooltip = L.Settings_Rockgrove_Savage_Blitz_TT,
+	}, "rockgrove", "oaxiltso_savage_blitz")
+	MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_Rockgrove_Noxious_Sludge,
+		tooltip = L.Settings_Rockgrove_Noxious_Sludge_TT,
+		choices = choices.rockgrove.oaxiltso_noxious_sludge,
+	}, "rockgrove", "oaxiltso_noxious_sludge")
+	MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_Rockgrove_Cinder_Cleave,
+		tooltip = L.Settings_Rockgrove_Cinder_Cleave_TT,
+		choices = choices.rockgrove.oaxiltso_annihilator_cinder_cleave,
+	}, "rockgrove", "oaxiltso_annihilator_cinder_cleave")
+	MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_Rockgrove_Embrace_Of_Death,
+		tooltip = L.Settings_Rockgrove_Embrace_Of_Death_TT,
+		choices = choices.rockgrove.bahsei_embrace_of_death,
+		choicesTooltips = { false, false, L.Settings_Rockgrove_Embrace_Of_Death_TT_All },
+	}, "rockgrove", "bahsei_embrace_of_death")
 	subTable = nil --end submenu
 
 	MakeControlEntry({

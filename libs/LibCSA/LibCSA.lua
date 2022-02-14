@@ -22,17 +22,10 @@ Description: This library serves to provide a global  enhancement of the center 
 				    called when the line is reset and you MUST reset all potential changes, including the things from the countdown callback.
 					Format is "function(line, messageParams, doReset)", where line is a ZO_CenterScreenAnnouncementCountdownLine object.
 ]]--
-local libName, libVersion = "LibCSA", 102
-local lib, oldlibVersion
-if(not LibStub) then
-    lib = {}
-else
-    lib, oldlibVersion = LibStub:NewLibrary(libName, libVersion)
-    if not lib then
-        return -- already loaded and no upgrade necessary
-    end
-end
-if not lib then return end
+
+local libLoaded
+local libName, libVersion = "LibCSA", 210
+local lib = {}
 
 local CSA = CENTER_SCREEN_ANNOUNCE
 local CSA_LINE_TYPE_COUNTDOWN = ZO_CenterScreenAnnouncementCountdownLine.GetLineType({}) -- we grab the local variable with this 'hack'
