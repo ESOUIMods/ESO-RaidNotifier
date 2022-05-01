@@ -1,9 +1,9 @@
 ## Title: |cEFEBBERaidNotifier|r
 ## Description: Displays on-screen notifications on different events during trials.
 ## Author: |c009ad6Kyoma, Memus, Woeler, silentgecko|r
-## Version: 2.20
-## AddOnVersion: 220
-## APIVersion: 101032 101033
+## Version: 2.21
+## AddOnVersion: 221
+## APIVersion: 101033 101034
 ## SavedVariables: RNVars RN_DEBUG_LOG
 ## DependsOn: LibAddonMenu-2.0>=33 LibGroupSocket>=13 LibUnits2>=102 LibCSA>=102
 

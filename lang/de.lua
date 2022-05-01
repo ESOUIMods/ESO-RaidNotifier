@@ -542,8 +542,9 @@ L.Alerts_Sunspire_Time_Breach_Countdown   = "|c81cc00Zeitriss|r in "
 L.Alerts_Sunspire_Negate_Field            = "|c53c4c9Negationsfeld|r auf dir!"
 L.Alerts_Sunspire_Negate_Field_Others     = "|c53c4c9Negationsfeld|r auf <<!aC:1>>!"
 L.Alerts_Sunspire_Shock_Bolt              = "Eingehender |c00ddffSchockender Stoß|r auf dir!"
-L.Alerts_Sunspire_Apocalypse              = "Incoming |cffff00Translation Apocalypse|r! Bash in"
-L.Alerts_Sunspire_Apocalypse_Ends         = "|cffff00Translation Apocalypse|r ends in"
+L.Alerts_Sunspire_Shock_Bolt_Others       = "Eingehender |c00ddffSchockender Stoß|r auf <<!aC:1>>!"
+L.Alerts_Sunspire_Apocalypse              = "Eingehende |cffff00Verschiebungsapokalypse|r!"
+L.Alerts_Sunspire_Apocalypse_Ends         = "|cffff00Verschiebungsapokalypse|r endet in"
 
 
 --------------------------------
@@ -559,6 +560,8 @@ L.Settings_KynesAegis_Blood_Fountain                = "General: Blood Fountain"
 L.Settings_KynesAegis_Blood_Fountain_TT             = "Alerts you when Bloodknight starts his Blood Fountain attack, counting down until it is unleashed. It looks like cross-shaped AoE, and need to be avoided as it deals heavy damage."
 L.Settings_KynesAegis_Totem                         = "Yandir: Totems spawn"
 L.Settings_KynesAegis_Totem_TT                      = "Alerts you when certain totem appeared during the battle with Yandir the Butcher boss.\n\nDragon Totems: always two appears at the same time; each one blows out fire along a straight line in two opposite directions.\nHarpy Totem: spawns a lightning aura that will radiate out.\nGargoyle totem: encases random players into stone.\nChaurus Totem: poisons several people, and this poison should not be spread to others, that's why you should not stack at this phase."
+L.Settings_KynesAegis_Yandir_FireShaman_Meteor      = "Yandir HM: Meteors"
+L.Settings_KynesAegis_Yandir_FireShaman_Meteor_TT   = "Alerts you when Butcher's Fire Shamans will cast meteors on players."
 L.Settings_KynesAegis_Vrol_FireMage_Meteor          = "Vrol: Meteors"
 L.Settings_KynesAegis_Vrol_FireMage_Meteor_TT       = "Alerts you when Vrolsworn Fire Mages from the boat will cast meteors on players."
 L.Settings_KynesAegis_Ichor_Eruption                = "Falgravn: Ichor Eruption"
@@ -574,8 +577,8 @@ L.Alerts_KynesAegis_Dragon_Totem                    = "Two |cffa500Dragon Totems
 L.Alerts_KynesAegis_Harpy_Totem                     = "|c00bfffHarpy Totem|r spawned."
 L.Alerts_KynesAegis_Gargoyle_Totem                  = "|cf5f5dcGargoyle Totem|r spawned."
 L.Alerts_KynesAegis_Chaurus_Totem                   = "|c39942eChaurus Totem|r spawned. Don't stack!"
-L.Alerts_KynesAegis_Vrol_FireMage_Meteor            = "|cffa500Meteor|r on you in"
-L.Alerts_KynesAegis_Vrol_FireMage_Meteor_Other      = "Meteors in"
+L.Alerts_KynesAegis_FireMage_Meteor                 = "|cffa500Meteor|r on you in"
+L.Alerts_KynesAegis_FireMage_Meteor_Other           = "Meteors in"
 L.Alerts_KynesAegis_Ichor_Eruption                  = "|cb00000Ichor Eruption|r in"
 
 

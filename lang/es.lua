@@ -563,6 +563,8 @@ L.Settings_KynesAegis_Blood_Fountain                = "General: Fuente de sangre
 L.Settings_KynesAegis_Blood_Fountain_TT             = "Te avisa cuando un caballero sanguinario comienza su ataque Fuente de sangre, contando hasta que es desatado. Es un ataque de área con forma de cruz, y debe ser esquivado, puesto que causa gran cantidad de daño."
 L.Settings_KynesAegis_Totem                         = "Yandir: Aparición de tótems"
 L.Settings_KynesAegis_Totem_TT                      = "Te avisa cuando ciertos tótems aparecen durante la batalla contra Yandir el Matarife.\n\nTótems de dragón: siempre aparecen dos a la vez; cada uno escupe fuego en una línea recta en dos direcciones opuestas.\nTótem de arpía: invoca un aura de relámpago que irradiará.\nTótem de gárgola: convierte jugadores aleatorios en piedra.\nTótem de cauro: envenena varios jugadores, y este veneno no debe ser esparcido a los demás, por lo que es mejor no amontonarse durante esta fase."
+L.Settings_KynesAegis_Yandir_FireShaman_Meteor      = "Yandir HM: Meteors"
+L.Settings_KynesAegis_Yandir_FireShaman_Meteor_TT   = "Alerts you when Butcher's Fire Shamans will cast meteors on players."
 L.Settings_KynesAegis_Vrol_FireMage_Meteor          = "Vrol: Meteors"
 L.Settings_KynesAegis_Vrol_FireMage_Meteor_TT       = "Alerts you when Vrolsworn Fire Mages from the boat will cast meteors on players."
 L.Settings_KynesAegis_Ichor_Eruption                = "Falgravn: Ichor Eruption"
@@ -578,8 +580,8 @@ L.Alerts_KynesAegis_Dragon_Totem                    = "Dos |cffa500tótems de dr
 L.Alerts_KynesAegis_Harpy_Totem                     = "|c00bfffTótem de arpía|r colocado."
 L.Alerts_KynesAegis_Gargoyle_Totem                  = "|cf5f5dcTótem de gárgola|r colocado."
 L.Alerts_KynesAegis_Chaurus_Totem                   = "|c39942eTótem de cauro|r colocado. ¡No se amontonen!"
-L.Alerts_KynesAegis_Vrol_FireMage_Meteor            = "|cffa500Meteor|r on you in"
-L.Alerts_KynesAegis_Vrol_FireMage_Meteor_Other      = "Meteors in"
+L.Alerts_KynesAegis_FireMage_Meteor                 = "|cffa500Meteor|r on you in"
+L.Alerts_KynesAegis_FireMage_Meteor_Other           = "Meteors in"
 L.Alerts_KynesAegis_Ichor_Eruption                  = "|cb00000Ichor Eruption|r in"
 
 

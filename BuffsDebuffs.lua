@@ -597,8 +597,11 @@ kynes_aegis.yandir_harpy_totem_spawn = 133511
 kynes_aegis.yandir_gargoyle_totem_spawn = 133514
 -- Chaurus Totem spawn at Yandir the Butcher boss
 kynes_aegis.yandir_chaurus_totem_spawn = 133516
--- Meteor casted by Vrolsworn Fire Mage during the Captain Vrol boss encounter
-kynes_aegis.vrol_firemage_meteor = 134023
+-- Meteors
+kynes_aegis.firemage_meteor = {
+	[140606] = "yandir_fireshaman_meteor", -- Meteor casted by Butcher's Fire Shaman during the Yandir the Butcher boss encounter on hardmode difficulty
+	[134023] = "vrol_firemage_meteor", -- Meteor casted by Vrolsworn Fire Mage during the Captain Vrol boss encounter
+}
 -- Effect which fires when Lord Falgravn starts his Ichor Eruption mechanic
 kynes_aegis.falgravn_ichor_eruption_timer = 136548
 

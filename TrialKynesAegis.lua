@@ -77,23 +77,24 @@ function RaidNotifier.KA.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
                 self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_KYNESAEGIS_CHAURUS_TOTEM), "kynesAegis", "yandir_totem_spawn")
             end
         end
-        -- Vrolsworn Fire Mage's meteors (3 meteors at once)
+        -- Butcher's Fire Shaman's or Vrolsworn Fire Mage's meteors (3 meteors at once)
         -- hitValue = 1 for casting or 2250 as the duration of meteor's reaching the targets
-        if (abilityId == buffsDebuffs.vrol_firemage_meteor and hitValue > 1) then
+        if (buffsDebuffs.firemage_meteor[abilityId] and hitValue > 1) then
+            local settingName = buffsDebuffs.firemage_meteor[abilityId]
             -- If player is tracking only meteors on himself we don't need to use any tricks
-            if (settings.vrol_firemage_meteor == 1 and tType == COMBAT_UNIT_TYPE_PLAYER) then
-                self:StartCountdown(hitValue, GetString(RAIDNOTIFIER_ALERTS_KYNESAEGIS_VROL_FIREMAGE_METEOR), "kynesAegis", "vrol_firemage_meteor", true, 2)
-            elseif (settings.vrol_firemage_meteor == 2) then
+            if (settings[settingName] == 1 and tType == COMBAT_UNIT_TYPE_PLAYER) then
+                self:StartCountdown(hitValue, GetString(RAIDNOTIFIER_ALERTS_KYNESAEGIS_FIREMAGE_METEOR), "kynesAegis", settingName, true, 2)
+            elseif (settings[settingName] == 2) then
                 -- There will be several events for each of the targeted players
                 -- In order to determine if our player himself is meteor's target we will analyze all of them
                 RaidNotifier.DelayedEventHandler.Add(
-                    "vrol_firemage_meteor",
+                    settingName,
                     { tType = tType },
                     function(argsBag)
                         if (argsBag:ContainsArgumentWithValue("tType", COMBAT_UNIT_TYPE_PLAYER)) then
-                            self:StartCountdown(hitValue, GetString(RAIDNOTIFIER_ALERTS_KYNESAEGIS_VROL_FIREMAGE_METEOR), "kynesAegis", "vrol_firemage_meteor", true, 2)
+                            self:StartCountdown(hitValue, GetString(RAIDNOTIFIER_ALERTS_KYNESAEGIS_FIREMAGE_METEOR), "kynesAegis", settingName, true, 2)
                         else
-                            self:StartCountdown(hitValue, GetString(RAIDNOTIFIER_ALERTS_KYNESAEGIS_VROL_FIREMAGE_METEOR_OTHER), "kynesAegis", "vrol_firemage_meteor", false, 2)
+                            self:StartCountdown(hitValue, GetString(RAIDNOTIFIER_ALERTS_KYNESAEGIS_FIREMAGE_METEOR_OTHER), "kynesAegis", settingName, false, 2)
 
                         end
                     end,
