@@ -8,7 +8,7 @@ local RaidNotifier = RaidNotifier
 
 RaidNotifier.Name           = "RaidNotifier"
 RaidNotifier.DisplayName    = "Raid Notifier"
-RaidNotifier.Version        = "2.21"
+RaidNotifier.Version        = "2.22"
 RaidNotifier.Author         = "|c009ad6Kyoma, Memus, Woeler, silentgecko|r"
 RaidNotifier.SV_Name        = "RNVars"
 RaidNotifier.SV_Version     = 4
@@ -529,10 +529,10 @@ do ----------------------
 			or GetAbilityDuration(abilityId) < 600000 then
 				return false
 			end
-			local cost, mechanic = GetAbilityCost(abilityId)
+			local cost = GetAbilityCost(abilityId)
 			local channeled, castTime = GetAbilityCastInfo(abilityId)
 			local minRangeCM, maxRangeCM = GetAbilityRange(abilityId)
-			if cost > 0 or mechanic > 0 or channeled or castTime > 0 or minRangeCM > 0 or maxRangeCM > 0 or GetAbilityDescription(abilityId) == "" then
+			if cost > 0 or channeled or castTime > 0 or minRangeCM > 0 or maxRangeCM > 0 or GetAbilityDescription(abilityId) == "" then
 				return false
 			end
 			return true
