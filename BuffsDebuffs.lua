@@ -641,3 +641,37 @@ rockgrove.meteor_radiating_heat = {
 rockgrove.bahsei_death_touch = 150078
 
 RaidNotifier.BuffsDebuffs[RAID_ROCKGROVE] = rockgrove
+
+-- ------------------------------------------------------
+-- -- Dreadsail Reef-------------------------------------
+-- -- ---------------------------------------------------
+local dreadsail_reef = {}
+
+-- Lylanar's Imminent Blister debuff (will be followed by Blistering Fragility; attack ID = 166522)
+dreadsail_reef.lylanar_imminent_blister = 168525
+-- Turlassil's Imminent Chill debuff (will be followed by Chilling Fragility; attack ID = 166527)
+dreadsail_reef.turlassil_imminent_chill = 168526
+-- Lylanar's Heavy Attack
+dreadsail_reef.lylanar_broiling_hew = 167273
+-- Turlassil's Heavy Attack
+dreadsail_reef.turlassil_stinging_shear = 167280
+-- Destructive Ember (Fire Dome)
+dreadsail_reef.destructive_ember = 166209
+-- Piercing Hailstone (Ice Dome)
+dreadsail_reef.piercing_hailstone = 166178
+-- Reef Guardian's cast on Reef Heart
+dreadsail_reef.reef_guardian_heartburn = 163692
+-- Reef Guardian's buff that Reef Heart receives (60s)
+dreadsail_reef.reef_guardian_heartburn_buff = 170481
+-- Vulnerability in case Heart was destroyed in time
+dreadsail_reef.reef_guardian_heartburn_vulnerability = 166031
+-- Empowerment in case Heart wasn't destroyed in time
+dreadsail_reef.reef_guardian_heartburn_empowerment = 166032
+-- Tideborn Taleria's Rapid Deluge
+dreadsail_reef.taleria_rapid_deluge = {
+	[174959] = true, -- Normal
+	[174960] = true, -- Veteran
+	[174961] = true, -- Hardmode
+}
+
+RaidNotifier.BuffsDebuffs[RAID_DREADSAIL_REEF] = dreadsail_reef

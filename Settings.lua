@@ -22,6 +22,7 @@ RAID_BLACKROSE_PRISON       = 10
 RAID_SUNSPIRE				= 11
 RAID_KYNES_AEGIS			= 12
 RAID_ROCKGROVE              = 13
+RAID_DREADSAIL_REEF         = 14
 
 -- ------------------
 -- DEFAULT SETTINGS
@@ -318,6 +319,14 @@ do ------------------
 			oaxiltso_annihilator_cinder_cleave = 0, -- "Off"
 			bahsei_embrace_of_death = 0, -- "Off"
 		},
+		dreadsailReef = {
+			dome_activation = false,
+			imminent_debuffs = false,
+			brothers_heavy_attack = 0, -- "Off"
+			reef_guardian_reef_heart = false,
+			reef_guardian_reef_heart_result = false,
+			taleria_rapid_deluge = 0, -- "Off"
+		},
 		dbg = {
 			enable = false,
 			notify = false,
@@ -565,6 +574,10 @@ function RaidNotifier:CreateSettingsMenu()
 			oaxiltso_noxious_sludge = off_self_all,
 			oaxiltso_annihilator_cinder_cleave = off_self_all,
 			bahsei_embrace_of_death = off_self_all,
+		},
+		dreadsailReef = {
+			brothers_heavy_attack = off_self_all,
+			taleria_rapid_deluge = off_self_all,
 		},
 	}
 
@@ -1707,6 +1720,45 @@ function RaidNotifier:CreateSettingsMenu()
 		choices = choices.rockgrove.bahsei_embrace_of_death,
 		choicesTooltips = { false, false, L.Settings_Rockgrove_Embrace_Of_Death_TT_All },
 	}, "rockgrove", "bahsei_embrace_of_death")
+	subTable = nil --end submenu
+
+	-- Dreadsail Reef
+	MakeSubmenu(L.Settings_DreadsailReef_Header, RaidNotifier:GetRaidDescription(RAID_DREADSAIL_REEF))
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_DreadsailReef_Dome_Activation,
+		tooltip = L.Settings_DreadsailReef_Dome_Activation_TT,
+	}, "dreadsailReef", "dome_activation")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_DreadsailReef_Imminent_Debuffs,
+		tooltip = L.Settings_DreadsailReef_Imminent_Debuffs_TT,
+	}, "dreadsailReef", "imminent_debuffs")
+	MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_DreadsailReef_Brothers_Heavy_Attack,
+		tooltip = L.Settings_DreadsailReef_Brothers_Heavy_Attack_TT,
+		choices = choices.dreadsailReef.brothers_heavy_attack,
+	}, "dreadsailReef", "brothers_heavy_attack")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_DreadsailReef_ReefGuardian_ReefHeart,
+		tooltip = L.Settings_DreadsailReef_ReefGuardian_ReefHeart_TT,
+	}, "dreadsailReef", "reef_guardian_reef_heart")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_DreadsailReef_ReefHeart_Result,
+		tooltip = L.Settings_DreadsailReef_ReefHeart_Result_TT,
+		disabled = function()
+			return savedVars.dreadsailReef.reef_guardian_reef_heart == false;
+		end,
+	}, "dreadsailReef", "reef_guardian_reef_heart_result")
+	MakeControlEntry({
+		type = "dropdown",
+		name = L.Settings_DreadsailReef_Rapid_Deluge,
+		tooltip = L.Settings_DreadsailReef_Rapid_Deluge_TT,
+		choices = choices.dreadsailReef.taleria_rapid_deluge,
+	}, "dreadsailReef", "taleria_rapid_deluge")
 	subTable = nil --end submenu
 
 	MakeControlEntry({

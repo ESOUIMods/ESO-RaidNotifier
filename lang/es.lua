@@ -563,6 +563,14 @@ L.Settings_KynesAegis_Blood_Fountain                = "General: Fuente de sangre
 L.Settings_KynesAegis_Blood_Fountain_TT             = "Te avisa cuando un caballero sanguinario comienza su ataque Fuente de sangre, contando hasta que es desatado. Es un ataque de área con forma de cruz, y debe ser esquivado, puesto que causa gran cantidad de daño."
 L.Settings_KynesAegis_Totem                         = "Yandir: Aparición de tótems"
 L.Settings_KynesAegis_Totem_TT                      = "Te avisa cuando ciertos tótems aparecen durante la batalla contra Yandir el Matarife.\n\nTótems de dragón: siempre aparecen dos a la vez; cada uno escupe fuego en una línea recta en dos direcciones opuestas.\nTótem de arpía: invoca un aura de relámpago que irradiará.\nTótem de gárgola: convierte jugadores aleatorios en piedra.\nTótem de cauro: envenena varios jugadores, y este veneno no debe ser esparcido a los demás, por lo que es mejor no amontonarse durante esta fase."
+L.Settings_KynesAegis_Yandir_FireShaman_Meteor      = "Yandir HM: Meteors"
+L.Settings_KynesAegis_Yandir_FireShaman_Meteor_TT   = "Alerts you when Butcher's Fire Shamans will cast meteors on players."
+L.Settings_KynesAegis_Vrol_FireMage_Meteor          = "Vrol: Meteors"
+L.Settings_KynesAegis_Vrol_FireMage_Meteor_TT       = "Alerts you when Vrolsworn Fire Mages from the boat will cast meteors on players."
+L.Settings_KynesAegis_Ichor_Eruption                = "Falgravn: Ichor Eruption"
+L.Settings_KynesAegis_Ichor_Eruption_TT             = "Shows countdown until Falgravn will release his Ichor Eruption."
+L.Settings_KynesAegis_Ichor_Eruption_CD_Time        = "       - Countdown time"
+L.Settings_KynesAegis_Ichor_Eruption_CD_Time_TT     = "Time before Ichor Eruption when countdown should pop up."
 
 -- Alerts
 L.Alerts_KynesAegis_Crashing_Wall                   = "|cd2a100Ola aplastante|r en"
@@ -572,6 +580,89 @@ L.Alerts_KynesAegis_Dragon_Totem                    = "Dos |cffa500tótems de dr
 L.Alerts_KynesAegis_Harpy_Totem                     = "|c00bfffTótem de arpía|r colocado."
 L.Alerts_KynesAegis_Gargoyle_Totem                  = "|cf5f5dcTótem de gárgola|r colocado."
 L.Alerts_KynesAegis_Chaurus_Totem                   = "|c39942eTótem de cauro|r colocado. ¡No se amontonen!"
+L.Alerts_KynesAegis_FireMage_Meteor                 = "|cffa500Meteor|r on you in"
+L.Alerts_KynesAegis_FireMage_Meteor_Other           = "Meteors in"
+L.Alerts_KynesAegis_Ichor_Eruption                  = "|cb00000Ichor Eruption|r in"
+
+
+--------------------------------
+------   ROCKGROVE         -----
+--------------------------------
+L.Settings_Rockgrove_Header                        = "Rockgrove"
+-- Settings
+L.Settings_Rockgrove_Sundering_Strike              = "General: Sundering Strike"
+L.Settings_Rockgrove_Sundering_Strike_TT           = "Alerts you when the Sul-Xan Reaper makes Sundering Strike attack. Roll dodge it."
+L.Settings_Rockgrove_Astral_Shield                 = "General: Astral Shield"
+L.Settings_Rockgrove_Astral_Shield_TT              = "Alerts you when the Sul-Xan Soulweaver casts his Astral Shield."
+L.Settings_Rockgrove_Soul_Remnant                  = "General: Soul Remnant (Soulweaver)"
+L.Settings_Rockgrove_Soul_Remnant_TT               = "Alerts you when Soul Remnants targets you (as result of breaking Sul-Xan Soulweaver's Astral Shield)."
+L.Settings_Rockgrove_Prime_Meteor                  = "General: Prime Meteor"
+L.Settings_Rockgrove_Prime_Meteor_TT               = "Shows countdown when meteor appears indicating the time before it explodes. Make sure to kill the meteor in time."
+L.Settings_Rockgrove_Hasted_Assault                = "General: Hasted Assault"
+L.Settings_Rockgrove_Hasted_Assault_TT             = "Alerts you when the Havocrel Barbarian makes Hasted Assault attack. He teleports from player to player in random order and attacks them. This should be blocked."
+L.Settings_Rockgrove_Savage_Blitz                  = "Oaxiltso: Savage Blitz"
+L.Settings_Rockgrove_Savage_Blitz_TT               = "Alerts you when the Oaxiltso charges at the furthest player."
+L.Settings_Rockgrove_Noxious_Sludge                = "Oaxiltso: Noxious Sludge"
+L.Settings_Rockgrove_Noxious_Sludge_TT             = "Alerts you when someone is poisoned by Oaxiltso and has to go cleanse in the pool."
+L.Settings_Rockgrove_Cinder_Cleave                 = "Oaxiltso's mini-boss: Cinder Cleave"
+L.Settings_Rockgrove_Cinder_Cleave_TT              = "Alerts you when Havocrel Annihilator casts his Cinder Cleave ability on someone during the fight with Oaxiltso."
+L.Settings_Rockgrove_Embrace_Of_Death              = "Flame-Herald Bahsei: Embrace of Death"
+L.Settings_Rockgrove_Embrace_Of_Death_TT           = "Alerts you when someone got cursed by Flame-Herald Bahsei. That person will explode after 8 seconds, spreading the curse. It's important to keep cursed player separated from the group."
+L.Settings_Rockgrove_Embrace_Of_Death_TT_All       = "|cFF0000WARNING!|r If your group will get too much curses your screen may be fully covered in countdowns for a duration of those curses! We're working on ways to improve this notification."
+
+-- Alerts
+L.Alerts_Rockgrove_Sundering_Strike                = "Incoming |cCDCDCDSundering Strike|r on you!"
+L.Alerts_Rockgrove_Sundering_Strike_Other          = "Incoming |cCDCDCDSundering Strike|r on |cFF0000<<!aC:1>>|r!"
+L.Alerts_Rockgrove_Astral_Shield_Cast              = "|cFFFF8FAstral Shield|r has been casted. Prepare to dodge or block!"
+L.Alerts_Rockgrove_Soul_Remnant                    = "Incoming |c8FF2FFSoul Remnant|r!"
+L.Alerts_Rockgrove_Prime_Meteor                    = "|cFFD600Prime Meteor|r will explode in"
+L.Alerts_Rockgrove_Hasted_Assault                  = "Incoming |cFF0000Hasted Assault|r! Block!"
+L.Alerts_Rockgrove_Savage_Blitz                    = "Oaxiltso charges at |cFF0000<<!aC:1>>|r!"
+L.Alerts_Rockgrove_Noxious_Sludge_Self             = "You're poisoned by |c008C22Noxious Sludge|r! Cleanse in the pool!"
+L.Alerts_Rockgrove_Noxious_Sludge_Other1           = "|cFF0000<<!aC:1>>|r is poisoned by |c008C22Noxious Sludge|r."
+L.Alerts_Rockgrove_Noxious_Sludge_Other2           = "|cFF0000<<!aC:1>>|r and |cFF0000<<!aC:2>>|r are poisoned by |c008C22Noxious Sludge|r."
+L.Alerts_Rockgrove_Cinder_Cleave                   = "|cD74700Cinder Cleave|r on you!"
+L.Alerts_Rockgrove_Cinder_Cleave_Other             = "|cD74700Cinder Cleave|r on |cFF0000<<!aC:1>>|r."
+L.Alerts_Rockgrove_Embrace_Of_Death                = "You're cursed by |c0A929BEmbrace of Death|r! Stay away! Explosion in"
+L.Alerts_Rockgrove_Embrace_Of_Death_Other          = "|cFF0000<<!aC:1>>|r cursed by |c0A929BEmbrace of Death|r! Explosion in"
+
+
+--------------------------------
+------   DREADSAIL REEF    -----
+--------------------------------
+L.Settings_DreadsailReef_Header                    = "Dreadsail Reef"
+-- Settings
+L.Settings_DreadsailReef_Dome_Activation           = "Lylanar & Turlassil: Fire/Ice Dome activation"
+L.Settings_DreadsailReef_Dome_Activation_TT        = "Alerts you when someone gets Fire or Ice Dome."
+L.Settings_DreadsailReef_Imminent_Debuffs          = "Lylanar & Turlassil: Imminent Blister/Chill"
+L.Settings_DreadsailReef_Imminent_Debuffs_TT       = "Alerts you when tank receives Imminent Blister debuff from Lylanar or Imminent Chill debuff from Turlassil. Tanks should swap in 10 seconds."
+L.Settings_DreadsailReef_Brothers_Heavy_Attack     = "Lylanar & Turlassil: Heavy attack"
+L.Settings_DreadsailReef_Brothers_Heavy_Attack_TT  = "Alerts you when Lylanar or Turlassil makes their heavy attack (Broiling Hew / Stinging Shear)."
+L.Settings_DreadsailReef_ReefGuardian_ReefHeart    = "Reef Guardian: Reef Heart spawn"
+L.Settings_DreadsailReef_ReefGuardian_ReefHeart_TT = "Alerts you when Reef Heart appears. You have 60 seconds to kill it or it's a group wipe. There can be several Hearts active at the same time."
+L.Settings_DreadsailReef_ReefHeart_Result          = "Reef Guardian: Reef Heart success/failure"
+L.Settings_DreadsailReef_ReefHeart_Result_TT       = "Alerts you if you have executed Reef Heart or not."
+L.Settings_DreadsailReef_Rapid_Deluge              = "Taleria: Rapid Deluge"
+L.Settings_DreadsailReef_Rapid_Deluge_TT           = "Alerts you when you or someone got Rapid Deluge debuff. They'll explode in 6 seconds, and the best option to handle the damage is to be swimming at that time."
+
+-- Alerts
+L.Alerts_DreadsailReef_Destructive_Ember           = "<<!aC:1>> activated |cFFA500Fire Dome|r!"
+L.Alerts_DreadsailReef_Piercing_Hailstone          = "<<!aC:1>> activated |c20C3D0Ice Dome|r!"
+L.Alerts_DreadsailReef_Imminent_Blister            = "You're afflicted by |cF27D0CImminent Blister|r! Swap tanks until"
+L.Alerts_DreadsailReef_Imminent_Blister_Other      = "|cFF0000<<!aC:1>>|r afflicted by |cF27D0CImminent Blister|r! Swap tanks until"
+L.Alerts_DreadsailReef_Imminent_Chill              = "You're afflicted by |cB4CFFAImminent Chill|r! Swap tanks until"
+L.Alerts_DreadsailReef_Imminent_Chill_Other        = "|cFF0000<<!aC:1>>|r afflicted by |cB4CFFAImminent Chill|r! Swap tanks until"
+L.Alerts_DreadsailReef_Broiling_Hew                = "Incoming |cCDCDCDBroiling Hew|r on you!"
+L.Alerts_DreadsailReef_Broiling_Hew_Other          = "Incoming |cCDCDCDBroiling Hew|r on |cFF0000<<!aC:1>>|r!"
+L.Alerts_DreadsailReef_Stinging_Shear              = "Incoming |cCDCDCDStinging Shear|r on you!"
+L.Alerts_DreadsailReef_Stinging_Shear_Other        = "Incoming |cCDCDCDStinging Shear|r on |cFF0000<<!aC:1>>|r!"
+L.Alerts_DreadsailReef_ReefGuardian_ReefHeart      = "Reef Heart #|cFF0000<<1>>|r spawned!"
+L.Alerts_DreadsailReef_ReefHeart_Success           = "Reef Heart #|cFF0000<<1>>|r |c7CFC00destroyed|r!"
+L.Alerts_DreadsailReef_ReefHeart_Success_Unknown   = "Reef Heart |c7CFC00destroyed|r!"
+L.Alerts_DreadsailReef_ReefHeart_Failure           = "Reef Heart #|cFF0000<<1>>|r |cFF0000empowered|r. You're doomed!"
+L.Alerts_DreadsailReef_ReefHeart_Failure_Unknown   = "Reef Heart |cFF0000empowered|r. You're doomed!"
+L.Alerts_DreadsailReef_Rapid_Deluge                = "You got |c1CA3ECRapid Deluge|r! You should be swimming in"
+L.Alerts_DreadsailReef_Rapid_Deluge_Other          = "|cFF0000<<!aC:1>>|r got |c1CA3ECRapid Deluge|r! Swim in"
 
 
 --------------------------------
