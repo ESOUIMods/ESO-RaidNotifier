@@ -3,7 +3,7 @@
 ## Author: |c009ad6Kyoma, Memus, Woeler, silentgecko|r
 ## Version: 2.23
 ## AddOnVersion: 223
-## APIVersion: 101034 101035
+## APIVersion: 101035 101036
 ## SavedVariables: RNVars RN_DEBUG_LOG
 ## DependsOn: LibAddonMenu-2.0>=33 LibGroupSocket>=13 LibUnits2>=102 LibCSA>=102
 
