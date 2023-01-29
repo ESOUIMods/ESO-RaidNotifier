@@ -283,6 +283,7 @@ do ------------------
 			crushing_darkness = 1, -- "Self"
 			tentacle_spawn = false,
 			break_amulet = false,
+			shadow_splash = false,
 		},
 		sunspire = {
 			chilling_comet = 1, -- "Self"
@@ -1538,6 +1539,11 @@ function RaidNotifier:CreateSettingsMenu()
 		tooltip = L.Settings_Cloudrest_Crushing_Darkness_TT,
 		choices = choices.cloudrest.crushing_darkness,
 	}, "cloudrest", "crushing_darkness")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Cloudrest_Shadow_Splash,
+		tooltip = L.Settings_Cloudrest_Shadow_Splash_TT,
+	}, "cloudrest", "shadow_splash")
 	subTable = nil --end submenu
 
 	MakeSubmenu(L.Settings_Sunspire_Header, RaidNotifier:GetRaidDescription(RAID_SUNSPIRE))

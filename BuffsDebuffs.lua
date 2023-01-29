@@ -485,6 +485,7 @@ cloudrest.player_exit_srealm = 105218
 cloudrest.malicious_strike = {}
 cloudrest.malicious_strike[110242] = true -- veteran
 cloudrest.malicious_strike[105363] = true -- normal
+cloudrest.shadow_splash = 105123
 
 cloudrest.interest_list = {}
 

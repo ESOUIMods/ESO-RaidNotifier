@@ -460,6 +460,8 @@ L.Settings_Cloudrest_Crushing_Darkness          = "Z'Maja: Crushing Darkness"
 L.Settings_Cloudrest_Crushing_Darkness_TT       = "Alerts you when Tether AoE is following you and needs to be kited."
 L.Settings_Cloudrest_Malicious_Strike           = "Z'Maja: Malicious Strike"
 L.Settings_Cloudrest_Malicious_Strike_TT        = "Alerts when spheres are destroyed and need to block or rolldodge."
+L.Settings_Cloudrest_Shadow_Splash              = "Z'Maja: Shadow Splash"
+L.Settings_Cloudrest_Shadow_Splash_TT           = "Alerts you when Z'Maja starts channeling this spell. If not interrupted in time, some players will be teleported into the sky and take fall damage."
 
 -- Alerts
 L.Alerts_Cloudrest_Olorime_Spears               = "|cffd000Spear|r is up! (<<1>>)"
@@ -489,6 +491,7 @@ L.Alerts_Cloudrest_Sum_Shadow_Beads             = "|cab82ffSpheres|r are about t
 L.Alerts_Cloudrest_Nocturnals_Favor             = "|cff0000Nocturnal's Favor|r at you!"
 L.Alerts_Cloudrest_Crushing_Darkness            = "|cfc0c66Crushing Darkness|r at you. Kite!"
 L.Alerts_Cloudrest_Malicious_Strike             = "|cff0000Malicious Strike|r at you. Block!"
+L.Alerts_Cloudrest_Shadow_Splash                = "Z'Maja is casting. |cFF0000Interrupt|r!"
 
 --------------------------------
 ------   SUNSPIRE          -----

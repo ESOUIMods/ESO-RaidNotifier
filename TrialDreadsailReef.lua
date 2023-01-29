@@ -71,7 +71,7 @@ function RaidNotifier.DSR.OnCombatEvent(_, result, isError, aName, aGraphic, aAc
             if (tType == COMBAT_UNIT_TYPE_PLAYER) then
                 self:StartCountdown(hitValue, GetString(RAIDNOTIFIER_ALERTS_DREADSAILREEF_RAPID_DELUGE), "dreadsailReef", "taleria_rapid_deluge", true)
             elseif (settings.taleria_rapid_deluge == 2 and tName ~= "") then
-                self:StartCountdown(hitValue, zo_strformat(GetString(RAIDNOTIFIER_ALERTS_DREADSAILREEF_RAPID_DELUGE_OTHER), tName), "dreadsailReef", "taleria_rapid_deluge", true)
+                self:StartCountdown(hitValue, zo_strformat(GetString(RAIDNOTIFIER_ALERTS_DREADSAILREEF_RAPID_DELUGE_OTHER), tName), "dreadsailReef", "taleria_rapid_deluge", false)
             end
         end
     elseif (result == ACTION_RESULT_EFFECT_GAINED) then

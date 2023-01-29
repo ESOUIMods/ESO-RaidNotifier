@@ -462,6 +462,8 @@ L.Settings_Cloudrest_Crushing_Darkness          = "Z'Maja: Oscuridad aplastante"
 L.Settings_Cloudrest_Crushing_Darkness_TT       = "Te avisa cuando el área de efecto del filamento te esté siguiendo y necesite ser alejado."
 L.Settings_Cloudrest_Malicious_Strike           = "Z'Maja: Golpe malicioso"
 L.Settings_Cloudrest_Malicious_Strike_TT        = "Te avisa cuando las esferas hayan sido destruidas y necesites bloquear o esquivar."
+L.Settings_Cloudrest_Shadow_Splash              = "Z'Maja: Shadow Splash"
+L.Settings_Cloudrest_Shadow_Splash_TT           = "Alerts you when Z'Maja starts channeling this spell. If not interrupted in time, some players will be teleported into the sky and take fall damage."
 
 -- Alerts
 L.Alerts_Cloudrest_Olorime_Spears               = "¡Han aparecido |cffd000lanzas|r! (<<1>>)"
@@ -491,6 +493,7 @@ L.Alerts_Cloudrest_Sum_Shadow_Beads             = "|cab82ffEsferas|r están a pu
 L.Alerts_Cloudrest_Nocturnals_Favor             = "¡|cff0000Favor de Nocturnal|r sobre ti!"
 L.Alerts_Cloudrest_Crushing_Darkness            = "|cfc0c66Oscuridad aplastante|r sobre ti. ¡Aléjala del grupo!"
 L.Alerts_Cloudrest_Malicious_Strike             = "|cff0000Golpe malicioso|r sobre ti. ¡Bloquea!"
+L.Alerts_Cloudrest_Shadow_Splash                = "Z'Maja is casting. |cFF0000Interrupt|r!"
 
 --------------------------------
 ------   SUNSPIRE          -----

@@ -11,7 +11,7 @@ local data = {}
 function RaidNotifier.CR.Initialize()
 	p = RaidNotifier.p
 	dbg = RaidNotifier.dbg
-	
+
 	data = {}
 	data.spearCounter = 0
 	data.portalCounter = 0
@@ -20,9 +20,9 @@ end
 --function RaidNotifier.CR.OnBossesChanged()
 --	local bossCount, bossAlive, bossFull = RaidNotifier:GetNumBosses(true)
 
-	-- reset if: 	
-	--	1) there are no bosses	
-	--	2) all bosses are dead	
+	-- reset if:
+	--	1) there are no bosses
+	--	2) all bosses are dead
 	--	3) all bosses are at full health
 --	if bossCount == 0 or bossAlive == 0 or bossFull == bossCount then
 --		dbg("clear data before")
@@ -109,7 +109,7 @@ function RaidNotifier.CR.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 				--self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_SHADOW_REALM_CAST), "cloudrest", "shadow_realm_cast")
 				self:StartCountdown(hitValue, zo_strformat(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_SHADOW_REALM_CAST), (data.portalCounter % 2) + 1), "cloudrest", "shadow_realm_cast", false)
 			end
-			data.portalCounter = data.portalCounter + 1			
+			data.portalCounter = data.portalCounter + 1
 		elseif abilityId == buffsDebuffs.sum_shadow_beads then
 			if (settings.sum_shadow_beads == true and not (data.break_amulet and settings.break_amulet)) then
 				self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_SUM_SHADOW_BEADS), "cloudrest", "sum_shadow_beads")
@@ -156,6 +156,8 @@ function RaidNotifier.CR.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 					self:StartCountdown(6500, zo_strformat(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_ROARING_FLARE_OTHER), tName), "cloudrest", "roaring_flare", false)
 				end
 			end
+		elseif abilityId == buffsDebuffs.shadow_splash then
+			self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_SHADOW_SPLASH), "cloudrest", "shadow_splash")
 		end
 	elseif result == ACTION_RESULT_EFFECT_GAINED then
 		if (abilityId == buffsDebuffs.start_cd_of_srealm) then
@@ -171,15 +173,15 @@ function RaidNotifier.CR.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 				if (tType == COMBAT_UNIT_TYPE_PLAYER) then
 					self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_CHILLING_COMET), "cloudrest", "chilling_comet")
 				end
-			end		
+			end
 		elseif (buffsDebuffs.malicious_strike[abilityId]) then
 			if (settings.malicious_strike == true) then
 				if (tType == COMBAT_UNIT_TYPE_PLAYER) then
 					self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_MALICIOUS_STRIKE), "cloudrest", "malicious_strike", 1)
-				end				
+				end
 			end
 		elseif buffsDebuffs.hoarfrost_new[abilityId] then
-			if hitValue == 1 then 
+			if hitValue == 1 then
 				local track = buffsDebuffs.hoarfrost_new[abilityId]
 				local d = data.hoarfrost[track]
 				d.count = d.count + 1
@@ -227,7 +229,7 @@ function RaidNotifier.CR.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 			end
 		elseif abilityId == buffsDebuffs.olorime_spears_synergized then
 			--dbg("Spear Synergized ")
-			
+
 		elseif abilityId == buffsDebuffs.hoarfrost_syn then
 			if (settings.hoarfrost > 0) then
 				if (tType == COMBAT_UNIT_TYPE_PLAYER) then
@@ -240,7 +242,7 @@ function RaidNotifier.CR.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 			dbg("Enter ShadowRealm >> %s", tName)
 			if tType == COMBAT_UNIT_TYPE_PLAYER then
 				dbg("Reset hoarfrost count for me")
-				if data.hoarfrost then 
+				if data.hoarfrost then
 					if data.hoarfrost[1] then
 						data.hoarfrost[1].count = 0
 					end
@@ -272,7 +274,7 @@ function RaidNotifier.CR.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 		--	local now = GetGameTimeMilliseconds()
 		--	dbg("Spear Synergized Done at %d", now)
 		--	if data.lastOlorimeSpearMs > 0 then
-		--		local diff = now - data.lastOlorimeSpearMs 
+		--		local diff = now - data.lastOlorimeSpearMs
 		--		local x, y = GetMapPlayerPosition(LUNIT:GetUnitTagForUnitId(tUnitId))
 		--		dbg(" DiffMs: %d, Pos: %f / %f", diff, x, y)
 		--	else
@@ -281,7 +283,7 @@ function RaidNotifier.CR.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 		--	end
 		--	data.lastOlorimeSpearMs = now
 		end
-		
+
 --		elseif result == ACTION_RESULT_DAMAGE then
 --			if buffsDebuffs.voltaic_overload_progress[abilityId] == true then
 --				if (settings.voltaic_overload > 0 and data.voltaic_overload and data.voltaic_overload > 0) then

@@ -460,6 +460,8 @@ L.Settings_Cloudrest_Crushing_Darkness          = "Z'Maja: Ténèbres Écrasante
 L.Settings_Cloudrest_Crushing_Darkness_TT       = "Vous avertit quand une AoE vous suit et doit être gardée à distance."
 L.Settings_Cloudrest_Malicious_Strike           = "Z'Maja: Frappe Malveillante"
 L.Settings_Cloudrest_Malicious_Strike_TT        = "Vous avertit quand une sphère a été détruite et que pour éviter le debuff vous devez rouler ou bloquer."
+L.Settings_Cloudrest_Shadow_Splash              = "Z'Maja: Shadow Splash"
+L.Settings_Cloudrest_Shadow_Splash_TT           = "Alerts you when Z'Maja starts channeling this spell. If not interrupted in time, some players will be teleported into the sky and take fall damage."
 
 -- Alerts
 L.Alerts_Cloudrest_Olorime_Spears               = "Une |cffd000Lance|r apparaît!"
@@ -489,6 +491,7 @@ L.Alerts_Cloudrest_Sum_Shadow_Beads             = "Apparition des |cab82ffSphèr
 L.Alerts_Cloudrest_Nocturnals_Favor             = "|cff0000Faveur de Nocturne|r sur vous!"
 L.Alerts_Cloudrest_Crushing_Darkness            = "|cfc0c66Ténèbres Écrasantes|r sur vous. Courez!"
 L.Alerts_Cloudrest_Malicious_Strike             = "|cff0000Frappe Malveillante|r sur vous. Bloquez!"
+L.Alerts_Cloudrest_Shadow_Splash                = "Z'Maja is casting. |cFF0000Interrupt|r!"
 
 --------------------------------
 ------   SUNSPIRE          -----
@@ -677,7 +680,7 @@ L.Settings_Debug_Tracker_Header          = "Débogueur"
 L.Settings_Debug_Tracker_Description     = "Il s'agit d'une fonction de débogage destinée à suivre et à afficher les potentiels mécaniques au cours d'une épreuve en enregistrant les informations sur les évènements et les effets de combat. En raison de la quantité potentiellement importante d'informations, il existe quelques options pour éviter d'encombrer votre fenêtre de discussion."
 L.Settings_Debug_Tracker_Enabled         = "Activé"
 L.Settings_Debug_Tracker_SpamControl     = "Contrôle Anti-Spam"
-L.Settings_Debug_Tracker_SpamControl_TT  = "Avec cette option, chaque capacité / effet n'est enregistré qu'une fois par type d'action. La liste de ces capacités connues pour cette session peut être effacé avec :\n\n\ /rndebug clear"
+L.Settings_Debug_Tracker_SpamControl_TT  = "Avec cette option, chaque capacité / effet n'est enregistré qu'une fois par type d'action. La liste de ces capacités connues pour cette session peut être effacé avec :\n\n /rndebug clear"
 L.Settings_Debug_Tracker_MyEnemyOnly     = "Mon Ennemi Seulement"
 L.Settings_Debug_Tracker_MyEnemyOnly_TT  = "Lorsque l'option est activée, elle limitera TOUTE sortie de capacités / effets ciblés sur le joueur et qui ne proviennent pas du joueur ou du groupe. Utile lorsque vous cherchez une chose spécifique et que vous ne voulez pas que le Contrôle Anti-Spam s'active."
 
