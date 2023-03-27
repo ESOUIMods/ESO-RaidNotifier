@@ -156,7 +156,7 @@ function RaidNotifier.CR.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
 					self:StartCountdown(6500, zo_strformat(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_ROARING_FLARE_OTHER), tName), "cloudrest", "roaring_flare", false)
 				end
 			end
-		elseif abilityId == buffsDebuffs.shadow_splash then
+		elseif abilityId == buffsDebuffs.shadow_splash and settings.shadow_splash == true then
 			self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_CLOUDREST_SHADOW_SPLASH), "cloudrest", "shadow_splash")
 		end
 	elseif result == ACTION_RESULT_EFFECT_GAINED then
