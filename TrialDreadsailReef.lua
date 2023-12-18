@@ -17,6 +17,50 @@ function RaidNotifier.DSR.Initialize()
     data.reefHearts = {}
 end
 
+function RaidNotifier.DSR.OnEffectChanged(eventCode, changeType, eSlot, eName, uTag, beginTime, endTime, stackCount, iconName, buffType, eType, aType, statusEffectType, uName, uId, abilityId, uType)
+    local raidId = RaidNotifier.raidId
+    local self   = RaidNotifier
+
+    local buffsDebuffs, settings = self.BuffsDebuffs[raidId], self.Vars.dreadsailReef
+
+    -- Player receiving stacks while holding Fire/Ice Dome at the Lylanar&Turlassil encounter
+    if ((abilityId == buffsDebuffs.destructive_ember_stack or abilityId == buffsDebuffs.piercing_hailstone_stack) and string.sub(uTag, 1, 5) == "group") then
+        local shouldNotify = (abilityId == buffsDebuffs.destructive_ember_stack and settings.dome_type == 1)
+            or (abilityId == buffsDebuffs.piercing_hailstone_stack and settings.dome_type == 2)
+            or settings.dome_type == 3
+
+        local isPlayer = AreUnitsEqual(uTag, "player")
+
+        shouldNotify = shouldNotify and (
+            settings.dome_stack_alert == 1 and isPlayer
+                or settings.dome_stack_alert == 2 and not isPlayer
+                or settings.dome_stack_alert == 3
+        )
+
+        if (shouldNotify and changeType ~= EFFECT_RESULT_FADED and stackCount == settings.dome_stack_threshold) then
+            local text
+
+            if (isPlayer) then
+                if (abilityId == buffsDebuffs.destructive_ember_stack) then
+                    text = zo_strformat(GetString(RAIDNOTIFIER_ALERTS_DREADSAILREEF_FIRE_DOME_STACK_ALERT), stackCount)
+                else
+                    text = zo_strformat(GetString(RAIDNOTIFIER_ALERTS_DREADSAILREEF_ICE_DOME_STACK_ALERT), stackCount)
+                end
+            else
+                local playerName = self.UnitIdToString(uId)
+
+                if (abilityId == buffsDebuffs.destructive_ember_stack) then
+                    text = zo_strformat(GetString(RAIDNOTIFIER_ALERTS_DREADSAILREEF_FIRE_DOME_STACK_ALERT_OTHER), playerName, stackCount)
+                else
+                    text = zo_strformat(GetString(RAIDNOTIFIER_ALERTS_DREADSAILREEF_ICE_DOME_STACK_ALERT_OTHER), playerName, stackCount)
+                end
+            end
+
+            self:AddAnnouncement(text, "dreadsailReef", "dome_stack_alert")
+        end
+    end
+end
+
 function RaidNotifier.DSR.OnCombatStateChanged(inCombat)
     local bossCount, bossAlive, bossFull = RaidNotifier:GetNumBosses(true)
 

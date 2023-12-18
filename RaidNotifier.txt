@@ -3,9 +3,9 @@
 ## Author: |c009ad6Kyoma, Memus, Woeler, silentgecko|r
 ## Version: 2.25
 ## AddOnVersion: 225
-## APIVersion: 101038 101039
+## APIVersion: 101039 101040
 ## SavedVariables: RNVars RN_DEBUG_LOG
-## DependsOn: LibAddonMenu-2.0>=34 LibGroupSocket>=13 LibUnits2>=102 LibCSA>=102
+## DependsOn: LibAddonMenu-2.0>=35 LibGroupSocket>=13 LibUnits2>=102 LibCSA>=102
 
 UltimateHandler.lua
 TrialAetherianArchive.lua

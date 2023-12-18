@@ -658,8 +658,12 @@ dreadsail_reef.lylanar_broiling_hew = 167273
 dreadsail_reef.turlassil_stinging_shear = 167280
 -- Destructive Ember (Fire Dome)
 dreadsail_reef.destructive_ember = 166209
+-- Destructive Ember stack (Fire Dome)
+dreadsail_reef.destructive_ember_stack = 166210
 -- Piercing Hailstone (Ice Dome)
 dreadsail_reef.piercing_hailstone = 166178
+-- Piercing Hailstone stack (Ice Dome)
+dreadsail_reef.piercing_hailstone_stack = 166192
 -- Reef Guardian's cast on Reef Heart
 dreadsail_reef.reef_guardian_heartburn = 163692
 -- Reef Guardian's buff that Reef Heart receives (60s)
