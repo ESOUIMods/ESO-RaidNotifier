@@ -319,6 +319,7 @@ do ------------------
 			oaxiltso_noxious_sludge = 0, -- "Off"
 			oaxiltso_annihilator_cinder_cleave = 0, -- "Off"
 			bahsei_embrace_of_death = 0, -- "Off"
+			bahsei_cone_direction = false,
 		},
 		dreadsailReef = {
 			dome_type = 3, -- "All"
@@ -1741,6 +1742,11 @@ function RaidNotifier:CreateSettingsMenu()
 		choices = choices.rockgrove.bahsei_embrace_of_death,
 		choicesTooltips = { false, false, L.Settings_Rockgrove_Embrace_Of_Death_TT_All },
 	}, "rockgrove", "bahsei_embrace_of_death")
+	MakeControlEntry({
+		type = "checkbox",
+		name = L.Settings_Rockgrove_Bahsei_Cone_Direction,
+		tooltip = L.Settings_Rockgrove_Bahsei_Cone_Direction_TT,
+	}, "rockgrove", "bahsei_cone_direction")
 	subTable = nil --end submenu
 
 	-- Dreadsail Reef

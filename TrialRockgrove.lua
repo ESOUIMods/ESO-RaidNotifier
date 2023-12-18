@@ -108,6 +108,20 @@ function RaidNotifier.RG.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
                 self:AddAnnouncement(zo_strformat(GetString(RAIDNOTIFIER_ALERTS_ROCKGROVE_CINDER_CLEAVE_OTHER), tName), "rockgrove", "oaxiltso_annihilator_cinder_cleave")
             end
         end
+    elseif (result == ACTION_RESULT_EFFECT_GAINED) then
+        if (abilityId == buffsDebuffs.bahsei_creeping_eye_clockwise or abilityId == buffsDebuffs.bahsei_creeping_eye_countercw) then
+            if (settings.bahsei_cone_direction) then
+                local text
+
+                if (abilityId == buffsDebuffs.bahsei_creeping_eye_clockwise) then
+                    text = GetString(RAIDNOTIFIER_ALERTS_ROCKGROVE_BAHSEI_CONE_DIRECTION_CLOCKWISE)
+                else
+                    text = GetString(RAIDNOTIFIER_ALERTS_ROCKGROVE_BAHSEI_CONE_DIRECTION_COUNTERCW)
+                end
+
+                self:AddAnnouncement(text, "rockgrove", "bahsei_cone_direction")
+            end
+        end
     elseif (result == ACTION_RESULT_EFFECT_FADED) then
         -- Sul-Xan Soulweaver's Soul Remnant attack (his Astral Shield is broken)
         if (abilityId == buffsDebuffs.sulxan_soulweaver_astral_shield_self) then

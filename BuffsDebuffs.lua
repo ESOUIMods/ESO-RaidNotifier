@@ -640,6 +640,10 @@ rockgrove.meteor_radiating_heat = {
 }
 -- Flame-Herald Bahsei's Death Touch debuff (caused by Embrace of Death mech)
 rockgrove.bahsei_death_touch = 150078
+-- Creeping Eye effect on Flame-Herald Bahsei's fight that indicated clockwise cone direction
+rockgrove.bahsei_creeping_eye_clockwise = 153517
+-- Creeping Eye effect on Flame-Herald Bahsei's fight that indicated counterclockwise cone direction
+rockgrove.bahsei_creeping_eye_countercw = 153518
 
 RaidNotifier.BuffsDebuffs[RAID_ROCKGROVE] = rockgrove
 
