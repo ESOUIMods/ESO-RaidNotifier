@@ -15,14 +15,16 @@ function RaidNotifier.RG.Initialize()
     data = {}
 end
 
-function RaidNotifier.RG.OnEffectChanged(eventCode, changeType, eSlot, eName, uTag, beginTime, endTime, stackCount, iconName, buffType, eType, aType, statusEffectType, uName, uId, abilityId, uType)
+function RaidNotifier.RG.OnEffectChangedForGroup(eventCode, changeType, eSlot, eName, uTag, beginTime, endTime, stackCount, iconName, buffType, eType, aType, statusEffectType, uName, uId, abilityId, uType)
     local raidId = RaidNotifier.raidId
     local self   = RaidNotifier
 
     local buffsDebuffs, settings = self.BuffsDebuffs[raidId], self.Vars.rockgrove
 
+    if (string.sub(uTag, 1, 5) ~= "group") then return end
+
     -- Prime Meteor
-    if (buffsDebuffs.meteor_radiating_heat[abilityId] and string.sub(uTag, 1, 5) == "group") then
+    if (buffsDebuffs.meteor_radiating_heat[abilityId]) then
         if (settings.prime_meteor) then
             if (changeType == EFFECT_RESULT_GAINED) then
                 if (AreUnitsEqual(uTag, "player")) then
@@ -31,7 +33,7 @@ function RaidNotifier.RG.OnEffectChanged(eventCode, changeType, eSlot, eName, uT
             end
         end
     -- Oaxiltso's Noxious Sludge
-    elseif (abilityId == buffsDebuffs.oaxiltso_noxious_sludge and string.sub(uTag, 1, 5) == "group") then
+    elseif (abilityId == buffsDebuffs.oaxiltso_noxious_sludge) then
         if (changeType == EFFECT_RESULT_GAINED) then
             if (settings.oaxiltso_noxious_sludge == 1 and AreUnitsEqual(uTag, "player")) then
                 self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_ROCKGROVE_NOXIOUS_SLUDGE_SELF), "rockgrove", "oaxiltso_noxious_sludge")
@@ -55,7 +57,7 @@ function RaidNotifier.RG.OnEffectChanged(eventCode, changeType, eSlot, eName, uT
             end
         end
     -- Flame-Herald Bahsei's Embrace of Death (Death Touch debuff)
-    elseif (abilityId == buffsDebuffs.bahsei_death_touch and string.sub(uTag, 1, 5) == "group") then
+    elseif (abilityId == buffsDebuffs.bahsei_death_touch) then
         if (changeType == EFFECT_RESULT_GAINED) then
             if (settings.bahsei_embrace_of_death >= 1 and AreUnitsEqual(uTag, "player")) then
                 self:StartCountdown(8000, GetString(RAIDNOTIFIER_ALERTS_ROCKGROVE_EMBRACE_OF_DEATH), "rockgrove", "bahsei_embrace_of_death", true)
@@ -64,6 +66,24 @@ function RaidNotifier.RG.OnEffectChanged(eventCode, changeType, eSlot, eName, uT
 
                 self:StartCountdown(8000, zo_strformat(GetString(RAIDNOTIFIER_ALERTS_ROCKGROVE_EMBRACE_OF_DEATH_OTHER), targetPlayerName), "rockgrove", "bahsei_embrace_of_death", false)
             end
+        end
+    end
+end
+
+function RaidNotifier.RG.OnEffectChangedForPlayer(eventCode, changeType, eSlot, eName, uTag, beginTime, endTime, stackCount, iconName, buffType, eType, aType, statusEffectType, uName, uId, abilityId, uType)
+    local raidId = RaidNotifier.raidId
+    local self   = RaidNotifier
+
+    local buffsDebuffs, settings = self.BuffsDebuffs[raidId], self.Vars.rockgrove
+
+    if (uTag ~= "player") then return end
+
+    if (abilityId == buffsDebuffs.xalvakka_unstable_charge and settings.xalvakka_unstable_charge) then
+        if (changeType == EFFECT_RESULT_GAINED) then
+            self:AddAnnouncement(GetString(RAIDNOTIFIER_ALERTS_ROCKGROVE_XALVAKKA_UNSTABLE_CHARGE), "rockgrove", "xalvakka_unstable_charge")
+            self:UpdateXalvakkaUnstableCharge(true)
+        elseif (changeType == EFFECT_RESULT_FADED) then
+            self:UpdateXalvakkaUnstableCharge(false)
         end
     end
 end

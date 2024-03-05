@@ -484,6 +484,34 @@ do -------------------
 		end
 	end
 
+	function RaidNotifier:UpdateXalvakkaUnstableCharge(active)
+		local settings = self.Vars.rockgrove
+		if not settings.xalvakka_unstable_charge then return end
+
+		if not display then return end
+
+		if owner ~= "rg_xalvakka_unstable_charge" then
+			owner = "rg_xalvakka_unstable_charge"
+			display:SetTexture([[RaidNotifier/assets/green_alert_sign.dds]])
+			display.timer:SetHidden(true)
+			display.label:SetHidden(true)
+		end
+
+		local currentTime = GetGameTimeMillis() / 1000
+
+		if active then
+			iconTimer:Start(currentTime, currentTime+3600, 0.5) -- just for making it 'active'
+			display.flashTimeline:PlayFromStart()
+		else
+			iconTimer:Start(currentTime, currentTime, 0.5) -- finish time doesn't matter
+			iconTimer:SetExpired() -- start fading
+			if display.flashTimeline:IsPlaying() then
+				display.flashTimeline:PlayInstantlyToEnd()
+				display.flashTimeline:Stop()
+			end
+		end
+	end
+
 	SLASH_COMMANDS["/rnstatus"] = function(status)
 		local currentTime = GetGameTimeMillis() / 1000
 		if status == "scalded" then
@@ -495,6 +523,8 @@ do -------------------
 			RaidNotifier:UpdateSphereVenom(true, currentTime, currentTime + 8.3)
 		elseif status == "troll" then
 			RaidNotifier:UpdateSpreadingPoison(true, currentTime, currentTime + 10)
+		elseif status == "unstable_charge" then
+			RaidNotifier:UpdateXalvakkaUnstableCharge(true)
 		else
 			RaidNotifier:UpdateTwinAspect(status)
 		end

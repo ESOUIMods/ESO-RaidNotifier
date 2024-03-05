@@ -615,6 +615,8 @@ L.Settings_Rockgrove_Embrace_Of_Death_TT           = "Alerts you when someone go
 L.Settings_Rockgrove_Embrace_Of_Death_TT_All       = "|cFF0000WARNING!|r If your group will get too much curses your screen may be fully covered in countdowns for a duration of those curses! We're working on ways to improve this notification."
 L.Settings_Rockgrove_Bahsei_Cone_Direction         = "Flame-Herald Bahsei HM: Cone direction"
 L.Settings_Rockgrove_Bahsei_Cone_Direction_TT      = "Alerts you of the cone direction if the portal opened."
+L.Settings_Rockgrove_Xalvakka_Unstable_Charge      = "Xalvakka HM: Unstable charge (staying on blob)"
+L.Settings_Rockgrove_Xalvakka_Unstable_Charge_TT   = "Alerts you when you're staying on blob. It's not healthy!"
 
 -- Alerts
 L.Alerts_Rockgrove_Sundering_Strike                = "Incoming |cCDCDCDSundering Strike|r on you!"
@@ -633,6 +635,7 @@ L.Alerts_Rockgrove_Embrace_Of_Death                = "You're cursed by |c0A929BE
 L.Alerts_Rockgrove_Embrace_Of_Death_Other          = "|cFF0000<<!aC:1>>|r cursed by |c0A929BEmbrace of Death|r! Explosion in"
 L.Alerts_Rockgrove_Bahsei_Cone_Direction_Clockwise = "-> Move |cF48020clockwise|r ->"
 L.Alerts_Rockgrove_Bahsei_Cone_Direction_CounterCW = "<- Move |c15FFC2counterclockwise|r <-"
+L.Alerts_Rockgrove_Xalvakka_Unstable_Charge        = "Move away from |c008C22blob|r!"
 
 
 --------------------------------

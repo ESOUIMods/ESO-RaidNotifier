@@ -8,7 +8,7 @@ local RaidNotifier = RaidNotifier
 
 RaidNotifier.Name           = "RaidNotifier"
 RaidNotifier.DisplayName    = "Raid Notifier"
-RaidNotifier.Version        = "2.26"
+RaidNotifier.Version        = "2.27.1"
 RaidNotifier.Author         = "|c009ad6Kyoma, Memus, Woeler, silentgecko|r"
 RaidNotifier.SV_Name        = "RNVars"
 RaidNotifier.SV_Version     = 4
@@ -640,6 +640,8 @@ do ----------------------
 				local combatEventCallback = trial.OnCombatEvent
 				local bossesChangedCallback = trial.OnBossesChanged
 				local effectChangedCallback = trial.OnEffectChanged
+				local effectChangedForGroupCallback = trial.OnEffectChangedForGroup
+				local effectChangedForPlayerCallback = trial.OnEffectChangedForPlayer
 				combatStateChangedCallback = trial.OnCombatStateChanged
 
 				local abilityList = {}
@@ -693,6 +695,17 @@ do ----------------------
 						EVENT_MANAGER:AddFilterForEvent(self.Name, EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG_PREFIX, "group")
 					end
 				end
+
+				if (effectChangedForGroupCallback) then
+					EVENT_MANAGER:RegisterForEvent(self.Name.."_EffectChangedGroup", EVENT_EFFECT_CHANGED, effectChangedForGroupCallback)
+					EVENT_MANAGER:AddFilterForEvent(self.Name.."_EffectChangedGroup", EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG_PREFIX, "group")
+				end
+
+				if (effectChangedForPlayerCallback) then
+					EVENT_MANAGER:RegisterForEvent(self.Name.."_EffectChangedPlayer", EVENT_EFFECT_CHANGED, effectChangedForPlayerCallback)
+					EVENT_MANAGER:AddFilterForEvent(self.Name.."_EffectChangedPlayer", EVENT_EFFECT_CHANGED, REGISTER_FILTER_UNIT_TAG, "player")
+				end
+
 				if (bossesChangedCallback) then
 					EVENT_MANAGER:RegisterForEvent(self.Name, EVENT_BOSSES_CHANGED, bossesChangedCallback)
 				end
@@ -747,6 +760,8 @@ do ----------------------
 		dbg("Unregister for %s (%s)", GetRaidZoneName(self.raidId), GetString("SI_DUNGEONDIFFICULTY", self.raidDifficulty))
 		self:UnregisterAllCombatEvents()
 		EVENT_MANAGER:UnregisterForEvent(self.Name, EVENT_EFFECT_CHANGED)
+		EVENT_MANAGER:UnregisterForEvent(self.Name.."_EffectChangedGroup", EVENT_EFFECT_CHANGED)
+		EVENT_MANAGER:UnregisterForEvent(self.Name.."_EffectChangedPlayer", EVENT_EFFECT_CHANGED)
 		EVENT_MANAGER:UnregisterForEvent(self.Name, EVENT_BOSSES_CHANGED)
 		EVENT_MANAGER:UnregisterForEvent(self.Name, EVENT_PLAYER_COMBAT_STATE)
 

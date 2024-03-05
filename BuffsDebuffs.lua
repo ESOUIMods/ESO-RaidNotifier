@@ -644,6 +644,8 @@ rockgrove.bahsei_death_touch = 150078
 rockgrove.bahsei_creeping_eye_clockwise = 153517
 -- Creeping Eye effect on Flame-Herald Bahsei's fight that indicated counterclockwise cone direction
 rockgrove.bahsei_creeping_eye_countercw = 153518
+-- Unstable Charge - applies when player stands on blob during Xalvakka HM fight
+rockgrove.xalvakka_unstable_charge = 153164
 
 RaidNotifier.BuffsDebuffs[RAID_ROCKGROVE] = rockgrove
 
