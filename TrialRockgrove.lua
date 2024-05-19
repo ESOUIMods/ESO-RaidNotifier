@@ -8,11 +8,40 @@ local function dbg() end
 
 local data = {}
 
+local function isUnitTank(unitTag)
+    local isTank = false
+
+    if GetGroupSize() > 0 then
+        isTank = GetGroupMemberSelectedRole(unitTag) == LFG_ROLE_TANK
+    elseif AreUnitsEqual(unitTag, "player") then
+        isTank = GetSelectedLFGRole() == LFG_ROLE_TANK
+    end
+
+    return isTank
+end
+
 function RaidNotifier.RG.Initialize()
     p = RaidNotifier.p
     dbg = RaidNotifier.dbg
 
     data = {}
+    data.bahseiPortalCounter = 0
+end
+
+function RaidNotifier.RG.OnCombatStateChanged(inCombat)
+    if (inCombat and DoesUnitExist("boss1")) then
+        local currentHealth, maxHealth = GetUnitPower("boss1", POWERTYPE_HEALTH)
+
+        if currentHealth ~= nil and maxHealth ~= nil and currentHealth > 0 and maxHealth > 0 then
+            local healthPercent = currentHealth / maxHealth
+
+            if healthPercent <= 99 then
+                return
+            end
+        end
+    end
+
+    data.bahseiPortalCounter = 0
 end
 
 function RaidNotifier.RG.OnEffectChangedForGroup(eventCode, changeType, eSlot, eName, uTag, beginTime, endTime, stackCount, iconName, buffType, eType, aType, statusEffectType, uName, uId, abilityId, uType)
@@ -61,7 +90,7 @@ function RaidNotifier.RG.OnEffectChangedForGroup(eventCode, changeType, eSlot, e
         if (changeType == EFFECT_RESULT_GAINED) then
             if (settings.bahsei_embrace_of_death >= 1 and AreUnitsEqual(uTag, "player")) then
                 self:StartCountdown(8000, GetString(RAIDNOTIFIER_ALERTS_ROCKGROVE_EMBRACE_OF_DEATH), "rockgrove", "bahsei_embrace_of_death", true)
-            elseif (settings.bahsei_embrace_of_death == 2) then
+            elseif (settings.bahsei_embrace_of_death == 2 or settings.bahsei_embrace_of_death == 3 and isUnitTank(uTag)) then
                 local targetPlayerName = self.UnitIdToString(uId)
 
                 self:StartCountdown(8000, zo_strformat(GetString(RAIDNOTIFIER_ALERTS_ROCKGROVE_EMBRACE_OF_DEATH_OTHER), targetPlayerName), "rockgrove", "bahsei_embrace_of_death", false)
@@ -130,6 +159,12 @@ function RaidNotifier.RG.OnCombatEvent(_, result, isError, aName, aGraphic, aAct
         end
     elseif (result == ACTION_RESULT_EFFECT_GAINED) then
         if (abilityId == buffsDebuffs.bahsei_creeping_eye_clockwise or abilityId == buffsDebuffs.bahsei_creeping_eye_countercw) then
+            data.bahseiPortalCounter = data.bahseiPortalCounter % 2 + 1
+
+            if (settings.bahsei_portal_number) then
+                local text = zo_strformat(GetString(RAIDNOTIFIER_ALERTS_ROCKGROVE_BAHSEI_PORTAL_NUMBER), data.bahseiPortalCounter)
+                self:AddAnnouncement(text, "rockgrove", "bahsei_portal_number")
+            end
             if (settings.bahsei_cone_direction) then
                 local text
 

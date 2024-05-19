@@ -46,6 +46,7 @@ L.Settings_General_Choices_500ms                    = "0.5s"
 L.Settings_General_Choices_200ms                    = "0.2s"
 L.Settings_General_Choices_Custom                   = "Custom"
 L.Settings_General_Choices_Custom_Announcement      = "Custom (movable)"
+L.Settings_General_Choices_SelfAndTanks             = "Self and tanks"
 L.Settings_General_Choices_OnlyChaurusTotem         = "Only Chaurus" -- Specific for Kyne's Aegis
 L.Settings_DreadsailReef_Choices_OnlyFireDome       = "Only Fire Dome"
 L.Settings_DreadsailReef_Choices_OnlyIceDome        = "Only Ice Dome"
@@ -615,6 +616,8 @@ L.Settings_Rockgrove_Embrace_Of_Death_TT           = "Alerts you when someone go
 L.Settings_Rockgrove_Embrace_Of_Death_TT_All       = "|cFF0000WARNING!|r If your group will get too much curses your screen may be fully covered in countdowns for a duration of those curses! We're working on ways to improve this notification."
 L.Settings_Rockgrove_Bahsei_Cone_Direction         = "Flame-Herald Bahsei HM: Cone direction"
 L.Settings_Rockgrove_Bahsei_Cone_Direction_TT      = "Alerts you of the cone direction if the portal opened."
+L.Settings_Rockgrove_Bahsei_Portal_Number          = "Flame-Herald Bahsei HM: Portal number (beta)"
+L.Settings_Rockgrove_Bahsei_Portal_Number_TT       = "Tells you the number of portal being opened."
 L.Settings_Rockgrove_Xalvakka_Unstable_Charge      = "Xalvakka HM: Unstable charge (staying on blob)"
 L.Settings_Rockgrove_Xalvakka_Unstable_Charge_TT   = "Alerts you when you're staying on blob. It's not healthy!"
 
@@ -635,6 +638,7 @@ L.Alerts_Rockgrove_Embrace_Of_Death                = "You're cursed by |c0A929BE
 L.Alerts_Rockgrove_Embrace_Of_Death_Other          = "|cFF0000<<!aC:1>>|r cursed by |c0A929BEmbrace of Death|r! Explosion in"
 L.Alerts_Rockgrove_Bahsei_Cone_Direction_Clockwise = "-> Move |cF48020clockwise|r ->"
 L.Alerts_Rockgrove_Bahsei_Cone_Direction_CounterCW = "<- Move |c15FFC2counterclockwise|r <-"
+L.Alerts_Rockgrove_Bahsei_Portal_Number            = "Portal #<<1>>"
 L.Alerts_Rockgrove_Xalvakka_Unstable_Charge        = "Move away from |c008C22blob|r!"
 
 

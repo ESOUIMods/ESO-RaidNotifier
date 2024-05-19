@@ -53,7 +53,7 @@ do
 			return 0 -- indicates invalid value
 		end
 	end
-	
+
 	function Util.GetDistanceToUnitInMeters(unit, zoneId)
 		local pX,pY = GetMapPlayerPosition("player")
 		local uX,uY = GetMapPlayerPosition(unit)
@@ -109,7 +109,7 @@ function Util.UnboxTable(tbl, keys)
 	for idx,key in ipairs(keys) do
 		result[idx] = unboxedTables[key]
 	end
-	
+
 	return unpack(result)
 end
 
@@ -120,9 +120,9 @@ end
 
 function Util.HSL2RGB(h,s,l)
    local m1, m2
-   if l<=0.5 then 
+   if l<=0.5 then
       m2 = l*(s+1)
-   else 
+   else
       m2 = l+s-l*s
    end
    m1 = l*2-m2
@@ -130,11 +130,11 @@ function Util.HSL2RGB(h,s,l)
    local function _h2rgb(m1, m2, h)
       if h<0 then h = h+1 end
       if h>1 then h = h-1 end
-      if h*6<1 then 
+      if h*6<1 then
          return m1+(m2-m1)*h*6
-      elseif h*2<1 then 
-         return m2 
-      elseif h*3<2 then 
+      elseif h*2<1 then
+         return m2
+      elseif h*3<2 then
          return m1+(m2-m1)*(2/3-h)*6
       else
          return m1
@@ -193,4 +193,3 @@ function Util:GetDistance(pX, pY, tX, tY)
 
 	return dist
 end
-
